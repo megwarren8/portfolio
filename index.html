@@ -136,7 +136,7 @@ p{margin:0;}
   margin-top:22px;
   letter-spacing:-0.03em;
 }
-.hero h1 em{font-style:italic;font-family:var(--serif);font-weight:400;letter-spacing:-.005em;color:var(--hi);}
+.hero h1 em{font-style:italic;font-family:var(--serif);font-weight:400;font-size:1.22em;letter-spacing:-.005em;color:var(--hi);}
 .hero .sub{
   font-family:var(--serif);
   font-size:clamp(1.15rem, 2vw, 1.4rem);
@@ -310,9 +310,11 @@ p{margin:0;}
 .how-item .v{font-family:var(--serif);font-size:15px;color:var(--mid);margin-top:8px;line-height:1.5;}
 
 /* ---------------- closing CTA ---------------- */
-.cta{padding:92px 0 100px;text-align:left;}
-.cta h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:700;max-width:16ch;}
-.cta .sub{font-family:var(--serif);color:var(--mid);font-size:1.08rem;margin-top:18px;max-width:52ch;line-height:1.65;}
+.cta{padding:100px 0 110px;text-align:left;}
+.cta-mark{width:104px;height:104px;display:block;margin-bottom:30px;filter:drop-shadow(var(--glow-md));}
+.cta .eyebrow{display:block;margin-bottom:10px;}
+.cta h2{font-size:clamp(2.3rem,5.4vw,3.9rem);font-weight:700;max-width:19ch;line-height:1.05;letter-spacing:-0.025em;}
+.cta .sub{font-family:var(--serif);color:var(--mid);font-size:clamp(1.1rem,1.8vw,1.3rem);margin-top:24px;max-width:58ch;line-height:1.62;}
 .cta-row{display:flex;align-items:center;gap:22px;margin-top:32px;flex-wrap:wrap;}
 .cta-secondary{display:flex;gap:18px;}
 .cta-secondary a{font-size:13.5px;color:var(--mid);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:1px;}
@@ -572,6 +574,20 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
 
     <section class="cta">
       <div class="wrap">
+        <svg class="cta-mark" viewBox="0 0 120 120" aria-hidden="true">
+          <defs>
+            <linearGradient id="sigmaCta" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#45E8CF"/>
+              <stop offset="0.24" stop-color="#30CBC9"/>
+              <stop offset="0.42" stop-color="#3D82D6"/>
+              <stop offset="0.58" stop-color="#5A50CC"/>
+              <stop offset="0.78" stop-color="#8A66E0"/>
+              <stop offset="1" stop-color="#C4ACF6"/>
+            </linearGradient>
+          </defs>
+          <path d="M25 20 L60 47 L95 20 L95 97 L60 70 L25 97 Z" fill="none" stroke="url(#sigmaCta)" stroke-width="13" stroke-linejoin="miter" stroke-miterlimit="10"/>
+        </svg>
+        <p class="eyebrow">Megan Warren &middot; Designer &amp; Builder</p>
         <h2>Have something you wish already existed?</h2>
         <p class="sub">Tell me what it is. I will tell you honestly whether it is a good fit. If it is, you will get a real number and a real timeline before we start.</p>
         <div class="cta-row">
