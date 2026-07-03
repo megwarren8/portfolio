@@ -237,8 +237,11 @@ p{margin:0;}
 .gr-link-label{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:#a599c2;margin-bottom:6px;}
 .gr-link-text{font-family:var(--serif);color:#4A3F6E;font-size:12.5px;line-height:1.45;}
 
-/* specimen 4: color companion match result (violet family, blends with the page) */
-.spec-cc{background:#F3F0F9;border-color:#DED5EC;padding:12px 12px 12px;}
+/* specimen 4+6: color match and typed facts, paired as one wide chip */
+.spec-mix{background:#F3F0F9;border-color:#DED5EC;padding:14px 16px;flex-direction:row;gap:0;}
+.spec-mix--wide{grid-column:span 2;}
+.mix-col{flex:1;display:flex;flex-direction:column;min-width:0;}
+.mix-divider{width:1px;align-self:stretch;background:#DED5EC;margin:0 16px;}
 .cc-match{display:flex;align-items:center;gap:8px;}
 .cc-src{width:34px;height:34px;border-radius:7px;box-shadow:inset 0 0 0 1px rgba(31,21,53,.12);flex:0 0 34px;}
 .cc-arrow{color:#8577a3;font-size:14px;font-weight:700;}
@@ -247,12 +250,8 @@ p{margin:0;}
 .cc-sw{width:14px;height:14px;border-radius:4px;box-shadow:inset 0 0 0 1px rgba(31,21,53,.12);flex:0 0 14px;}
 .cc-code{font-family:var(--mono);font-size:9.5px;color:#4A3F6E;font-weight:600;letter-spacing:.02em;}
 .cc-code .dim{color:#8577a3;font-weight:500;}
-.spec-cc .chip-cap{color:#8577a3;margin-top:auto;}
-
-/* specimen 6: typed facts */
-.spec-facts{background:var(--elevated);border-color:var(--border);}
-.facts-txt{font-family:var(--mono);font-size:11.5px;color:var(--teal-em);line-height:1.65;}
-.spec-facts .chip-cap{color:var(--low);}
+.facts-txt{font-family:var(--mono);font-size:11.5px;color:#3A6E68;line-height:1.65;}
+.spec-mix .chip-cap{color:#8577a3;margin-top:auto;padding-top:10px;}
 
 /* ---------------- tools ---------------- */
 .tools{padding:20px 0 40px;display:flex;flex-direction:column;gap:22px;}
@@ -518,25 +517,38 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
             <div class="peek-slide">
               <div class="peek-titlebar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="peek-file">hooks-bank-v4.html</span></div>
               <div class="peek-art" style="background:#F6F3EC;">
-                <span style="align-self:flex-start;font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:#F26A4F;border-radius:5px;padding:3px 7px;">Opener</span>
-                <div style="margin-top:9px;font-family:var(--sans);font-weight:700;font-size:12px;color:#182A4E;line-height:1.35;">Add and scale vectors, and see what each move does to the arrow.</div>
-                <div style="margin-top:10px;display:flex;align-items:center;gap:5px;">
+                <span style="align-self:flex-start;font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:#F26A4F;border-radius:5px;padding:3px 7px;">Objective</span>
+                <div style="margin-top:9px;font-family:var(--sans);font-weight:700;font-size:12px;color:#182A4E;line-height:1.35;">Compute a dot product, and use it for length and the angle between two vectors.</div>
+                <div style="margin-top:6px;font-family:var(--serif);font-style:italic;font-size:9.5px;color:#7A7263;line-height:1.4;">&ldquo;A recommender wants to know if two users have similar taste&hellip;&rdquo;</div>
+                <div style="margin-top:9px;display:flex;align-items:center;gap:5px;">
                   <span style="font-family:var(--mono);font-size:7.5px;color:#8a7f5f;">1 Scene</span>
                   <span style="font-family:var(--mono);font-size:7.5px;color:#8a7f5f;">2 Diagram</span>
                   <span style="font-family:var(--mono);font-size:7.5px;color:#8a7f5f;">3 Reveal</span>
                   <span style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:#fff;background:#182A4E;border-radius:999px;padding:3px 7px;">All 3 (row)</span>
                 </div>
-                <div style="margin-top:10px;display:flex;gap:6px;flex:1;min-height:0;">
-                  <svg viewBox="0 0 60 60" style="flex:1;background:#fff;border:1px solid #E3DCC8;border-radius:6px;"><circle cx="30" cy="30" r="4" fill="#F26A4F"/><circle cx="18" cy="22" r="3" fill="#182A4E" opacity=".5"/><circle cx="42" cy="38" r="3" fill="#182A4E" opacity=".5"/><circle cx="40" cy="18" r="2.5" fill="#182A4E" opacity=".35"/><circle cx="16" cy="42" r="2.5" fill="#182A4E" opacity=".35"/></svg>
-                  <svg viewBox="0 0 60 60" style="flex:1;background:#fff;border:1px solid #E3DCC8;border-radius:6px;"><line x1="10" y1="50" x2="46" y2="14" stroke="#F26A4F" stroke-width="2.5"/><polygon points="46,14 39,16 44,21" fill="#F26A4F"/><line x1="10" y1="50" x2="50" y2="50" stroke="#182A4E" stroke-width="1" opacity=".3"/><line x1="10" y1="50" x2="10" y2="10" stroke="#182A4E" stroke-width="1" opacity=".3"/></svg>
-                  <svg viewBox="0 0 60 60" style="flex:1;background:#fff;border:1px solid #E3DCC8;border-radius:6px;"><rect x="10" y="34" width="7" height="18" fill="#182A4E" opacity=".65"/><rect x="21" y="24" width="7" height="28" fill="#182A4E" opacity=".8"/><rect x="32" y="30" width="7" height="22" fill="#F26A4F"/><rect x="43" y="16" width="7" height="36" fill="#182A4E"/></svg>
+                <div style="margin-top:9px;display:flex;gap:6px;flex:1;min-height:0;">
+                  <div style="flex:1;display:flex;flex-direction:column;background:#fff;border:1px solid #E3DCC8;border-radius:6px;padding:5px;box-sizing:border-box;">
+                    <span style="font-family:var(--mono);font-size:6.5px;color:#8a7f5f;">Similar taste?</span>
+                    <div style="margin-top:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+                      <span style="aspect-ratio:1;background:#182A4E;opacity:.55;border-radius:2px;"></span><span style="aspect-ratio:1;background:#182A4E;opacity:.55;border-radius:2px;"></span><span style="aspect-ratio:1;background:#182A4E;opacity:.35;border-radius:2px;"></span>
+                      <span style="aspect-ratio:1;background:#182A4E;opacity:.55;border-radius:2px;"></span><span style="aspect-ratio:1;background:#F26A4F;border-radius:2px;"></span><span style="aspect-ratio:1;background:#182A4E;opacity:.55;border-radius:2px;"></span>
+                      <span style="aspect-ratio:1;background:#182A4E;opacity:.35;border-radius:2px;"></span><span style="aspect-ratio:1;background:#182A4E;opacity:.55;border-radius:2px;"></span><span style="aspect-ratio:1;background:#182A4E;opacity:.55;border-radius:2px;"></span>
+                    </div>
+                  </div>
+                  <div style="flex:1;display:flex;flex-direction:column;background:#fff;border:1px solid #E3DCC8;border-radius:6px;padding:5px;box-sizing:border-box;">
+                    <span style="font-family:var(--mono);font-size:6.5px;color:#8a7f5f;">Angle between arrows</span>
+                    <svg viewBox="0 0 60 50" style="flex:1;margin-top:2px;"><line x1="8" y1="42" x2="52" y2="42" stroke="#182A4E" stroke-width="1" opacity=".3"/><line x1="8" y1="42" x2="8" y2="6" stroke="#182A4E" stroke-width="1" opacity=".3"/><line x1="8" y1="42" x2="44" y2="10" stroke="#F26A4F" stroke-width="2.5"/><polygon points="44,10 37,12 42,17" fill="#F26A4F"/><line x1="8" y1="42" x2="46" y2="30" stroke="#182A4E" stroke-width="2"/><polygon points="46,30 39,29 42,35" fill="#182A4E"/><path d="M 24 42 A 16 16 0 0 0 27 32" fill="none" stroke="#8a7f5f" stroke-width="1"/></svg>
+                  </div>
+                  <div style="flex:1;display:flex;flex-direction:column;background:#fff;border:1px solid #E3DCC8;border-radius:6px;padding:5px;box-sizing:border-box;">
+                    <span style="font-family:var(--mono);font-size:6.5px;color:#8a7f5f;">The dot product</span>
+                    <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+                      <span style="font-family:var(--serif);font-size:9px;color:#182A4E;border:1px solid #E3DCC8;border-radius:5px;padding:5px 6px;text-align:center;line-height:1.4;">u&nbsp;&middot;&nbsp;v =<br>&Sigma; u<sub>i</sub>v<sub>i</sub></span>
+                    </div>
+                  </div>
                 </div>
-                <div style="margin-top:10px;display:flex;gap:6px;">
-                  <span style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:#fff;background:#F26A4F;border-radius:5px;padding:3px 6px;">RED FLAG</span>
-                  <span style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:#fff;background:#182A4E;border-radius:5px;padding:3px 6px;">ANSWER</span>
-                </div>
+                <div style="margin-top:9px;font-family:var(--mono);font-size:7.5px;color:#8a7f5f;">&#9662; Teacher notes: math check, why it works, delivery, misconception, anchor</div>
               </div>
-              <div class="peek-cap">Scene, diagram, and reveal, in one strip, with the figure ready to drag into a slide.</div>
+              <div class="peek-cap">Scene, diagram, and reveal, in one strip, each with its own teacher notes.</div>
             </div>
 
             <div class="peek-slide">
@@ -609,22 +621,24 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
             <div class="chip-cap">Scribe writes, Speaker talks, Inquirer asks. One marker, three real jobs.</div>
           </div>
 
-          <div class="chip spec-cc">
-            <div class="cc-match">
-              <span class="cc-src" style="background:#7E63C4;"></span>
-              <span class="cc-arrow">&#8250;</span>
-              <div class="cc-matches">
-                <div class="cc-row"><span class="cc-sw" style="background:#8A70CC;"></span><span class="cc-code">V15 <span class="dim">violet</span></span></div>
-                <div class="cc-row"><span class="cc-sw" style="background:#6E5AA8;"></span><span class="cc-code">PB9 <span class="dim">iris</span></span></div>
-                <div class="cc-row"><span class="cc-sw" style="background:#9D85DC;"></span><span class="cc-code">V22 <span class="dim">lilac</span></span></div>
+          <div class="chip spec-mix spec-mix--wide">
+            <div class="mix-col">
+              <div class="cc-match">
+                <span class="cc-src" style="background:#7E63C4;"></span>
+                <span class="cc-arrow">&#8250;</span>
+                <div class="cc-matches">
+                  <div class="cc-row"><span class="cc-sw" style="background:#8A70CC;"></span><span class="cc-code">V15 <span class="dim">violet</span></span></div>
+                  <div class="cc-row"><span class="cc-sw" style="background:#6E5AA8;"></span><span class="cc-code">PB9 <span class="dim">iris</span></span></div>
+                  <div class="cc-row"><span class="cc-sw" style="background:#9D85DC;"></span><span class="cc-code">V22 <span class="dim">lilac</span></span></div>
+                </div>
               </div>
+              <div class="chip-cap">Point at a color. Get the marker.</div>
             </div>
-            <div class="chip-cap">Point at a color. Get the marker.</div>
-          </div>
-
-          <div class="chip spec-facts">
-            <div class="facts-txt">9.7 MB<br>6,585 formulas<br>0 KB after first load</div>
-            <div class="chip-cap">Typed and exact, not vibes.</div>
+            <div class="mix-divider"></div>
+            <div class="mix-col">
+              <div class="facts-txt">9.7 MB<br>6,585 formulas<br>0 KB after first load</div>
+              <div class="chip-cap">Typed and exact, not vibes.</div>
+            </div>
           </div>
 
         </div>
