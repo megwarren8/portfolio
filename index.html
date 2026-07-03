@@ -104,7 +104,8 @@ p{margin:0;}
   color:var(--hi);text-decoration:none;
 }
 .mark svg{width:28px;height:28px;filter:drop-shadow(var(--glow-sm));display:block;}
-.mark .mark-name{background:var(--grad-h);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.mark .mn-a{color:#45E8CF;}
+.mark .mn-b{color:#C4ACF6;}
 .top-links{display:flex;align-items:center;gap:22px;}
 .top-links a{
   font-size:13.5px;font-weight:500;color:var(--mid);text-decoration:none;
@@ -277,6 +278,17 @@ p{margin:0;}
 .tool--grouper .tool-body p{color:#4A3F6E;}
 .tool--grouper .tool-cta{color:#1F1535;border-color:#1F1535;}
 .tool--grouper .tool-cta:hover{color:#2BB7B3;border-color:#2BB7B3;}
+.gr-demo{display:flex;align-items:center;gap:26px;margin-top:24px;flex-wrap:wrap;}
+.gr-demo .gr-card{flex:0 0 250px;padding:15px 17px 16px;border-radius:12px;}
+.gr-demo .gr-head{margin-bottom:11px;gap:8px;}
+.gr-demo .gr-dot{width:8px;height:8px;}
+.gr-demo .gr-num{font-size:12px;}
+.gr-demo .gr-fresh{font-size:11px;}
+.gr-demo .gr-mem{padding:5px 0;gap:8px;}
+.gr-demo .gr-init{width:22px;height:22px;font-size:11px;}
+.gr-demo .gr-nm{font-size:14px;}
+.gr-demo .gr-role{font-size:10.5px;}
+.gr-demo-cap{font-family:var(--serif);font-style:italic;font-size:13.5px;color:#4A3F6E;line-height:1.55;max-width:24ch;margin:0;}
 
 /* dark-window tool (wildcard) */
 .tool--wildcard{background:#1B1330;}
@@ -371,7 +383,7 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
           </defs>
           <path d="M25 20 L60 47 L95 20 L95 97 L60 70 L25 97 Z" fill="none" stroke="url(#sigmaSm)" stroke-width="13" stroke-linejoin="miter" stroke-miterlimit="10"/>
         </svg>
-        <span class="mark-name">Megan Warren</span>
+        <span class="mark-name"><span class="mn-a">Megan</span> <span class="mn-b">Warren</span></span>
       </a>
       <nav class="top-links">
         <a href="#tools">Work</a>
@@ -485,7 +497,7 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
               <h3>Probability &amp; Matrices</h3>
             </div>
             <p class="tool-spec mono">Course textbook &middot; 25 sections &middot; 6,585 formulas &middot; 9.7 MB &middot; one HTML file</p>
-            <p>Not a small tool. A full high school probability and linear algebra course, delivered as one offline file. Every formula carries a screen reader label baked in at build time, not added later with JavaScript, so turn off JavaScript entirely and the equations are still readable. Every fraction is stacked properly, a numerator over a denominator, because a fraction written as a slash reads wrong out loud and looks worse on the page.</p>
+            <p>Every choice in this book is backed by something, not a guess. Before writing a single section, I pulled research on what actually keeps teenagers engaged with material like this. I scraped it, synthesized it for the patterns that kept showing up, the dos and don'ts, and used those as guiding principles for how the book reads, not just what it teaches. When I do not know something for certain, I look it up. I would rather spend an hour confirming a fact than ship a guess.</p>
             <a class="tool-cta" href="https://probability-matrices-warren.netlify.app" target="_blank" rel="noopener">
               Open the textbook
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
@@ -500,7 +512,32 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
               <h3>Grouper</h3>
             </div>
             <p class="tool-spec mono">Classroom tool &middot; in daily use &middot; one HTML file</p>
-            <p>Paste a roster, pick a group size, project it. You can delete a class you no longer teach. You cannot delete your last one, the delete button simply is not there when it would leave you with nothing. Small rule, but it is the difference between a tool that respects how people actually use it and one that lets them lock themselves out.</p>
+            <p>Built to run 3 Minds, 1 Marker, the daily random-grouping routine from Building Thinking Classrooms, without losing five minutes to counting off by threes. Paste today's roster, pick a group size, project it. Groups are genuinely random, but never a repeat. The tool remembers your last several rounds and builds the freshest mix it can find, so the same two students are not stuck together again by bad luck while a third never gets picked.</p>
+            <div class="gr-demo">
+              <div class="gr-card">
+                <div class="gr-head">
+                  <span class="gr-dot"></span>
+                  <span class="gr-num">GROUP 3</span>
+                  <span class="gr-fresh">100% new</span>
+                </div>
+                <div class="gr-mem">
+                  <span class="gr-init">L</span>
+                  <span class="gr-nm">Leila</span>
+                  <span class="gr-role">Lead</span>
+                </div>
+                <div class="gr-mem">
+                  <span class="gr-init">G</span>
+                  <span class="gr-nm">Grace</span>
+                  <span class="gr-role">Marker</span>
+                </div>
+                <div class="gr-mem">
+                  <span class="gr-init">T</span>
+                  <span class="gr-nm">Theo</span>
+                  <span class="gr-role">Rec.</span>
+                </div>
+              </div>
+              <p class="gr-demo-cap">One marker, three minds. &ldquo;100% new&rdquo; means none of these three shared a group in the last several rounds.</p>
+            </div>
             <a class="tool-cta" href="https://grouper-warren.netlify.app" target="_blank" rel="noopener">
               Open Grouper
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
@@ -514,8 +551,8 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
             <div class="tool-top">
               <h3>Wildcard</h3>
             </div>
-            <p class="tool-spec mono">Party game &middot; 190 questions &middot; one HTML file</p>
-            <p>An ice breaker slot machine built from real celebrity interview questions, rewritten so anyone spinning can answer them, not just the person who was originally asked. Filter by podcast or by vibe, and pick more than one of each at a time. Most icebreaker apps make you choose exactly one category. This one does not see why you should have to.</p>
+            <p class="tool-spec mono">Icebreaker &middot; 190 questions &middot; one HTML file</p>
+            <p>An icebreaker, not really a party game. I built it to open class every so often. The questions started as an odd habit: I kept hearing genuinely good ones on podcasts during my commute, and noticed they landed better with my students than the usual icebreaker deck ever did. So I built a way to scrape more of them from transcripts, then rewrote the best so whoever spins can actually answer, not just the celebrity who was originally asked. Filter by podcast or by vibe, and pick more than one of each. Most icebreaker apps make you choose exactly one category; this one does not see why you should have to.</p>
             <a class="tool-cta" href="https://wildcard-warren.netlify.app" target="_blank" rel="noopener">
               Open Wildcard
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
@@ -530,7 +567,7 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
               <h3>Color Companion</h3>
             </div>
             <p class="tool-spec mono">Color matcher &middot; full marker set &middot; one HTML file</p>
-            <p>Point it at a color, get back the closest markers in the set, ranked. The entire marker database lives inside the file, so it works the same on a plane as it does at a desk. Built for an illustrator standing in front of a wall of markers with a reference photo, guessing.</p>
+            <p>Built for myself first. I love coloring, but I used to stand in front of a wall of markers with a reference photo, guessing, then watching the finished piece come out wrong. So I swatched every marker I own and built a matcher instead. Point it at any color and it ranks the closest real markers in the set. No more guessing.</p>
             <div class="cc-swatchwall">
               <span style="background:#D99B82;"></span><span style="background:#B1916E;"></span><span style="background:#875F42;"></span>
               <span style="background:#59656D;"></span><span style="background:#85A3B2;"></span><span style="background:#1B2431;"></span>
