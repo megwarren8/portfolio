@@ -177,13 +177,17 @@ p{margin:0;}
 .chip.in{opacity:1;transform:translateY(0);}
 .chip-cap{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--low);margin-top:12px;}
 
-/* specimen 1: fraction */
+/* specimen 1: fraction, paired with what the read-aloud says about it */
 .spec-frac{background:#F6F3EC;border-color:#E3DCC8;}
-.frac-eq{display:flex;align-items:center;gap:6px;font-family:var(--serif);font-style:italic;color:#182A4E;font-size:15px;}
+.spec-frac--wide{grid-column:span 2;}
+.frac-eq{display:flex;align-items:center;gap:6px;font-family:var(--serif);font-style:italic;color:#182A4E;font-size:16px;}
 .frac-eq .up{font-style:normal;padding:0 1px;}
 .frac{display:inline-flex;flex-direction:column;align-items:center;line-height:1.05;font-size:13px;vertical-align:middle;}
 .frac .n,.frac .d{padding:0 3px;}
 .frac .bar{width:100%;height:1px;background:#182A4E;margin:1px 0;}
+.frac-link{margin-top:14px;padding-top:12px;border-top:1px solid #E3DCC8;}
+.frac-link-label{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:#a99a6a;margin-bottom:6px;}
+.frac-quote{font-family:var(--serif);font-style:italic;color:#182A4E;font-size:12.5px;line-height:1.45;}
 .spec-frac .chip-cap{color:#8a7f5f;}
 
 /* specimen 2: grouper group card */
@@ -227,11 +231,6 @@ p{margin:0;}
 .cc-code{font-family:var(--mono);font-size:9.5px;color:#4A3F6E;font-weight:600;letter-spacing:.02em;}
 .cc-code .dim{color:#8577a3;font-weight:500;}
 .spec-cc .chip-cap{color:#8577a3;margin-top:auto;}
-
-/* specimen 5: math speech quote */
-.spec-quote{background:var(--elevated);border-color:var(--border);}
-.q-txt{font-family:var(--serif);font-style:italic;color:var(--hi);font-size:11.5px;line-height:1.45;}
-.spec-quote .chip-cap{color:var(--low);}
 
 /* specimen 6: typed facts */
 .spec-facts{background:var(--elevated);border-color:var(--border);}
@@ -418,9 +417,13 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
         </div>
         <div class="cab-grid" id="cabGrid">
 
-          <div class="chip spec-frac">
+          <div class="chip spec-frac spec-frac--wide">
             <div class="frac-eq">P(A<span class="up">|</span>B) = <span class="frac"><span class="n">P(A&cap;B)</span><span class="bar"></span><span class="d">P(B)</span></span></div>
-            <div class="chip-cap">Every fraction stacks. Never a slash.</div>
+            <div class="frac-link">
+              <span class="frac-link-label">The book's read-aloud says, word for word</span>
+              <div class="frac-quote">&ldquo;P of A given B equals the fraction P of A intersect B over P of B&rdquo;</div>
+            </div>
+            <div class="chip-cap">Every fraction stacks on screen, and the read-aloud speaks the same math, not around it.</div>
           </div>
 
           <div class="chip spec-grouper">
@@ -461,11 +464,6 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
               </div>
             </div>
             <div class="chip-cap">Point at a color. Get the marker.</div>
-          </div>
-
-          <div class="chip spec-quote">
-            <div class="q-txt">&ldquo;P of A given B equals the fraction P of A intersect B over P of B&rdquo;</div>
-            <div class="chip-cap">Read aloud speaks the math, not around it.</div>
           </div>
 
           <div class="chip spec-facts">
