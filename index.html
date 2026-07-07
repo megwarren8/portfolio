@@ -7,6 +7,15 @@
 <meta name="description" content="I design and build small, thoughtful software for teachers, creators, and small brands: offline tools, textbooks, and brand systems. Five are live, open one.">
 <link rel="canonical" href="https://megan-warren.com/">
 <meta name="theme-color" content="#0E0A18">
+<script>
+(function(){
+  try {
+    var saved = localStorage.getItem('theme');
+    var wantsLight = saved ? saved === 'light' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches);
+    if (wantsLight) document.documentElement.setAttribute('data-theme', 'light');
+  } catch(e) {}
+})();
+</script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Megan Warren">
 <meta property="og:title" content="Megan Warren, Designer &amp; Builder">
@@ -62,11 +71,14 @@
   --mid:#C3B9DE;
   --low:#6E6488;
   --teal-em:#57E6D2;
+  --teal-text:#57E6D2;
 
   --teal:#34E3CE;
   --violet:#8B6FE0;
   --orchid:#C77FC9;
   --info:#7FA8F0;
+  --mn-a:#45E8CF;
+  --mn-b:#C4ACF6;
 
   --grad-v: linear-gradient(180deg, #6BF4E0 0%, #31D9C9 16%, #3A2A8C 42%, #5C3DBE 64%, #B79CF2 100%);
   --grad-h: linear-gradient(90deg, #6BF4E0 0%, #31D9C9 16%, #3A2A8C 50%, #5C3DBE 72%, #B79CF2 100%);
@@ -83,8 +95,30 @@
   --wide: 1040px;
 }
 
+/* Light mode: same tokens, day palette. Auto-applied via prefers-color-scheme
+   (see head script) or by the toggle button; overridable per visitor. */
+[data-theme="light"]{
+  --void:#FAF8FC;
+  --base:#F3F0F8;
+  --surface:#FFFFFF;
+  --elevated:#F5F2FA;
+  --border:#E3DEEF;
+  --border-soft:#ECE7F5;
+
+  --hi:#1A1428;
+  --mid:#5B5270;
+  --low:#6C6484;
+  --teal-text:#087367;
+  --mn-a:#0A6E80;
+  --mn-b:#6B4FC4;
+
+  --glow-sm: 0 0 10px rgba(8,115,103,.16);
+  --glow-md: 0 2px 14px rgba(8,115,103,.14), 0 8px 28px rgba(91,63,176,.14);
+  --glow-lg: 0 2px 22px rgba(8,115,103,.18), 0 10px 40px rgba(91,63,176,.20);
+}
+
 *{box-sizing:border-box;}
-html{scroll-behavior:smooth;overflow-x:hidden;}
+html{scroll-behavior:smooth;overflow-x:hidden;background:var(--void);}
 body{margin:0;}
 .page{
   background:var(--void);
@@ -98,7 +132,7 @@ a{color:inherit;}
 h1,h2,h3{font-family:var(--sans);text-wrap:balance;margin:0;letter-spacing:-0.01em;}
 p{margin:0;}
 ::selection{background:rgba(52,227,206,.28);color:var(--hi);}
-:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:3px;}
+:focus-visible{outline:2px solid var(--teal-text);outline-offset:3px;border-radius:3px;}
 
 .mono{font-family:var(--mono);}
 .eyebrow{
@@ -132,8 +166,8 @@ p{margin:0;}
   color:var(--hi);text-decoration:none;
 }
 .mark svg{width:28px;height:28px;filter:drop-shadow(var(--glow-sm));display:block;}
-.mark .mn-a{color:#45E8CF;}
-.mark .mn-b{color:#C4ACF6;}
+.mark .mn-a{color:var(--mn-a);}
+.mark .mn-b{color:var(--mn-b);}
 .top-links{display:flex;align-items:center;gap:22px;}
 .top-links a{
   font-size:13.5px;font-weight:500;color:var(--mid);text-decoration:none;
@@ -142,10 +176,21 @@ p{margin:0;}
 .top-links a:hover{color:var(--hi);}
 .pill{
   font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--teal-em);border:1px solid rgba(52,227,206,.35);
+  color:var(--teal-text);border:1px solid rgba(52,227,206,.35);
   background:rgba(52,227,206,.08);
   padding:5px 10px;border-radius:999px;white-space:nowrap;
 }
+.theme-toggle{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:34px;height:34px;flex:0 0 auto;border-radius:8px;
+  border:1px solid var(--border);background:transparent;color:var(--mid);
+  cursor:pointer;transition:border-color .15s,color .15s,background .15s;
+}
+.theme-toggle:hover{color:var(--hi);border-color:var(--violet);background:var(--surface);}
+.theme-toggle svg{width:17px;height:17px;display:block;}
+.theme-toggle .icon-moon{display:none;}
+[data-theme="light"] .theme-toggle .icon-sun{display:none;}
+[data-theme="light"] .theme-toggle .icon-moon{display:block;}
 
 /* ---------------- hero ---------------- */
 .hero{padding:72px 0 8px;}
@@ -168,7 +213,7 @@ p{margin:0;}
   margin-top:26px;
   line-height:1.6;
 }
-.hero .sub b{font-family:var(--mono);font-weight:600;font-style:normal;color:var(--teal-em);font-size:.94em;letter-spacing:.02em;}
+.hero .sub b{font-family:var(--mono);font-weight:600;font-style:normal;color:var(--teal-text);font-size:.94em;letter-spacing:.02em;}
 .hero-ctas{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;}
 
 .btn{
@@ -225,11 +270,11 @@ p{margin:0;}
 .spec-grouper{background:var(--surface);border-color:var(--border);}
 .gr-card{background:var(--elevated);border:1px solid var(--border);border-radius:9px;padding:9px 10px 10px;}
 .gr-head{display:flex;align-items:center;gap:5px;margin-bottom:6px;}
-.gr-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);}
-.gr-num{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--teal);font-weight:700;}
+.gr-dot{width:6px;height:6px;border-radius:50%;background:var(--teal-text);}
+.gr-num{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--teal-text);font-weight:700;}
 .gr-fresh{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--mid);margin-left:auto;}
 .gr-mem{display:flex;align-items:center;gap:5px;padding:3px 0;}
-.gr-init{width:15px;height:15px;border-radius:50%;background:rgba(52,227,206,.16);color:var(--teal-em);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;font-weight:700;}
+.gr-init{width:15px;height:15px;border-radius:50%;background:rgba(52,227,206,.16);color:var(--teal-text);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;font-weight:700;}
 .gr-nm{font-size:12px;color:var(--hi);font-weight:600;flex:1;}
 .gr-role{font-family:var(--mono);font-size:10px;color:var(--mid);letter-spacing:.02em;text-transform:uppercase;}
 .spec-grouper .chip-cap{color:var(--mid);}
@@ -329,7 +374,7 @@ p{margin:0;}
 /* ---------------- how I work ---------------- */
 .how{padding:68px 0;border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);}
 .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:28px;}
-.how-item .k{font-family:var(--mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--teal-em);}
+.how-item .k{font-family:var(--mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--teal-text);}
 .how-item .v{font-family:var(--serif);font-size:15px;color:var(--mid);margin-top:8px;line-height:1.5;}
 
 /* ---------------- closing CTA ---------------- */
@@ -396,6 +441,10 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
         <a href="#commissions">Commissions</a>
         <span class="pill">Accepting commissions</span>
         <a class="btn btn--ghost" href="mailto:meganraewarren@gmail.com?subject=Commission%20inquiry" style="padding:8px 14px;font-size:13px;">Email me</a>
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
       </nav>
     </div>
   </div>
@@ -687,6 +736,40 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
     target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
     if (history.pushState) history.pushState(null, '', '#' + id);
   });
+})();
+
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var metaTheme = document.querySelector('meta[name="theme-color"]');
+  var DARK_META = '#0E0A18', LIGHT_META = '#FAF8FC';
+
+  function isLight(){ return root.getAttribute('data-theme') === 'light'; }
+  function sync(){
+    var light = isLight();
+    if (btn) btn.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
+    if (metaTheme) metaTheme.setAttribute('content', light ? LIGHT_META : DARK_META);
+  }
+  sync();
+
+  if (btn) {
+    btn.addEventListener('click', function(){
+      var next = isLight() ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch(e) {}
+      sync();
+    });
+  }
+
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e){
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch(err) {}
+      if (saved) return;
+      root.setAttribute('data-theme', e.matches ? 'light' : 'dark');
+      sync();
+    });
+  }
 })();
 </script>
 </body>
