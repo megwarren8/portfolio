@@ -186,7 +186,9 @@ p{margin:0;}
   color:var(--teal-text);border:1px solid rgba(52,227,206,.35);
   background:rgba(52,227,206,.08);
   padding:5px 10px;border-radius:999px;white-space:nowrap;
+  text-decoration:none;transition:background .15s,border-color .15s;
 }
+.pill:hover{background:rgba(52,227,206,.18);border-color:rgba(52,227,206,.55);}
 .theme-toggle{
   display:inline-flex;align-items:center;justify-content:center;
   width:34px;height:34px;flex:0 0 auto;border-radius:8px;
@@ -470,7 +472,7 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
         <a href="#tools">Tools</a>
         <a href="#how">How I work</a>
         <a href="#commissions">Commissions</a>
-        <span class="pill">Taking new work</span>
+        <a class="pill" href="#commissions">Booking now</a>
         <a class="btn btn--ghost" href="mailto:meganraewarren@gmail.com?subject=Commission%20inquiry" style="padding:8px 14px;font-size:13px;">Email me</a>
         <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
@@ -739,7 +741,7 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
           </div>
           <div class="how-item">
             <div class="k">Timing</div>
-            <div class="v">I take a small number of commissions at a time, and the school year starts again in September.</div>
+            <div class="v">I take a small number of commissions at a time, since the school year starts again in September.</div>
           </div>
           <div class="how-item">
             <div class="k">The first step</div>
