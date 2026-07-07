@@ -171,10 +171,9 @@ p{margin:0;}
 .mark-name{
   display:flex;flex-direction:column;justify-content:space-between;
   height:32px;font-size:14px;line-height:1;letter-spacing:-.01em;
-  background:linear-gradient(180deg, var(--mn-a) 0%, var(--mn-mid) 50%, var(--mn-b) 100%);
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;color:transparent;
 }
+.mark-name .mn-a{color:var(--mn-a);}
+.mark-name .mn-b{color:var(--mn-b);}
 .top-links{display:flex;align-items:center;gap:22px;}
 .top-links a{
   font-size:13.5px;font-weight:500;color:var(--mid);text-decoration:none;
@@ -460,7 +459,7 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
           </defs>
           <path d="M25 20 L60 47 L95 20 L95 97 L60 70 L25 97 Z" fill="none" stroke="url(#sigmaSm)" stroke-width="13" stroke-linejoin="miter" stroke-miterlimit="10"/>
         </svg>
-        <span class="mark-name"><span>Megan</span><span>Warren</span></span>
+        <span class="mark-name"><span class="mn-a">Megan</span><span class="mn-b">Warren</span></span>
       </a>
       <nav class="top-links">
         <a href="#tools">Tools</a>
@@ -730,7 +729,7 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
           </div>
           <div class="how-item">
             <div class="k">What I don't</div>
-            <div class="v">Enterprise software, hosted platforms with logins and databases, and open-ended "figure it out as we go" projects. If your project is that shape, I will tell you fast, so you are not waiting on me to find that out.</div>
+            <div class="v">Enterprise software and open-ended "figure it out as we go" projects. If your project is that shape, I will tell you fast, so you are not waiting on me to find that out.</div>
           </div>
           <div class="how-item">
             <div class="k">Timing</div>
@@ -761,7 +760,7 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
         </svg>
         <p class="eyebrow">Megan Warren &middot;<br class="eyebrow-br"> Designer &amp; Builder</p>
         <h2>Have something you wish already existed?</h2>
-        <p class="sub">Tell me what it is. I will tell you honestly whether it is a good fit. If it is, you will get a real number and a real timeline before we start.</p>
+        <p class="sub">Tell me what it is.<br>I will tell you honestly whether it is a good fit. If it is, you will get a real number and a real timeline before we start.</p>
         <div class="cta-row">
           <a class="btn btn--solid" href="mailto:meganraewarren@gmail.com?subject=Commission%20inquiry" style="padding:14px 26px;font-size:15px;">Email Megan</a>
         </div>
