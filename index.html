@@ -178,7 +178,7 @@ p{margin:0;}
 .top-links{display:flex;align-items:center;gap:22px;}
 .top-links a{
   font-size:13.5px;font-weight:500;color:var(--mid);text-decoration:none;
-  transition:color .15s;
+  transition:color .15s;white-space:nowrap;
 }
 .top-links a:hover{color:var(--hi);}
 .pill{
@@ -428,13 +428,13 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
 @media (max-width:860px){
   .cab-grid{grid-template-columns:repeat(3,1fr);}
   .how-grid{grid-template-columns:repeat(2,1fr);}
+  .top-links{gap:14px;}
+  .top-links a[href="#tools"], .top-links a[href="#how"], .top-links a[href="#commissions"], .top-links .pill{display:none;}
 }
 .eyebrow-br{display:none;}
 @media (max-width:620px){
   .cab-grid{grid-template-columns:repeat(2,1fr);}
   .tool-body{padding:28px 22px;}
-  .top-links{gap:14px;}
-  .top-links a[href="#tools"], .top-links a[href="#how"], .top-links a[href="#commissions"], .top-links .pill{display:none;}
   .eyebrow-br{display:inline;}
 }
 
