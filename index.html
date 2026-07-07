@@ -443,11 +443,17 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
   .cab-grid{grid-template-columns:repeat(3,1fr);}
   .how-grid{grid-template-columns:repeat(2,1fr);}
   .top-links{gap:14px;}
-  .top-links a[href="#tools"], .top-links a[href="#how"], .top-links a[href="#commissions"], .top-links .pill{display:none;}
+  .top-links a[href="#tools"], .top-links a[href="#how"]{display:none;}
+}
+@media (max-width:480px){
+  .top-in{flex-wrap:wrap;row-gap:10px;}
+  .top-links{width:100%;justify-content:space-between;}
+  .top-links .btn--ghost{display:none;}
 }
 .eyebrow-br{display:none;}
 @media (max-width:620px){
   .cab-grid{grid-template-columns:repeat(2,1fr);}
+  .how-grid{grid-template-columns:1fr;}
   .tool-body{padding:28px 22px;}
   .eyebrow-br{display:inline;}
 }
