@@ -78,6 +78,7 @@
   --orchid:#C77FC9;
   --info:#7FA8F0;
   --mn-a:#45E8CF;
+  --mn-mid:#3D82D6;
   --mn-b:#C4ACF6;
 
   --grad-v: linear-gradient(180deg, #6BF4E0 0%, #31D9C9 16%, #3A2A8C 42%, #5C3DBE 64%, #B79CF2 100%);
@@ -110,6 +111,7 @@
   --low:#6C6484;
   --teal-text:#087367;
   --mn-a:#0A6E80;
+  --mn-mid:#2F5FB8;
   --mn-b:#6B4FC4;
 
   --glow-sm: 0 0 10px rgba(8,115,103,.16);
@@ -162,12 +164,17 @@ p{margin:0;}
 }
 .mark{
   display:inline-flex;align-items:center;gap:10px;
-  font-family:var(--sans);font-weight:700;font-size:16px;letter-spacing:-.01em;
+  font-family:var(--sans);font-weight:700;letter-spacing:-.01em;
   color:var(--hi);text-decoration:none;
 }
-.mark svg{width:28px;height:28px;filter:drop-shadow(var(--glow-sm));display:block;}
-.mark .mn-a{color:var(--mn-a);}
-.mark .mn-b{color:var(--mn-b);}
+.mark svg{width:32px;height:32px;filter:drop-shadow(var(--glow-sm));display:block;flex:0 0 auto;}
+.mark-name{
+  display:flex;flex-direction:column;justify-content:space-between;
+  height:32px;font-size:14px;line-height:1;letter-spacing:-.01em;
+  background:linear-gradient(180deg, var(--mn-a) 0%, var(--mn-mid) 50%, var(--mn-b) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
 .top-links{display:flex;align-items:center;gap:22px;}
 .top-links a{
   font-size:13.5px;font-weight:500;color:var(--mid);text-decoration:none;
@@ -433,7 +440,7 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
           </defs>
           <path d="M25 20 L60 47 L95 20 L95 97 L60 70 L25 97 Z" fill="none" stroke="url(#sigmaSm)" stroke-width="13" stroke-linejoin="miter" stroke-miterlimit="10"/>
         </svg>
-        <span class="mark-name"><span class="mn-a">Megan</span> <span class="mn-b">Warren</span></span>
+        <span class="mark-name"><span>Megan</span><span>Warren</span></span>
       </a>
       <nav class="top-links">
         <a href="#tools">Tools</a>
