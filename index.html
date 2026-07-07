@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Megan Warren, Designer &amp; Builder</title>
-<meta name="description" content="I design and build small, thoughtful software for teachers, creators, and small brands: offline tools, textbooks, and brand systems. Five are live, open one.">
+<meta name="description" content="I design and build small, thoughtful software for teachers, creators, and small brands: offline tools, textbooks, and brand systems. Six are live, open one.">
 <link rel="canonical" href="https://megan-warren.com/">
 <meta name="theme-color" content="#0E0A18">
 <script>
@@ -301,6 +301,15 @@ p{margin:0;}
 
 /* ---------------- tools ---------------- */
 .tools{padding:20px 0 40px;display:flex;flex-direction:column;gap:22px;}
+.private-work{padding:16px 0 64px;}
+.private-work .cabinet-head{margin-bottom:22px;}
+.private-work .tool{margin-bottom:22px;}
+.private-work .tool:last-child{margin-bottom:0;}
+.tool--private{background:var(--surface);}
+.tool--private .tool-edge{background:var(--violet);}
+.tool--private h3{color:var(--hi);}
+.tool--private .tool-spec{color:var(--teal-text);}
+.tool--private .tool-body p{color:var(--mid);}
 .tool{
   border:1px solid var(--border);border-radius:14px;overflow:hidden;
   display:grid;grid-template-columns:7px 1fr;
@@ -378,11 +387,26 @@ p{margin:0;}
 .att-linkrow a.ghost{color:#B3FD71;background:transparent;border:1px solid #1a4066;}
 .att-linkrow a.ghost:hover{border-color:#B3FD71;background:transparent;}
 
+/* light-window tool (hello paint): cream + raspberry pop */
+.tool--hellopaint{background:#FBF4E8;}
+.tool--hellopaint .tool-edge{background:#E64C81;}
+.tool--hellopaint h3{color:#312B3D;}
+.tool--hellopaint .tool-spec{color:#0F756D;}
+.tool--hellopaint .tool-body p{color:#6E6576;}
+.tool--hellopaint .tool-cta{color:#312B3D;border-color:#312B3D;}
+.tool--hellopaint .tool-cta:hover{color:#E64C81;border-color:#E64C81;}
+
 /* ---------------- how I work ---------------- */
 .how{padding:68px 0;border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);}
 .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:28px;}
 .how-item .k{font-family:var(--mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--teal-text);}
 .how-item .v{font-family:var(--serif);font-size:15px;color:var(--mid);margin-top:8px;line-height:1.5;}
+.pricing-callout{
+  margin-top:30px;padding:28px 30px;border-radius:14px;
+  border:1px solid rgba(52,227,206,.28);background:rgba(52,227,206,.06);
+}
+.pricing-callout .k{font-family:var(--mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--teal-text);}
+.pricing-callout .v{font-family:var(--serif);font-size:16px;color:var(--hi);margin-top:10px;line-height:1.6;}
 
 /* ---------------- closing CTA ---------------- */
 .cta{padding:100px 0 110px;text-align:left;}
@@ -475,70 +499,10 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
         </svg>
         <p class="eyebrow">Megan Warren &middot;<br class="eyebrow-br"> Designer &amp; Builder</p>
         <h1>software you can <em>just open.</em></h1>
-        <p class="sub"><b>25+ shipped this year.</b><br>Most live inside a classroom, a tutoring desk, or a fundraising office.<br>Five are open to the public, so open one right now and see for yourself.</p>
+        <p class="sub"><b>25+ shipped this year.</b><br>Most live inside a classroom, a tutoring desk, or a fundraising office.<br>Six are open to the public, so open one right now and see for yourself.</p>
         <div class="hero-ctas">
           <a class="btn btn--solid" href="#tools">Open one</a>
           <a class="btn btn--ghost" href="mailto:meganraewarren@gmail.com?subject=Commission%20inquiry">Email me</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="cabinet">
-      <div class="wrap">
-        <div class="cabinet-head">
-          <p class="cabinet-cap">A few of the decisions nobody asks about.</p>
-          <p class="eyebrow">Real details, from real, shipped tools</p>
-        </div>
-        <div class="cab-grid" id="cabGrid">
-
-          <div class="chip spec-facts spec-facts--wide">
-            <div class="facts-txt">9.7 MB<br>6,585 formulas<br>0 KB after first load</div>
-            <div class="facts-link">
-              <span class="facts-link-label">Why these numbers matter</span>
-              <div class="facts-link-text">Every formula is a typed value in the build script, not an eyeballed guess. The whole book downloads once, then runs with zero network calls, so it opens the same on a plane as it does at a desk.</div>
-            </div>
-            <div class="chip-cap">Typed and exact, not vibes.</div>
-          </div>
-
-          <div class="chip spec-grouper spec-grouper--wide">
-            <div class="gr-card">
-              <div class="gr-head">
-                <span class="gr-dot"></span>
-                <span class="gr-num">GROUP 3</span>
-                <span class="gr-fresh">100% new</span>
-              </div>
-              <div class="gr-mem">
-                <span class="gr-init">L</span>
-                <span class="gr-nm">Leila</span>
-                <span class="gr-role">Scribe</span>
-              </div>
-              <div class="gr-mem">
-                <span class="gr-init">G</span>
-                <span class="gr-nm">Grace</span>
-                <span class="gr-role">Speaker</span>
-              </div>
-              <div class="gr-mem">
-                <span class="gr-init">T</span>
-                <span class="gr-nm">Theo</span>
-                <span class="gr-role">Inquirer</span>
-              </div>
-            </div>
-            <div class="gr-link">
-              <span class="gr-link-label">What &ldquo;100% new&rdquo; tracks</span>
-              <div class="gr-link-text">The tool remembers the last several rounds of groups, so a fresh trio is never a coincidence, it's the freshest match it could find.</div>
-            </div>
-            <div class="chip-cap">Scribe writes, Speaker talks, Inquirer asks. One marker, three real jobs.</div>
-          </div>
-
-          <div class="chip spec-frac spec-frac--wide">
-            <div class="frac-eq">P(A<span class="up">|</span>B) = <span class="frac"><span class="n">P(A&cap;B)</span><span class="bar"></span><span class="d">P(B)</span></span></div>
-            <div class="frac-link">
-              <span class="frac-link-label">The book's read-aloud says, word for word</span>
-              <div class="frac-quote">&ldquo;P of A given B equals the fraction P of A intersect B over P of B&rdquo;</div>
-            </div>
-            <div class="chip-cap">Every fraction stacks on screen, and the read-aloud speaks the same math, not around it.</div>
-          </div>
-
         </div>
       </div>
     </section>
@@ -622,8 +586,114 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
             <div class="att-linkrow">
               <a href="https://turtle.megan-warren.com" target="_blank" rel="noopener">Open the brand kit</a>
               <a class="ghost" href="https://www.asktheturtle.com/tools" target="_blank" rel="noopener">My favorite page: the Tools</a>
-              <a class="ghost" href="https://www.asktheturtle.com" target="_blank" rel="noopener">Visit the site</a>
             </div>
+          </div>
+        </article>
+
+        <article class="tool tool--hellopaint">
+          <div class="tool-edge"></div>
+          <div class="tool-body">
+            <div class="tool-top">
+              <h3>Hello Paint</h3>
+            </div>
+            <p class="tool-spec mono">Brand system + live site &middot; custom paint-by-number kits &middot; for a family member's shop</p>
+            <p>A warm, hand-painted identity for a family member's custom paint-by-number shop: a photo goes in, a paintable kit comes out. Raspberry carries the &ldquo;hello,&rdquo; plum ink stands in for black in the body copy, and the palette skips orange on purpose so it reads as human-made, never techy. I designed the whole system, mark, color, type, voice, and templates, then built it as a fully offline brand book.</p>
+            <a class="tool-cta" href="https://hellopaint.megan-warren.com" target="_blank" rel="noopener">
+              Open the brand kit
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="cabinet">
+      <div class="wrap">
+        <div class="cabinet-head">
+          <p class="cabinet-cap">A few of the decisions nobody asks about.</p>
+          <p class="eyebrow">Real details, from real, shipped tools</p>
+        </div>
+        <div class="cab-grid" id="cabGrid">
+
+          <div class="chip spec-facts spec-facts--wide">
+            <div class="facts-txt">No wifi.<br>No login.<br>No install.</div>
+            <div class="facts-link">
+              <span class="facts-link-label">Why that's not a small thing</span>
+              <div class="facts-link-text">A tool that needs a connection breaks exactly when you need it most: mid-class, on a school network having a bad day, on a plane. Everything I build works the same whether you're at a desk or standing in front of thirty kids with the wifi down.</div>
+            </div>
+            <div class="chip-cap">Built to survive the exact moment it needs to work.</div>
+          </div>
+
+          <div class="chip spec-grouper spec-grouper--wide">
+            <div class="gr-card">
+              <div class="gr-head">
+                <span class="gr-dot"></span>
+                <span class="gr-num">GROUP 3</span>
+                <span class="gr-fresh">100% new</span>
+              </div>
+              <div class="gr-mem">
+                <span class="gr-init">L</span>
+                <span class="gr-nm">Leila</span>
+                <span class="gr-role">Scribe</span>
+              </div>
+              <div class="gr-mem">
+                <span class="gr-init">G</span>
+                <span class="gr-nm">Grace</span>
+                <span class="gr-role">Speaker</span>
+              </div>
+              <div class="gr-mem">
+                <span class="gr-init">T</span>
+                <span class="gr-nm">Theo</span>
+                <span class="gr-role">Inquirer</span>
+              </div>
+            </div>
+            <div class="gr-link">
+              <span class="gr-link-label">What &ldquo;100% new&rdquo; tracks</span>
+              <div class="gr-link-text">The tool remembers the last several rounds of groups, so a fresh trio is never a coincidence, it's the freshest match it could find.</div>
+            </div>
+            <div class="chip-cap">Scribe writes, Speaker talks, Inquirer asks. One marker, three real jobs.</div>
+          </div>
+
+          <div class="chip spec-frac spec-frac--wide">
+            <div class="frac-eq">P(A<span class="up">|</span>B) = <span class="frac"><span class="n">P(A&cap;B)</span><span class="bar"></span><span class="d">P(B)</span></span></div>
+            <div class="frac-link">
+              <span class="frac-link-label">The book's read-aloud says, word for word</span>
+              <div class="frac-quote">&ldquo;P of A given B equals the fraction P of A intersect B over P of B&rdquo;</div>
+            </div>
+            <div class="chip-cap">Every fraction stacks on screen, and the read-aloud speaks the same math, not around it.</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="private-work">
+      <div class="wrap">
+        <div class="cabinet-head">
+          <p class="cabinet-cap">Not everything I build can be public.</p>
+          <p class="eyebrow">Selected private work</p>
+        </div>
+
+        <article class="tool tool--private">
+          <div class="tool-edge"></div>
+          <div class="tool-body">
+            <div class="tool-top">
+              <h3>Prospect Waterfall</h3>
+            </div>
+            <p class="tool-spec mono">Nonprofit research tool &middot; built for one client &middot; not public</p>
+            <p>A waterfall-enrichment engine for nonprofit development work: give it an organization's name, and it pulls real IRS Form 990 financial data, computes an actual multi-year funding trend instead of a single snapshot, and finds and verifies real contacts there, each one checked by a real evaluator before it counts as a hit. Every provider it tries is logged, so nothing is a guess dressed up as a result. Built for a fundraising consultancy's internal use, and it stays that way, since the exact discovery logic is part of what makes it valuable to the people who paid for it.</p>
+          </div>
+        </article>
+
+        <article class="tool tool--private">
+          <div class="tool-edge"></div>
+          <div class="tool-body">
+            <div class="tool-top">
+              <h3>Daily Lesson Kit</h3>
+            </div>
+            <p class="tool-spec mono">Teaching companion &middot; Trig, Derivatives, Integrals &middot; private, by request</p>
+            <p>The most ambitious thing I've built for my own classroom: a daily companion that runs the actual routines research says work, a silent-scribe warm-up, an honest check-in, Grouper built right in, pulling live lunch and advisory feed data so it's actually current, not a static template. Every research-grounded habit in my teaching lives in one place here. It stays private because it's tuned to my own courses and schedule, but a version built around your course is exactly the kind of thing I take on commission.</p>
           </div>
         </article>
 
@@ -675,6 +745,10 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
             <div class="v">One email describing the thing you wish existed. You get an honest read on fit, then a real number and a real date before I start.</div>
           </div>
         </div>
+        <div class="pricing-callout">
+          <div class="k">What it runs</div>
+          <div class="v">Most commissions land between $1,500 and $10,000, priced by scope before I start, never by the hour. A focused single-purpose tool in the shape of Grouper or Wildcard usually runs $1,500 to $3,500. A brand system delivered as a working document, like Ask the Turtle's, runs $4,000 and up. Bigger or multi-piece projects get scoped individually, no ceiling either direction. Not ready for a full project? A half-day design sprint runs $600 to $1,000.</div>
+        </div>
       </div>
     </section>
 
@@ -698,9 +772,6 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
         <p class="sub">Tell me what it is. I will tell you honestly whether it is a good fit. If it is, you will get a real number and a real timeline before we start.</p>
         <div class="cta-row">
           <a class="btn btn--solid" href="mailto:meganraewarren@gmail.com?subject=Commission%20inquiry" style="padding:14px 26px;font-size:15px;">Email Megan</a>
-          <div class="cta-secondary">
-            <a href="https://github.com/megwarren8" target="_blank" rel="noopener">GitHub</a>
-          </div>
         </div>
       </div>
     </section>
@@ -710,7 +781,7 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
   <footer>
     <div class="foot-in">
       <span class="mono">Megan Warren, designer &amp; builder &middot; &copy; 2026 Megan Warren. All rights reserved.</span>
-      <span class="mono">Built offline, like everything else here</span>
+      <span class="mono">Built offline, like everything else here &middot; <a href="https://github.com/megwarren8" target="_blank" rel="noopener" style="color:inherit;">GitHub</a></span>
     </div>
   </footer>
 
