@@ -449,13 +449,14 @@ p{margin:0;}
 .cta .eyebrow{display:block;margin-bottom:10px;}
 .cta h2{font-size:clamp(2.3rem,5.4vw,3.9rem);font-weight:700;max-width:19ch;line-height:1.05;letter-spacing:-0.025em;}
 .cta .sub{font-family:var(--serif);color:var(--mid);font-size:clamp(1.1rem,1.8vw,1.3rem);margin-top:24px;max-width:58ch;line-height:1.62;}
-.cta-row{display:flex;align-items:center;gap:22px;margin-top:32px;flex-wrap:wrap;}
+.cta-row{display:flex;align-items:flex-start;gap:22px;margin-top:32px;flex-wrap:wrap;}
+.cta-secondary-col{display:flex;flex-direction:column;align-items:center;gap:14px;padding-top:14px;}
 .cta-secondary{display:flex;gap:18px;}
 .cta-secondary a{font-size:13.5px;color:var(--mid);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:1px;}
 .cta-secondary a:hover{color:var(--hi);border-color:var(--hi);}
 
 /* ---------------- bridge: commissions CTA into AI coaching ---------------- */
-.bridge{display:inline-flex;margin-top:26px;padding:4px;color:var(--teal-text);border-radius:6px;}
+.bridge{display:inline-flex;padding:4px;color:var(--teal-text);border-radius:6px;}
 .bridge svg{width:20px;height:20px;display:block;filter:drop-shadow(var(--glow-sm));animation:bridge-float 2s ease-in-out infinite;}
 .bridge:hover svg{opacity:1;}
 @keyframes bridge-float{0%,100%{transform:translateY(0);opacity:.55;}50%{transform:translateY(7px);opacity:1;}}
@@ -822,16 +823,18 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
         </svg>
         <p class="eyebrow">Megan Warren &middot;<br class="eyebrow-br"> Designer &amp; Builder</p>
         <h2>Have something you wish already existed?</h2>
-        <p class="sub">Tell me what it is.<br>I will tell you honestly whether it is a good fit. If it is, you will get a real number and a real timeline before we start.</p>
+        <p class="sub">Tell me what it is.<br>I will tell you honestly whether it is a good fit.<br>If it is, you will get a real number and a real timeline before we start.</p>
         <div class="cta-row">
           <a class="btn btn--solid" href="mailto:meganraewarren@gmail.com?subject=Commission%20inquiry" style="padding:14px 26px;font-size:15px;">Email Megan</a>
-          <div class="cta-secondary">
-            <a href="#coaching">Ask about AI coaching instead</a>
+          <div class="cta-secondary-col">
+            <div class="cta-secondary">
+              <a href="#coaching">Ask about AI coaching instead</a>
+            </div>
+            <a class="bridge" href="#coaching" aria-label="Jump down to the AI coaching section">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
+            </a>
           </div>
         </div>
-        <a class="bridge" href="#coaching" aria-label="Jump down to the AI coaching section">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
-        </a>
       </div>
     </section>
 
