@@ -455,13 +455,18 @@ p{margin:0;}
 .cta-secondary a:hover{color:var(--hi);border-color:var(--hi);}
 
 /* ---------------- bridge: commissions CTA into AI coaching ---------------- */
-.bridge{display:flex;justify-content:center;padding:6px 0 34px;color:var(--teal-text);}
-.bridge svg{width:22px;height:22px;display:block;filter:drop-shadow(var(--glow-sm));animation:bridge-float 2s ease-in-out infinite;}
-@keyframes bridge-float{0%,100%{transform:translateY(0);opacity:.5;}50%{transform:translateY(7px);opacity:1;}}
-@media (prefers-reduced-motion: reduce){.bridge svg{animation:none;opacity:.8;}}
+.bridge{display:inline-flex;margin-top:26px;padding:4px;color:var(--teal-text);border-radius:6px;}
+.bridge svg{width:20px;height:20px;display:block;filter:drop-shadow(var(--glow-sm));animation:bridge-float 2s ease-in-out infinite;}
+.bridge:hover svg{opacity:1;}
+@keyframes bridge-float{0%,100%{transform:translateY(0);opacity:.55;}50%{transform:translateY(7px);opacity:1;}}
+@media (prefers-reduced-motion: reduce){.bridge svg{animation:none;opacity:.85;}}
 
 /* ---------------- AI coaching intro ---------------- */
-.coaching{padding:8px 0 24px;}
+.coaching{padding:40px 0 24px;}
+.coaching .cabinet-cap{color:var(--hi);font-size:clamp(1.7rem,3.2vw,2.35rem);line-height:1.15;}
+.close-note{font-family:var(--serif);color:var(--mid);font-size:15px;margin-top:30px;line-height:1.55;}
+.close-note a{color:var(--teal-text);text-decoration:underline;text-underline-offset:3px;}
+.close-note a:hover{color:var(--hi);}
 
 /* ---------------- footer ---------------- */
 footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
@@ -824,12 +829,11 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
             <a href="#coaching">Ask about AI coaching instead</a>
           </div>
         </div>
+        <a class="bridge" href="#coaching" aria-label="Jump down to the AI coaching section">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
+        </a>
       </div>
     </section>
-
-    <div class="bridge" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
-    </div>
 
     <section class="coaching" id="coaching">
       <div class="wrap">
@@ -888,6 +892,7 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
         <div style="margin-top:32px;">
           <a class="btn btn--solid" href="mailto:meganraewarren@gmail.com?subject=AI%20coaching%20inquiry">Ask about AI coaching</a>
         </div>
+        <p class="close-note">Not sure whether you want something built or a skill of your own? <a href="mailto:meganraewarren@gmail.com">Email me either way</a>, and we'll sort out which one fits.</p>
       </div>
     </section>
 
@@ -895,7 +900,7 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
 
   <footer>
     <div class="foot-in">
-      <span class="mono">Megan Warren, designer &amp; builder &middot; &copy; 2026 Megan Warren. All rights reserved.</span>
+      <span class="mono">Megan Warren, designer, builder &amp; AI coach &middot; &copy; 2026 Megan Warren. All rights reserved.</span>
       <span class="mono">Built offline, like everything else here &middot; <a href="https://github.com/megwarren8" target="_blank" rel="noopener" style="color:inherit;">GitHub</a></span>
     </div>
   </footer>
