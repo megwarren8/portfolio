@@ -170,7 +170,7 @@ p{margin:0;}
 .wrap--text{max-width:var(--measure);margin:0 auto;padding:0 28px;}
 
 /* ---------------- top bar ---------------- */
-#tools, #how, #commissions{scroll-margin-top:96px;}
+#tools, #coaching, #how, #commissions{scroll-margin-top:96px;}
 .top{
   position:sticky;top:0;z-index:20;
   background:color-mix(in oklab, var(--void) 86%, transparent);
@@ -419,11 +419,13 @@ p{margin:0;}
 /* ---------------- how I work ---------------- */
 .how{padding:68px 0;border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);}
 .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:28px;}
+.how-grid--3{grid-template-columns:repeat(3,1fr);}
+.lede{font-family:var(--serif);color:var(--mid);font-size:1.05rem;line-height:1.65;max-width:62ch;margin-top:18px;}
 .how-item .k{font-family:var(--mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--teal-text);}
 .how-item .v{font-family:var(--serif);font-size:15px;color:var(--mid);margin-top:8px;line-height:1.5;}
 
 /* ---------------- closing CTA ---------------- */
-.cta{padding:100px 0 110px;text-align:left;}
+.cta{padding:100px 0 60px;text-align:left;}
 .cta-mark{width:104px;height:104px;display:block;margin-bottom:30px;filter:drop-shadow(var(--glow-md));}
 .cta .eyebrow{display:block;margin-bottom:10px;}
 .cta h2{font-size:clamp(2.3rem,5.4vw,3.9rem);font-weight:700;max-width:19ch;line-height:1.05;letter-spacing:-0.025em;}
@@ -432,6 +434,15 @@ p{margin:0;}
 .cta-secondary{display:flex;gap:18px;}
 .cta-secondary a{font-size:13.5px;color:var(--mid);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:1px;}
 .cta-secondary a:hover{color:var(--hi);border-color:var(--hi);}
+
+/* ---------------- bridge: commissions CTA into AI coaching ---------------- */
+.bridge{display:flex;justify-content:center;padding:6px 0 34px;color:var(--teal-text);}
+.bridge svg{width:22px;height:22px;display:block;filter:drop-shadow(var(--glow-sm));animation:bridge-float 2s ease-in-out infinite;}
+@keyframes bridge-float{0%,100%{transform:translateY(0);opacity:.5;}50%{transform:translateY(7px);opacity:1;}}
+@media (prefers-reduced-motion: reduce){.bridge svg{animation:none;opacity:.8;}}
+
+/* ---------------- AI coaching intro ---------------- */
+.coaching{padding:8px 0 24px;}
 
 /* ---------------- footer ---------------- */
 footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
@@ -443,7 +454,7 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
   .cab-grid{grid-template-columns:repeat(3,1fr);}
   .how-grid{grid-template-columns:repeat(2,1fr);}
   .top-links{gap:14px;}
-  .top-links a[href="#tools"], .top-links a[href="#how"]{display:none;}
+  .top-links a[href="#tools"], .top-links a[href="#coaching"], .top-links a[href="#how"]{display:none;}
 }
 @media (max-width:480px){
   .top-in{flex-wrap:wrap;row-gap:10px;}
@@ -489,6 +500,7 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
       </a>
       <nav class="top-links">
         <a href="#tools">Tools</a>
+        <a href="#coaching">AI coaching</a>
         <a href="#how">How I work</a>
         <a class="pill" href="#commissions">Now taking commissions</a>
         <a class="btn btn--ghost" href="mailto:meganraewarren@gmail.com?subject=Commission%20inquiry" style="padding:8px 14px;font-size:13px;">Email me</a>
@@ -789,6 +801,73 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
         <p class="sub">Tell me what it is.<br>I will tell you honestly whether it is a good fit. If it is, you will get a real number and a real timeline before we start.</p>
         <div class="cta-row">
           <a class="btn btn--solid" href="mailto:meganraewarren@gmail.com?subject=Commission%20inquiry" style="padding:14px 26px;font-size:15px;">Email Megan</a>
+          <div class="cta-secondary">
+            <a href="#coaching">Ask about AI coaching instead</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="bridge" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
+    </div>
+
+    <section class="coaching" id="coaching">
+      <div class="wrap">
+        <div class="cabinet-head">
+          <h2 class="cabinet-cap">Prefer to learn to do it yourself?</h2>
+          <p class="eyebrow">1:1 AI coaching</p>
+        </div>
+        <p class="lede">I'm a designer and builder now. For twelve years before that, I was a teacher. Watching someone else use a tool does not teach most people something they can repeat tomorrow. I start by learning how you already work and build a plan around it. Then I sit next to you while you drive, in person if you're within five miles of downtown Boston, over Zoom everywhere else. You leave able to do it again without me.</p>
+      </div>
+    </section>
+
+    <section class="how" id="coaching-how">
+      <div class="wrap">
+        <h2 class="eyebrow">How AI coaching works</h2>
+        <div class="how-grid how-grid--3">
+          <div class="how-item">
+            <div class="k">1. Discovery interview</div>
+            <div class="v">A real conversation, fifteen to twenty minutes, free. Where you are now, what you've already tried, what stuck, what didn't, and what you want to be able to do on your own.</div>
+          </div>
+          <div class="how-item">
+            <div class="k">2. Your game plan</div>
+            <div class="v">A short, written plan built around that conversation, a lesson plan, not a template. You see exactly what we're covering and why before you spend a dollar.</div>
+          </div>
+          <div class="how-item">
+            <div class="k">3. Guided practice</div>
+            <div class="v">Forty-five to sixty minutes, hands-on. You drive, I scaffold: enough support that you never get stuck, never so much that I do it for you.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="how" id="coaching-plainly" style="border-top:0;">
+      <div class="wrap">
+        <h2 class="eyebrow">AI coaching, plainly</h2>
+        <div class="how-grid">
+          <div class="how-item">
+            <div class="k">Who it's for</div>
+            <div class="v">Anyone who keeps hearing about AI and wants hands-on fluency, not another tutorial video.</div>
+          </div>
+          <!-- PRICING NOTE (internal, not rendered): started at $300 for 45 to 60 min as a founding-client
+               rate on 2026-07-08. Revisit at the start of August 2026, once a few client testimonials
+               exist, and consider raising to $350. -->
+          <div class="how-item">
+            <div class="k">Price</div>
+            <div class="v">Free discovery interview. $300 flat covers your written game plan and one guided session. Extra sessions after that are $150 each.</div>
+          </div>
+          <div class="how-item">
+            <div class="k">Timing</div>
+            <div class="v">I'm taking a small number of coaching clients through the end of August, before the school year starts back up.</div>
+          </div>
+          <div class="how-item">
+            <div class="k">The first step</div>
+            <div class="v">One email about what you want to be able to do. We'll find fifteen to twenty minutes to talk it through, no cost, no obligation.</div>
+          </div>
+        </div>
+        <div style="margin-top:32px;">
+          <a class="btn btn--solid" href="mailto:meganraewarren@gmail.com?subject=AI%20coaching%20inquiry">Ask about AI coaching</a>
         </div>
       </div>
     </section>
