@@ -1,10 +1,12 @@
 # Contact form API: the one-time setup
 
-The portfolio's contact form (the "Have something you wish already existed?"
-section) posts to a small Cloudflare Worker in this folder, which emails the
-message to you. Everything is built and tested. Three things need a click
-from you before it can actually send mail, because Cloudflare requires a
-human to approve them, no API can do this part.
+The portfolio's two contact forms, the commission form on the homepage
+("Have something you wish already existed?") and the discovery-call form at
+/coaching/, both post to one small Cloudflare Worker in this folder, which
+emails the message to you (formatted differently depending on which form it
+came from). Everything is built and tested. Three things need a click from
+you before it can actually send mail, because Cloudflare requires a human to
+approve them, no API can do this part.
 
 ## Why this exists
 
