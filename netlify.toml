@@ -1,0 +1,8 @@
+# The portfolio now lives at megan-warren.com (Cloudflare Pages). This repo's
+# old Netlify site forwards here so any old bookmark or shared link still
+# lands in the right place.
+[[redirects]]
+  from = "/*"
+  to = "https://megan-warren.com/:splat"
+  status = 301
+  force = true
