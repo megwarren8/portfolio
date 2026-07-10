@@ -44,7 +44,8 @@ jobs:
           rsync -a ./ _site/ \
             --exclude _site --exclude .git --exclude .github \
             --exclude README.md --exclude netlify.toml --exclude .gitignore \
-            --exclude '*.command' --exclude '*.icns' --exclude run.sh --exclude deploy
+            --exclude '*.command' --exclude '*.icns' --exclude run.sh --exclude deploy \
+            --exclude worker
 
       - name: Deploy to Cloudflare Pages
         if: steps.creds.outputs.ready == 'true'

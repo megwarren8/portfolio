@@ -1,0 +1,10 @@
+name = "megan-warren-contact"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+
+[observability]
+enabled = true
+
+[[send_email]]
+name = "EMAIL"
+destination_address = "meganraewarren@gmail.com"

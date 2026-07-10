@@ -109,6 +109,7 @@
   --low:#6E6488;
   --teal-em:#57E6D2;
   --teal-text:#57E6D2;
+  --danger:#FF6B6B;
 
   --teal:#34E3CE;
   --violet:#8B6FE0;
@@ -147,6 +148,7 @@
   --mid:#5B5270;
   --low:#6C6484;
   --teal-text:#087367;
+  --danger:#B3261E;
   --mn-a:#0A6E80;
   --mn-mid:#2F5FB8;
   --mn-b:#6B4FC4;
@@ -461,6 +463,59 @@ p{margin:0;}
 @keyframes bridge-float{0%,100%{transform:translateY(0);opacity:.55;}50%{transform:translateY(7px);opacity:1;}}
 @media (prefers-reduced-motion: reduce){.bridge svg{animation:none;opacity:.85;}}
 
+/* ---------------- contact form ---------------- */
+.cf{margin-top:40px;max-width:var(--measure);}
+.cf-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.cf-field{display:flex;flex-direction:column;gap:7px;margin-top:20px;}
+.cf-grid .cf-field{margin-top:0;}
+.cf label{font-family:var(--mono);font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--low);}
+.cf input[type="text"],.cf input[type="email"],.cf select,.cf textarea{
+  font-family:var(--sans);font-size:15px;color:var(--hi);
+  background:var(--elevated);border:1px solid var(--border);border-radius:9px;
+  padding:12px 14px;width:100%;transition:border-color .15s ease;
+}
+.cf textarea{resize:vertical;min-height:110px;line-height:1.5;}
+.cf select{appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236E6488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;
+}
+.cf input:hover,.cf select:hover,.cf textarea:hover{border-color:var(--mid);}
+.cf input:focus,.cf select:focus,.cf textarea:focus{border-color:var(--violet);outline:none;}
+.cf input::placeholder,.cf textarea::placeholder{color:var(--low);}
+.cf input:user-invalid,.cf textarea:user-invalid{border-color:var(--danger);}
+.cf-error{font-family:var(--sans);font-size:12.5px;color:var(--danger);min-height:1em;}
+
+/* honeypot: off-screen and unreachable by keyboard, never display:none
+   (some spam bots specifically skip display:none fields) */
+.cf-hp{position:absolute;width:1px;height:1px;overflow:hidden;left:-9999px;}
+
+.cf .cta-row{margin-top:28px;}
+.cf-submit-spin{display:inline-block;width:13px;height:13px;border-radius:50%;
+  border:2px solid rgba(11,7,22,.35);border-top-color:#0B0716;
+  margin-right:2px;vertical-align:-2px;animation:cf-spin .7s linear infinite;}
+[data-theme="light"] .cf-submit-spin{border-color:rgba(11,7,22,.35);border-top-color:#0B0716;}
+@keyframes cf-spin{to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion: reduce){.cf-submit-spin{animation-duration:1.4s;}}
+#cf-submit[disabled]{opacity:.75;cursor:default;}
+#cf-submit[disabled]:hover{box-shadow:var(--glow-md);}
+
+.cf-status{font-family:var(--sans);font-size:14.5px;margin-top:16px;min-height:1.4em;}
+.cf-status[data-kind="error"]{color:var(--danger);}
+.cf-status[data-kind="ok"]{color:var(--teal-text);}
+
+.cf-done{max-width:var(--measure);margin-top:40px;padding:26px 28px;
+  border:1px solid var(--border);border-radius:12px;background:var(--surface);}
+.cf-done h3{font-size:1.2rem;font-weight:700;}
+.cf-done p{font-family:var(--serif);color:var(--mid);margin-top:10px;line-height:1.55;}
+.cf-done button{margin-top:16px;background:none;border:none;padding:0;
+  font-family:var(--sans);font-size:13.5px;color:var(--mid);text-decoration:none;
+  border-bottom:1px solid var(--border);padding-bottom:1px;cursor:pointer;}
+.cf-done button:hover{color:var(--hi);border-color:var(--hi);}
+
+@media (max-width:620px){
+  .cf-grid{grid-template-columns:1fr;}
+}
+
 /* ---------------- AI coaching intro ---------------- */
 .coaching{padding:40px 0 24px;}
 .coaching .cabinet-cap{color:var(--hi);font-size:clamp(1.7rem,3.2vw,2.35rem);line-height:1.15;}
@@ -527,7 +582,7 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
         <a href="#coaching">AI coaching</a>
         <a href="#how">How I work</a>
         <a class="pill" href="#commissions">Now taking commissions</a>
-        <a class="btn btn--ghost" href="mailto:meganraewarren@gmail.com?subject=Commission%20inquiry" style="padding:8px 14px;font-size:13px;">Email me</a>
+        <a class="btn btn--ghost" href="#contact" style="padding:8px 14px;font-size:13px;">Message me</a>
         <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
@@ -558,7 +613,7 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
         <p class="sub"><b>25+ shipped this year.</b><br>Six are open to the public. Open one right now and see for yourself.</p>
         <div class="hero-ctas">
           <a class="btn btn--solid" href="#tools">Open one</a>
-          <a class="btn btn--ghost" href="mailto:meganraewarren@gmail.com?subject=Commission%20inquiry">Email me</a>
+          <a class="btn btn--ghost" href="#contact">Message me</a>
         </div>
       </div>
     </section>
@@ -805,7 +860,7 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
       </div>
     </section>
 
-    <section class="cta">
+    <section class="cta" id="contact">
       <div class="wrap">
         <svg class="cta-mark" viewBox="0 0 120 120" aria-hidden="true">
           <defs>
@@ -823,17 +878,54 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
         <p class="eyebrow">Megan Warren &middot;<br class="eyebrow-br"> Designer &amp; Builder</p>
         <h2>Have something you wish already existed?</h2>
         <p class="sub">Tell me what it is.<br>I will tell you honestly whether it is a good fit.<br>If it is, you will get a real number and a real timeline before we start.</p>
-        <div class="cta-row">
-          <a class="btn btn--solid" href="mailto:meganraewarren@gmail.com?subject=Commission%20inquiry" style="padding:14px 26px;font-size:15px;">Email Megan</a>
-          <div class="cta-secondary-col">
-            <div class="cta-secondary">
-              <a href="#coaching">Ask about AI coaching instead</a>
+
+        <form class="cf" id="cf" novalidate>
+          <div class="cf-grid">
+            <div class="cf-field">
+              <label for="cf-name">Name</label>
+              <input type="text" id="cf-name" name="name" autocomplete="name" maxlength="200" required aria-describedby="cf-name-err">
+              <span class="cf-error" id="cf-name-err" aria-live="polite"></span>
             </div>
-            <a class="bridge" href="#coaching" aria-label="Jump down to the AI coaching section">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
-            </a>
+            <div class="cf-field">
+              <label for="cf-email">Email</label>
+              <input type="email" id="cf-email" name="email" autocomplete="email" maxlength="320" required aria-describedby="cf-email-err">
+              <span class="cf-error" id="cf-email-err" aria-live="polite"></span>
+            </div>
           </div>
-        </div>
+          <div class="cf-field">
+            <label for="cf-topic">What are you looking for</label>
+            <select id="cf-topic" name="topic">
+              <option value="commission">A commission / tool idea</option>
+              <option value="coaching">1:1 AI coaching</option>
+              <option value="unsure">Not sure yet</option>
+            </select>
+          </div>
+          <div class="cf-field">
+            <label for="cf-message">What do you wish existed?</label>
+            <textarea id="cf-message" name="message" rows="5" maxlength="5000" required aria-describedby="cf-message-err"></textarea>
+            <span class="cf-error" id="cf-message-err" aria-live="polite"></span>
+          </div>
+
+          <div class="cf-hp" aria-hidden="true">
+            <label for="cf-company">Company</label>
+            <input type="text" id="cf-company" name="company" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="cta-row">
+            <button type="submit" class="btn btn--solid" id="cf-submit" style="padding:14px 26px;font-size:15px;">
+              <span>Send message</span>
+            </button>
+            <div class="cta-secondary-col">
+              <div class="cta-secondary">
+                <a href="#coaching">Ask about AI coaching instead</a>
+              </div>
+              <a class="bridge" href="#coaching" aria-label="Jump down to the AI coaching section">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="cf-status" id="cf-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
 
@@ -889,9 +981,9 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
           </div>
         </div>
         <div style="margin-top:32px;">
-          <a class="btn btn--solid" href="mailto:meganraewarren@gmail.com?subject=AI%20coaching%20inquiry">Ask about AI coaching</a>
+          <a class="btn btn--solid" href="#contact" data-topic="coaching">Ask about AI coaching</a>
         </div>
-        <p class="close-note">Not sure whether you want something built or a skill of your own? <a href="mailto:meganraewarren@gmail.com">Email me either way</a>, and we'll sort out which one fits.</p>
+        <p class="close-note">Not sure whether you want something built or a skill of your own? <a href="#contact">Message me either way</a>, and we'll sort out which one fits.</p>
       </div>
     </section>
 
@@ -967,6 +1059,126 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
       sync();
     });
   }
+})();
+
+(function(){
+  var form = document.getElementById('cf');
+  if (!form) return;
+
+  // TODO before this goes live: replace with the real workers.dev URL
+  // Cloudflare assigns on first deploy of worker/ (see worker/README.md).
+  var ENDPOINT = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
+    ? 'http://localhost:8787'
+    : 'https://megan-warren-contact.mwarren.workers.dev';
+
+  var renderedAt = Date.now();
+  var submitBtn = document.getElementById('cf-submit');
+  var submitLabel = submitBtn.querySelector('span');
+  var statusEl = document.getElementById('cf-status');
+  var topicSelect = document.getElementById('cf-topic');
+  var companyInput = document.getElementById('cf-company');
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  var fields = {
+    name: { input: document.getElementById('cf-name'), err: document.getElementById('cf-name-err') },
+    email: { input: document.getElementById('cf-email'), err: document.getElementById('cf-email-err') },
+    message: { input: document.getElementById('cf-message'), err: document.getElementById('cf-message-err') }
+  };
+
+  document.querySelectorAll('a[data-topic]').forEach(function(a){
+    a.addEventListener('click', function(){
+      topicSelect.value = a.getAttribute('data-topic');
+    });
+  });
+
+  function setError(key, msg){ fields[key].err.textContent = msg || ''; }
+  function clearErrors(){ Object.keys(fields).forEach(function(k){ setError(k, ''); }); }
+
+  function validate(){
+    clearErrors();
+    var order = ['name', 'email', 'message'];
+    var name = fields.name.input.value.trim();
+    var email = fields.email.input.value.trim();
+    var message = fields.message.input.value.trim();
+    if (!name) setError('name', 'Enter your name.');
+    if (!email || !EMAIL_RE.test(email)) setError('email', 'Enter a valid email address.');
+    if (!message || message.length < 10) setError('message', 'Say a little more, a sentence or two is plenty.');
+    var firstInvalid = order.find(function(k){ return fields[k].err.textContent; });
+    if (firstInvalid) fields[firstInvalid].input.focus();
+    return !firstInvalid;
+  }
+
+  function setBusy(busy){
+    submitBtn.disabled = busy;
+    if (busy) {
+      form.setAttribute('aria-busy', 'true');
+      submitLabel.innerHTML = '<span class="cf-submit-spin" aria-hidden="true"></span>Sending…';
+    } else {
+      form.removeAttribute('aria-busy');
+      submitLabel.textContent = 'Send message';
+    }
+  }
+
+  function showStatus(msg, kind){
+    statusEl.textContent = msg || '';
+    if (kind) statusEl.setAttribute('data-kind', kind); else statusEl.removeAttribute('data-kind');
+  }
+
+  function showSuccess(){
+    var done = document.createElement('div');
+    done.className = 'cf-done';
+    done.setAttribute('tabindex', '-1');
+    done.innerHTML = '<h3>Got it, thank you.</h3>' +
+      '<p>I read every message myself and reply within a couple of days, sooner if I can.</p>' +
+      '<button type="button" id="cf-reset">Send another message</button>';
+    form.replaceWith(done);
+    done.focus();
+    document.getElementById('cf-reset').addEventListener('click', function(){
+      done.replaceWith(form);
+      form.reset();
+      setBusy(false);
+      showStatus('');
+      fields.name.input.focus();
+    });
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!validate()) return;
+
+    setBusy(true);
+    showStatus('');
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: fields.name.input.value.trim(),
+        email: fields.email.input.value.trim(),
+        topic: topicSelect.value,
+        message: fields.message.input.value.trim(),
+        company: companyInput.value,
+        startedAt: renderedAt
+      })
+    })
+      .then(function(res){
+        return res.json().catch(function(){ return {}; }).then(function(data){
+          return { ok: res.ok, data: data };
+        });
+      })
+      .then(function(result){
+        if (result.data && result.data.ok) {
+          showSuccess();
+          return;
+        }
+        setBusy(false);
+        showStatus((result.data && result.data.error) || 'Something went wrong. Try again in a moment.', 'error');
+      })
+      .catch(function(){
+        setBusy(false);
+        showStatus('Could not reach the server. Check your connection and try again.', 'error');
+      });
+  });
 })();
 </script>
 </body>
