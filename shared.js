@@ -60,11 +60,9 @@
   }
 })();
 
-// TODO before this goes live: replace with the real workers.dev URL
-// Cloudflare assigns on first deploy of worker/ (see worker/README.md).
 var CONTACT_ENDPOINT = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
   ? 'http://localhost:8787'
-  : 'https://megan-warren-contact.mwarren.workers.dev';
+  : 'https://megan-warren-contact.meganraewarren.workers.dev';
 
 // Shared shell for both contact forms (commission on the homepage, coaching
 // on /coaching/). Each page supplies its own field list and payload shape;
