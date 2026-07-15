@@ -11,8 +11,7 @@
 (function(){
   try {
     var saved = localStorage.getItem('theme');
-    var wantsLight = saved ? saved === 'light' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches);
-    if (wantsLight) document.documentElement.setAttribute('data-theme', 'light');
+    if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
   } catch(e) {}
 })();
 </script>

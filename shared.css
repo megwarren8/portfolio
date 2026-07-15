@@ -57,8 +57,8 @@
   --wide: 1040px;
 }
 
-/* Light mode: same tokens, day palette. Auto-applied via prefers-color-scheme
-   (see head script) or by the toggle button; overridable per visitor. */
+/* Light mode: same tokens, day palette. Dark is the default for every visitor;
+   this only applies once someone picks it via the toggle button (see head script). */
 [data-theme="light"]{
   --void:#FAF8FC;
   --base:#F3F0F8;

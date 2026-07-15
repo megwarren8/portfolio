@@ -48,16 +48,6 @@
       sync();
     });
   }
-
-  if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e){
-      var saved = null;
-      try { saved = localStorage.getItem('theme'); } catch(err) {}
-      if (saved) return;
-      root.setAttribute('data-theme', e.matches ? 'light' : 'dark');
-      sync();
-    });
-  }
 })();
 
 var CONTACT_ENDPOINT = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
