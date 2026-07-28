@@ -53,6 +53,12 @@ function str(v) {
   return typeof v === "string" ? v.trim() : "";
 }
 
+// A visitor's name goes into the Reply-To display name, so strip anything
+// that could break out of that header (CR/LF and other control characters).
+function headerSafe(s) {
+  return s.replace(/[\x00-\x1F\x7F]+/g, " ").trim();
+}
+
 // Builds the {subject, text, html} for a commission-inquiry submission.
 function commissionEmail(name, email, message) {
   const subject = `Portfolio contact: ${name} (Commission inquiry)`;
@@ -150,7 +156,14 @@ export default {
     }
 
     try {
-      await env.EMAIL.send({ to: DESTINATION, from: FROM, ...mail });
+      // replyTo is the visitor, so hitting Reply in Gmail writes back to them
+      // instead of to the no-reply sending address.
+      await env.EMAIL.send({
+        to: DESTINATION,
+        from: FROM,
+        replyTo: { email, name: headerSafe(name) },
+        ...mail,
+      });
     } catch (err) {
       return json(
         { ok: false, error: "That didn't send. Try again in a moment." },
