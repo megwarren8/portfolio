@@ -217,10 +217,14 @@ p{margin:0;}
   padding:16px 14px;
   min-height:118px;
   display:flex;flex-direction:column;justify-content:space-between;
+}
+/* Scroll-reveal only when JS is running (.js is set inline in each page's
+   head), so chips are never invisible without it. */
+.js .chip{
   opacity:0;transform:translateY(10px);
   transition:opacity .5s ease, transform .5s ease;
 }
-.chip.in{opacity:1;transform:translateY(0);}
+.js .chip.in{opacity:1;transform:translateY(0);}
 .chip-cap{font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--low);margin-top:12px;}
 
 /* specimen 1: fraction, paired with what the read-aloud says about it */
@@ -276,10 +280,12 @@ p{margin:0;}
 .tool{
   border:1px solid var(--border);border-radius:14px;overflow:hidden;
   display:grid;grid-template-columns:7px 1fr;
+}
+.js .tool{
   opacity:0;transform:translateY(16px);
   transition:opacity .6s ease, transform .6s ease;
 }
-.tool.in{opacity:1;transform:translateY(0);}
+.js .tool.in{opacity:1;transform:translateY(0);}
 .tool-edge{width:7px;}
 .tool-body{padding:38px 40px;}
 .tool-top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:6px;}
@@ -466,5 +472,19 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
 
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto;}
-  .chip,.tool{transition:none;opacity:1;transform:none;}
+  .js .chip,.js .tool{transition:none;opacity:1;transform:none;}
+}
+
+/* Sticky mobile CTA: keeps Message me one thumb away on phones. shared.js
+   adds .off while the contact section itself is on screen. */
+.sticky-cta{display:none;}
+@media (max-width:620px){
+  .sticky-cta{
+    display:block; position:fixed; left:0; right:0; bottom:0; z-index:40;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    background:var(--base); border-top:1px solid var(--border);
+  }
+  .sticky-cta .btn{width:100%; justify-content:center;}
+  .sticky-cta.off{display:none;}
+  body:has(.sticky-cta) .page{padding-bottom:calc(66px + env(safe-area-inset-bottom));}
 }

@@ -162,3 +162,16 @@ function wireContactForm(opts){
       });
   });
 }
+
+// Sticky mobile CTA: hide the fixed bar while the contact section itself is
+// on screen, so it never sits on top of the form it points to.
+(function(){
+  var bar = document.getElementById('stickyCta');
+  if (!bar) return;
+  var target = document.getElementById('contact');
+  if (!target || !('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ bar.classList.toggle('off', e.isIntersecting); });
+  }, { threshold: 0.05 });
+  io.observe(target);
+})();
