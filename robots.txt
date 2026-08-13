@@ -1,4 +1,39 @@
+# Everything here is meant to be found, read, indexed, and quoted, by search
+# engines and by AI assistants alike. There is no hidden section and no
+# paywalled content, so there is nothing to disallow.
+#
+# The AI crawlers below are already covered by the wildcard rule. They are
+# named explicitly anyway, because "Allow: /" under "User-agent: *" is silence
+# rather than consent, and an explicit allow is unambiguous to anyone checking.
+
 User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://megan-warren.com/sitemap.xml

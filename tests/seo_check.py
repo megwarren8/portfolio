@@ -134,6 +134,7 @@ MONEY_WORDS = {
     "/software/": ("custom software", "commission"),
     "/books/": ("textbook", "commission"),
     "/coaching/": ("ai coaching",),
+    "/about/": ("commission", "boston"),
 }
 # Title keyword requirement, separate from body: the title is the ad.
 TITLE_WORDS = {
@@ -141,7 +142,18 @@ TITLE_WORDS = {
     "/software/": ("software",),
     "/books/": ("textbook",),
     "/coaching/": ("ai coaching",),
+    "/about/": ("megan warren",),
 }
+# Pages that sell something and must say so in machine-readable form. Kept
+# separate from MONEY_WORDS because /about/ carries the money words in prose
+# but is a ProfilePage, not an offer, and requiring a Service node on it would
+# be schema written for the gate rather than for the reader.
+SERVICE_REQUIRED = {"/", "/software/", "/books/", "/coaching/"}
+
+# Pages that have their own Open Graph card under their own directory, built by
+# tools/make_og.py. /coaching/ already had one; /privacy/ deliberately shares
+# the site-wide card, because a legal page needs no artwork of its own.
+OWN_CARD = {"/software/", "/books/", "/about/", "/coaching/"}
 
 GEO_WORDS = ("boston", "massachusetts", "new england")
 
@@ -280,6 +292,26 @@ def check_page(path, doc):
     if not re.search(r'<link[^>]+rel="canonical"', doc):
         r.fail("canonical", "no canonical link")
 
+    # ---- the link preview --------------------------------------------------
+    # A card that 404s renders as a blank grey box in every chat app, and one
+    # that belongs to a different page shows the wrong words to someone who has
+    # not clicked yet. /software/, /books/ and /about/ each shipped pointing at
+    # the site-wide card, whose artwork says "Educator and Creative".
+    og = first(r'<meta property="og:image" content="([^"]*)"', doc)
+    if not og:
+        r.fail("og-image", "no og:image")
+    else:
+        target = og.replace(LIVE, SITE) if SITE != LIVE else og
+        try:
+            fetch(target, max_bytes=64)
+        except Exception:  # noqa: BLE001
+            r.fail("og-image", "og:image does not load: %s" % og)
+        if path in OWN_CARD and og.rstrip("/").endswith("/og-image.png") \
+                and path.strip("/") not in og:
+            r.fail("og-image", "uses the site-wide card, not its own: %s" % og)
+    if not first(r'<meta property="og:image:alt" content="([^"]*)"', doc):
+        r.fail("og-image-alt", "no og:image:alt")
+
     # ---- structured data ---------------------------------------------------
     blocks = re.findall(
         r'<script type="application/ld\+json">([\s\S]*?)</script>', doc)
@@ -304,7 +336,7 @@ def check_page(path, doc):
             r.fail("schema-org", "no Person node; found %s"
                    % (", ".join(sorted(types)) or "nothing"))
         # A page that sells something should say so in machine-readable form.
-        if path in MONEY_WORDS and "Service" not in types:
+        if path in SERVICE_REQUIRED and "Service" not in types:
             r.fail("schema-org", "money page with no Service node; found %s"
                    % ", ".join(sorted(types)))
         r.note("schema: " + (", ".join(sorted(types)) or "none"))
@@ -338,6 +370,91 @@ def check_page(path, doc):
         r.fail("body-dash", "body text contains an em or en dash")
 
     r.note("%d words" % words)
+    return r
+
+
+# Nav links allowed to stay visible under 860px. Everything else in the nav
+# must be named in shared.css's mobile hide rule.
+MOBILE_NAV_KEEP = {"/software/", "/books/", "/coaching/"}
+
+
+def check_mobile_nav(pages_html):
+    """The nav hides links on mobile by matching exact hrefs in a CSS rule.
+    That list is a hard-coded work list, and hard-coded work lists exclude
+    silently: adding /software/, /books/ and /about/ to the nav on 2026-08-13
+    left all three visible under 860px, and the nav overflowed the header on
+    every page at 375 and 480 px. Nothing errored and nothing looked broken in
+    the markup.
+
+    This cannot measure layout over HTTP, so it checks the invariant instead:
+    every nav href is either hidden by the rule or explicitly allowed to stay.
+    """
+    r = Result("/(mobile nav rule)")
+    try:
+        css = fetch(SITE + "/shared.css")
+    except Exception as e:  # noqa: BLE001
+        r.fail("mobile-nav", "could not fetch shared.css: %s" % e)
+        return r
+
+    # A nav item can be hidden by its href OR by a class it carries, and the
+    # rules live in more than one max-width block. Collecting only href
+    # selectors was the first version of this check and it produced a false
+    # failure on the "Message me" button, which is hidden as .btn--ghost.
+    hidden_hrefs, hidden_classes = set(), set()
+    for mq in re.finditer(r"@media\s*\(max-width:\s*(\d+)px\)\s*\{", css):
+        start = mq.end() - 1
+        depth, i = 0, start
+        while i < len(css):
+            if css[i] == "{":
+                depth += 1
+            elif css[i] == "}":
+                depth -= 1
+                if depth == 0:
+                    break
+            i += 1
+        block = css[start:i + 1]
+        for sel, body in re.findall(r"([^{}]*)\{([^{}]*)\}", block):
+            if ".top-links" not in sel or "display:none" not in body.replace(" ", ""):
+                continue
+            hidden_hrefs |= set(re.findall(r'a\[href(?:\$)?="([^"]+)"\]', sel))
+            hidden_classes |= set(re.findall(r"\.top-links\s+\.([A-Za-z0-9_-]+)", sel))
+
+    if not hidden_hrefs and not hidden_classes:
+        r.fail("mobile-nav", "no mobile hide rule found for .top-links")
+        return r
+
+    items = {}  # href -> set of classes seen on it
+    for doc in pages_html.values():
+        nav = re.search(r'<nav class="top-links">(.*?)</nav>', doc, re.S)
+        if not nav:
+            continue
+        for tag in re.findall(r"<a[^>]*>", nav.group(1)):
+            href = re.search(r'href="([^"]+)"', tag)
+            if not href:
+                continue
+            cls = re.search(r'class="([^"]*)"', tag)
+            items.setdefault(href.group(1), set()).update(
+                cls.group(1).split() if cls else [])
+
+    if not items:
+        r.fail("mobile-nav", "no nav links found to check")
+        return r
+
+    stray = []
+    for h, classes in sorted(items.items()):
+        if h in MOBILE_NAV_KEEP:
+            continue
+        if h in hidden_hrefs or any(h.endswith(x) for x in hidden_hrefs):
+            continue
+        if classes & hidden_classes:
+            continue
+        stray.append(h)
+    if stray:
+        r.fail("mobile-nav",
+               "nav links neither hidden on mobile nor in MOBILE_NAV_KEEP, "
+               "so they will overflow the header: %s" % ", ".join(stray))
+    r.note("%d nav hrefs, %d kept, %d hidden by href, %d by class"
+           % (len(items), len(MOBILE_NAV_KEEP), len(hidden_hrefs), len(hidden_classes)))
     return r
 
 
@@ -484,6 +601,7 @@ def main():
 
     results = OrderedDict()
     unreachable = []
+    docs = {}
     for p in pages:
         try:
             doc = fetch(SITE + p)
@@ -493,10 +611,13 @@ def main():
             results[p] = r
             unreachable.append(p)
             continue
+        docs[p] = doc
         results[p] = check_page(p, doc)
 
     for r in check_site():
         results[r.url] = r
+    nav = check_mobile_nav(docs)
+    results[nav.url] = nav
     if not args.only and not args.no_fleet:
         for r in check_fleet():
             results[r.url] = r
