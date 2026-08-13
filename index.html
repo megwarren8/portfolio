@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Megan Warren, Educator and Creative</title>
-<meta name="description" content="Small, thoughtful software for teachers, creators, and small brands, plus 1:1 AI coaching from an educator, designer, and builder. Six tools are live.">
+<title>Custom Software and Book Commissions | Megan Warren</title>
+<meta name="description" content="Commission custom software, interactive textbooks, and brand systems from an independent designer and builder in Boston, plus 1:1 AI coaching. Fixed price, $1,500 to $10,000. Six tools live to open now.">
 <link rel="canonical" href="https://megan-warren.com/">
 <meta name="theme-color" content="#0E0A18">
 <script>
@@ -40,14 +40,60 @@
       "url": "https://megan-warren.com/",
       "jobTitle": "Educator, designer, builder, and AI coach",
       "description": "An educator who also designs and builds small, thoughtful software for teachers, creators, and small brands, and coaches people 1:1 on using AI tools themselves: offline single-file tools, textbooks, brand systems, and hands-on AI coaching.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Boston",
+        "addressRegion": "MA",
+        "addressCountry": "US"
+      },
+      "knowsAbout": [
+        "Custom software development",
+        "Interactive textbook design",
+        "Educational technology",
+        "Brand systems",
+        "Mathematics teaching",
+        "AI coaching"
+      ],
+      "makesOffer": [
+        {"@id": "https://megan-warren.com/software/#service"},
+        {"@id": "https://megan-warren.com/books/#service"},
+        {"@id": "https://megan-warren.com/coaching/#service"}
+      ],
       "sameAs": ["https://github.com/megwarren8"]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://megan-warren.com/software/#service",
+      "name": "Custom Software Commissions",
+      "url": "https://megan-warren.com/software/",
+      "serviceType": "Custom software development",
+      "description": "Small, focused custom web tools and internal tools for classrooms, nonprofits, and small brands, built as offline single-file web apps at a fixed price.",
+      "provider": {"@id": "https://megan-warren.com/#person"}
+    },
+    {
+      "@type": "Service",
+      "@id": "https://megan-warren.com/books/#service",
+      "name": "Custom Interactive Book Commissions",
+      "url": "https://megan-warren.com/books/",
+      "serviceType": "Interactive textbook and course book development",
+      "description": "Custom interactive textbooks, course books, study guides, onboarding guides, and training manuals, built as one offline HTML file with student and answer-key editions from a single source.",
+      "provider": {"@id": "https://megan-warren.com/#person"}
+    },
+    {
+      "@type": "Service",
+      "@id": "https://megan-warren.com/coaching/#service",
+      "name": "1:1 AI Coaching",
+      "url": "https://megan-warren.com/coaching/",
+      "serviceType": "AI coaching",
+      "description": "Hands-on, 1:1 AI coaching: a free first conversation, a written game plan, and a guided practice session, in person in Boston or remote by video call.",
+      "provider": {"@id": "https://megan-warren.com/#person"}
     },
     {
       "@type": "WebSite",
       "@id": "https://megan-warren.com/#website",
       "url": "https://megan-warren.com/",
       "name": "Megan Warren, Educator and Creative",
-      "description": "Small, thoughtful software for teachers, creators, and small brands, plus 1:1 AI coaching from an educator, designer, and builder. Six tools are live.",
+      "description": "Commission custom software, interactive textbooks, and brand systems from an independent designer and builder in Boston, plus 1:1 AI coaching.",
       "publisher": {"@id": "https://megan-warren.com/#person"},
       "inLanguage": "en-US"
     }
@@ -83,8 +129,9 @@
       </a>
       <nav class="top-links">
         <a href="#tools">Tools</a>
+        <a href="/software/">Software</a>
+        <a href="/books/">Books</a>
         <a href="/coaching/">AI coaching</a>
-        <a href="#how">How I work</a>
         <a class="pill" href="#commissions">Now taking commissions</a>
         <a class="btn btn--ghost" href="#contact" style="padding:8px 14px;font-size:13px;">Message me</a>
         <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
@@ -133,7 +180,7 @@
             </div>
             <p class="tool-spec mono">Course textbook &middot; 25 sections &middot; grades 10 to 12 &middot; one HTML file</p>
             <p>Every choice in this book is backed by something, not a guess. Before writing a single section, I pulled research on what actually keeps teenagers engaged with material like this. I scraped it, then distilled it into patterns, the dos and don'ts that guide how the book reads, not just what it teaches. When I do not know something for certain, I look it up. I would rather spend an hour confirming a fact than ship a guess.</p>
-            <p>The same engine behind this book, one source that forks into a student edition and a facilitator's answer-key edition, works just as well for a corporate onboarding guide or a certification study guide. That is a commission I take on just as readily as a classroom textbook.</p>
+            <p>The same engine behind this book, one source that forks into a student edition and a facilitator's answer-key edition, works just as well for a corporate onboarding guide or a certification study guide. That is a <a href="/books/">book commission</a> I take on just as readily as a classroom textbook.</p>
             <a class="tool-cta" href="https://probability.megan-warren.com" target="_blank" rel="noopener">
               Open the textbook
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
@@ -346,15 +393,15 @@
         <div class="how-grid">
           <div class="how-item">
             <div class="k">What I take on</div>
-            <div class="v">Small, focused web tools (a Grouper, a Wildcard, a desk built around your work). Brand systems delivered as working offline documents. Print-ready textbooks, study guides, and training materials. Design audits.</div>
+            <div class="v"><a href="/software/">Custom software commissions</a>: small, focused web tools (a Grouper, a Wildcard, a desk built around your work), brand systems delivered as working offline documents, marketing sites, and design audits. <a href="/books/">Book commissions</a>: interactive textbooks, study guides, onboarding guides, and training manuals, print-ready when you need paper too.</div>
           </div>
           <div class="how-item">
             <div class="k">What I don't</div>
             <div class="v">Enterprise software and open-ended &ldquo;figure it out as we go&rdquo; projects. If your project is that shape, I will tell you fast, so you are not waiting on me to find that out.</div>
           </div>
           <div class="how-item">
-            <div class="k">Timing</div>
-            <div class="v">I take a small number of commissions at a time, since the school year starts again in September.</div>
+            <div class="k">Timing and where</div>
+            <div class="v">I take a small number of commissions at a time, since the school year starts again in September. I work from Boston, Massachusetts, and remotely everywhere else. Location does not change the price.</div>
           </div>
           <div class="how-item">
             <div class="k">The first step</div>

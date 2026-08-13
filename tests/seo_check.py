@@ -1,0 +1,541 @@
+#!/usr/bin/env python3
+"""
+seo_check.py - the SEO regression gate for megan-warren.com.
+
+A sibling of the asktheturtle.com gate, with the same three design rules and
+one addition that platform made impossible over there.
+
+Every check runs against the LIVE public site. Nothing is read from a local
+file, a cache, or a previous run, because the failures this exists to catch
+(a title rewritten without its keywords, a page shipped without a meta
+description, a JSON-LD block truncated mid-object) are all invisible in the
+source and only show up in what the server actually serves.
+
+Design rules, each one earned:
+
+  * The page list comes from the live sitemap.xml. It is never hard-coded.
+    A hard-coded list silently stops covering pages the moment someone adds
+    one, and then reports green over the gap.
+
+  * The gate fails loudly if it cannot run. A fetch error is a FAILURE, not a
+    skip. Zero pages checked is a FAILURE. A gate that cannot reach the site
+    must never print a passing summary.
+
+  * Every skipped or unreachable page is named in the output. Silent
+    truncation reads as "covered everything" when it did not.
+
+The addition: this site is on Cloudflare Pages, which serves arbitrary files
+from the repo root, so /llms.txt is a real file here and IS checked. The
+turtle gate had to record it as an unfixable platform limit instead.
+
+The fleet check (--fleet, on by default) exists because the eight public
+subdomains are the only substantial off-site-shaped asset this site has, and
+on 2026-08-13 three of them linked back with no anchor text at all while four
+had no canonical. Those are silent regressions: everything still renders.
+
+Usage:
+    python3 tests/seo_check.py                 # everything, including fleet
+    python3 tests/seo_check.py --no-fleet      # main site only, faster
+    python3 tests/seo_check.py --only / /books/
+    python3 tests/seo_check.py --quiet         # summary + failures only
+
+Exit codes:  0 all checks passed
+             1 one or more checks failed
+             2 the gate itself could not run
+"""
+
+import argparse
+import html
+import json
+import re
+import ssl
+import sys
+import urllib.error
+import urllib.request
+from collections import OrderedDict
+
+# The live site is the default and the only target that proves anything about
+# search. --site exists so the same gate can run against a local preview
+# BEFORE a deploy, which is the only way to avoid shipping a red gate. It does
+# not replace the live run: fleet checks are skipped automatically when the
+# target is not the live host, because localhost has no subdomains.
+SITE = "https://megan-warren.com"
+LIVE = SITE
+
+# Pages that are live and indexable but absent from sitemap.xml. Empty today.
+# Kept, and printed in the coverage line every run, because the turtle gate
+# reported green three times over three pages the sitemap never listed.
+ALSO_CHECK = []
+
+# The eight public subdomains, checked for the things that silently rot:
+# reachability, a canonical, a meta description, and a link home that carries
+# real anchor text rather than a bare URL.
+FLEET = [
+    "https://probability.megan-warren.com",
+    "https://derivatives.megan-warren.com",
+    "https://integrals.megan-warren.com",
+    "https://grouper.megan-warren.com",
+    "https://wildcard.megan-warren.com",
+    "https://color.megan-warren.com",
+    "https://hellopaint.megan-warren.com",
+]
+
+# The three textbooks cannot carry a rel="canonical" and that is not neglect.
+# Their build.js ends with an offline-rule gate that fails the build on ANY
+# external resource reference, and a <link href="https://..."> trips it.
+# Probed 2026-08-13: adding the canonical turned all three builds red with
+# "FAIL: external resource reference detected."
+#
+# Weakening someone else's correctness gate to satisfy this one would be the
+# wrong trade, and each book lives at exactly one URL with no query-string
+# variants, so a canonical would earn close to nothing. Recorded as a known
+# constraint instead of a standing red mark.
+CANONICAL_EXEMPT = {
+    "probability.megan-warren.com",
+    "derivatives.megan-warren.com",
+    "integrals.megan-warren.com",
+}
+
+# Anchor text that is technically a link and does no ranking work at all.
+# "privacy" and "terms" are in here because a footer legal link genuinely does
+# point at megan-warren.com, so counting it as a real backlink let all three
+# textbooks pass while their only descriptive link home read "megan-warren.com".
+DEAD_ANCHORS = {"megan-warren.com", "https://megan-warren.com",
+                "megan-warren.com/", "here", "link", "site", "portfolio",
+                "privacy", "privacy policy", "terms", "home", "back"}
+
+UA = {"User-Agent": "megan-warren-seo-gate/1.0", "Cache-Control": "no-cache"}
+CTX = ssl.create_default_context()
+TIMEOUT = 40
+RETRIES = 3
+
+# The books are 12 to 16 MB single files, so the fleet check reads a prefix for
+# the head (title, canonical, description) and, separately, a suffix by HTTP
+# Range for the footer.
+#
+# Reading only the prefix was the first version and it was wrong: it reported
+# "no link home with any anchor text" for all three textbooks, when the truth
+# was that they link home with dead anchor text 12 MB further down. A gate that
+# names the wrong defect is worse than one that stays quiet, so both ends of
+# the document get read.
+FLEET_BYTES = 300_000
+
+# Google truncates around here. Under 15 means the title is almost certainly
+# a placeholder rather than a real one.
+TITLE_MIN, TITLE_MAX = 15, 65
+DESC_MIN, DESC_MAX = 70, 205
+
+# Every money page must name its own offer. This is the check that would have
+# caught the state the site was in on 2026-08-13: a homepage title reading
+# "Megan Warren, Educator and Creative", which spent its whole budget on a
+# name four other people rank for and carried none of the words a buyer types.
+MONEY_WORDS = {
+    "/": ("commission", "software"),
+    "/software/": ("custom software", "commission"),
+    "/books/": ("textbook", "commission"),
+    "/coaching/": ("ai coaching",),
+}
+# Title keyword requirement, separate from body: the title is the ad.
+TITLE_WORDS = {
+    "/": ("commission",),
+    "/software/": ("software",),
+    "/books/": ("textbook",),
+    "/coaching/": ("ai coaching",),
+}
+
+GEO_WORDS = ("boston", "massachusetts", "new england")
+
+# The privacy policy has no business talking about Boston, and padding it with
+# geography would serve the gate rather than the reader.
+GEO_EXEMPT = {"/privacy/"}
+LEGAL_PAGES = {"/privacy/"}
+THIN_OK = {"/privacy/"}
+THIN_DEFAULT = 250
+
+DASHES = ("—", "–")  # em, en. House rule: never, anywhere.
+
+
+class Result:
+    def __init__(self, url):
+        self.url = url
+        self.failures = []
+        self.notes = []
+
+    def fail(self, check, detail):
+        self.failures.append((check, detail))
+
+    def note(self, msg):
+        self.notes.append(msg)
+
+    @property
+    def ok(self):
+        return not self.failures
+
+
+def fetch(url, max_bytes=None):
+    """Return page text. Raises on failure: the caller must treat that as a
+    test failure, never as a skip."""
+    last = None
+    for _ in range(RETRIES):
+        try:
+            req = urllib.request.Request(url, headers=UA)
+            with urllib.request.urlopen(req, context=CTX, timeout=TIMEOUT) as r:
+                raw = r.read(max_bytes) if max_bytes else r.read()
+                return raw.decode("utf-8", "replace")
+        except Exception as e:  # noqa: BLE001 - any failure is a failure
+            last = e
+    raise RuntimeError("could not fetch %s after %d tries: %s"
+                       % (url, RETRIES, last))
+
+
+def fetch_tail(url, nbytes):
+    """Last nbytes of a document, via a Range request. Falls back to the whole
+    body if the server ignores Range, which is correct but slower."""
+    last = None
+    for _ in range(RETRIES):
+        try:
+            headers = dict(UA)
+            headers["Range"] = "bytes=-%d" % nbytes
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, context=CTX, timeout=TIMEOUT) as r:
+                raw = r.read()
+                partial = r.getcode() == 206
+                return raw.decode("utf-8", "replace"), partial
+        except Exception as e:  # noqa: BLE001
+            last = e
+    raise RuntimeError("could not fetch the tail of %s after %d tries: %s"
+                       % (url, RETRIES, last))
+
+
+def discover_pages():
+    """Page list from the live sitemap. Never hard-coded."""
+    xml = fetch(SITE + "/sitemap.xml")
+    locs = re.findall(r"<loc>([^<]+)</loc>", xml)
+    paths = []
+    for loc in locs:
+        p = loc.split(".com", 1)[-1] or "/"
+        p = p.split("?")[0]
+        if not p.startswith("/"):
+            p = "/" + p
+        if p not in paths:
+            paths.append(p)
+    if not paths:
+        raise RuntimeError("sitemap.xml parsed to zero URLs; gate cannot run")
+    from_sitemap = len(paths)
+    added = [p for p in ALSO_CHECK if p not in paths]
+    paths.extend(added)
+    return paths, from_sitemap, added
+
+
+def first(pattern, text, group=1):
+    m = re.search(pattern, text, re.S)
+    return html.unescape(m.group(group)).strip() if m else None
+
+
+def check_page(path, doc):
+    r = Result(path)
+
+    # ---- title -------------------------------------------------------------
+    title = first(r"<title>([^<]*)</title>", doc)
+    if not title:
+        r.fail("title", "missing entirely")
+    else:
+        n = len(title)
+        if n < TITLE_MIN:
+            r.fail("title", "only %d chars: %r" % (n, title))
+        elif n > TITLE_MAX:
+            r.fail("title", "%d chars, will truncate in results: %r" % (n, title))
+        if any(d in title for d in DASHES):
+            r.fail("title-dash", "contains an em or en dash: %r" % title)
+        low = title.lower()
+        want = TITLE_WORDS.get(path)
+        if want and path not in LEGAL_PAGES:
+            missing = [w for w in want if w not in low]
+            if missing:
+                r.fail("title-keywords",
+                       "title is missing %s: %r" % (", ".join(missing), title))
+
+    # ---- meta description --------------------------------------------------
+    desc = first(r'<meta name="description" content="([^"]*)"', doc)
+    if not desc:
+        r.fail("meta-description", "missing entirely")
+    else:
+        n = len(desc)
+        if n < DESC_MIN:
+            r.fail("meta-description", "only %d chars, too thin" % n)
+        elif n > DESC_MAX:
+            r.fail("meta-description", "%d chars, will truncate" % n)
+        if any(d in desc for d in DASHES):
+            r.fail("meta-dash", "contains an em or en dash")
+
+    # ---- exactly one H1 ----------------------------------------------------
+    markup = re.sub(r"<script[\s\S]*?</script>", " ", doc)
+    h1s = re.findall(r"<h1[^>]*>([\s\S]*?)</h1>", markup)
+    if len(h1s) == 0:
+        r.fail("h1", "no H1 on the page")
+    elif len(h1s) > 1:
+        r.fail("h1", "%d H1s; there should be exactly one" % len(h1s))
+
+    # ---- canonical ---------------------------------------------------------
+    if not re.search(r'<link[^>]+rel="canonical"', doc):
+        r.fail("canonical", "no canonical link")
+
+    # ---- structured data ---------------------------------------------------
+    blocks = re.findall(
+        r'<script type="application/ld\+json">([\s\S]*?)</script>', doc)
+    types = set()
+    if not blocks:
+        if path not in LEGAL_PAGES:
+            r.fail("json-ld", "no structured data at all")
+    for b in blocks:
+        try:
+            data = json.loads(b)
+        except Exception as e:  # noqa: BLE001
+            r.fail("json-ld", "a block does not parse: %s" % e)
+            continue
+        for node in (data.get("@graph") or [data]):
+            t = node.get("@type")
+            if isinstance(t, list):
+                types.update(t)
+            elif t:
+                types.add(t)
+    if blocks:
+        if "Person" not in types:
+            r.fail("schema-org", "no Person node; found %s"
+                   % (", ".join(sorted(types)) or "nothing"))
+        # A page that sells something should say so in machine-readable form.
+        if path in MONEY_WORDS and "Service" not in types:
+            r.fail("schema-org", "money page with no Service node; found %s"
+                   % ", ".join(sorted(types)))
+        r.note("schema: " + (", ".join(sorted(types)) or "none"))
+
+    # ---- body content ------------------------------------------------------
+    i = doc.find("<main")
+    j = doc.find("<footer", i) if i >= 0 else -1
+    body = doc[i:j] if i >= 0 and j > i else doc
+    body = re.sub(r"<script[\s\S]*?</script>", " ", body)
+    body = re.sub(r"<style[\s\S]*?</style>", " ", body)
+    text = html.unescape(re.sub(r"<[^>]+>", " ", body))
+    words = len(text.split())
+    if words < THIN_DEFAULT and path not in THIN_OK:
+        r.fail("thin-content", "only %d words in <main>, floor is %d"
+               % (words, THIN_DEFAULT))
+
+    low = text.lower()
+
+    # ---- the words a buyer actually types ----------------------------------
+    want = MONEY_WORDS.get(path)
+    if want:
+        missing = [w for w in want if w not in low]
+        if missing:
+            r.fail("money-words", "body never says: %s" % ", ".join(missing))
+
+    if path not in GEO_EXEMPT and not any(w in low for w in GEO_WORDS):
+        r.fail("geo", "body never says Boston, Massachusetts or New England")
+
+    # ---- the house dash rule, on the whole rendered page --------------------
+    if any(d in text for d in DASHES):
+        r.fail("body-dash", "body text contains an em or en dash")
+
+    r.note("%d words" % words)
+    return r
+
+
+def check_site():
+    """Site-level files. Returns a list of Results."""
+    out = []
+    # llms.txt is checked here and NOT on the turtle site, because Cloudflare
+    # Pages serves arbitrary root files and Squarespace strips the dot from a
+    # slug. Same convention, different platform, different verdict.
+    for path in ("/robots.txt", "/sitemap.xml", "/llms.txt"):
+        r = Result(path)
+        try:
+            body = fetch(SITE + path)
+            if len(body) < 10:
+                r.fail("site-file", "served but effectively empty")
+            if any(d in body for d in DASHES):
+                r.fail("site-file-dash", "contains an em or en dash")
+            r.note("%d bytes" % len(body))
+        except Exception as e:  # noqa: BLE001
+            r.fail("site-file", str(e))
+        out.append(r)
+
+    # A 404 that returns 200 makes every typo a soft-404 in the index.
+    r = Result("/(404 handling)")
+    try:
+        req = urllib.request.Request(
+            SITE + "/this-page-does-not-exist-seo-gate", headers=UA)
+        code = 0
+        try:
+            with urllib.request.urlopen(req, context=CTX, timeout=TIMEOUT) as h:
+                code = h.getcode()
+        except urllib.error.HTTPError as e:
+            code = e.code
+        if code != 404:
+            r.fail("404", "a missing page returned HTTP %d, not 404" % code)
+        r.note("HTTP %d" % code)
+    except Exception as e:  # noqa: BLE001
+        r.fail("404", str(e))
+    out.append(r)
+    return out
+
+
+def check_fleet():
+    """The public subdomains: reachable, canonical, described, and linking
+    home with anchor text that does ranking work."""
+    out = []
+    for base in FLEET:
+        host = base.split("//", 1)[-1]
+        r = Result(host)
+        try:
+            doc = fetch(base + "/", max_bytes=FLEET_BYTES)
+        except Exception as e:  # noqa: BLE001
+            r.fail("fetch", str(e))
+            out.append(r)
+            continue
+
+        if host in CANONICAL_EXEMPT:
+            r.note("canonical exempt: offline build gate")
+        elif not re.search(r'<link[^>]+rel="canonical"', doc):
+            r.fail("canonical", "no canonical link")
+        desc = first(r'<meta name="description" content="([^"]*)"', doc)
+        if not desc:
+            r.fail("meta-description", "missing entirely")
+
+        # The footer sits at the end of the file, which on the textbooks is
+        # 12 MB past the prefix above.
+        try:
+            tail, partial = fetch_tail(base + "/", FLEET_BYTES)
+            if partial:
+                r.note("tail read by Range")
+        except Exception as e:  # noqa: BLE001
+            r.fail("fetch-tail", str(e))
+            out.append(r)
+            continue
+        scan = doc + tail
+
+        anchors = re.findall(
+            r'<a[^>]+href="[^"]*megan-warren\.com[^"]*"[^>]*>([\s\S]*?)</a>', scan)
+        texts = [re.sub(r"<[^>]+>", "", a).strip() for a in anchors]
+        texts = [t for t in texts if t]
+        if not texts:
+            r.fail("backlink", "no link home with any anchor text")
+        else:
+            useful = [t for t in texts
+                      if t.lower().strip("/ ") not in DEAD_ANCHORS]
+            if not useful:
+                r.fail("backlink-anchor",
+                       "links home only as bare text: %s"
+                       % ", ".join(repr(t) for t in texts[:3]))
+            else:
+                r.note("anchor: %r" % useful[0][:40])
+        out.append(r)
+    return out
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--only", nargs="*", default=None,
+                    help="check just these paths")
+    ap.add_argument("--no-fleet", action="store_true",
+                    help="skip the subdomain checks")
+    ap.add_argument("--quiet", action="store_true")
+    ap.add_argument("--site", default=None,
+                    help="target another origin (a local preview) instead of "
+                         "the live site")
+    args = ap.parse_args()
+
+    global SITE
+    if args.site:
+        SITE = args.site.rstrip("/")
+    if SITE != LIVE and not args.no_fleet:
+        args.no_fleet = True
+
+    print("SEO gate for %s" % SITE)
+    if SITE != LIVE:
+        print("NOT THE LIVE SITE. Canonical URLs and the fleet are not proven "
+              "by this run.")
+    print("=" * 78)
+
+    from_sitemap, added = None, []
+    try:
+        if args.only:
+            pages = args.only
+        else:
+            pages, from_sitemap, added = discover_pages()
+    except Exception as e:  # noqa: BLE001
+        print("GATE COULD NOT RUN: %s" % e)
+        return 2
+
+    if args.only:
+        print("restricted by --only to: %s" % ", ".join(pages))
+    else:
+        print("coverage: %d from sitemap.xml + %d from ALSO_CHECK = %d targets"
+              % (from_sitemap, len(added), len(pages)))
+        if added:
+            print("          not in the sitemap, checked anyway: %s"
+                  % ", ".join(added))
+        if args.no_fleet:
+            print("          FLEET SKIPPED by --no-fleet: %d subdomains not "
+                  "checked" % len(FLEET))
+        else:
+            print("          plus %d fleet subdomains" % len(FLEET))
+    print()
+
+    results = OrderedDict()
+    unreachable = []
+    for p in pages:
+        try:
+            doc = fetch(SITE + p)
+        except Exception as e:  # noqa: BLE001
+            r = Result(p)
+            r.fail("fetch", str(e))
+            results[p] = r
+            unreachable.append(p)
+            continue
+        results[p] = check_page(p, doc)
+
+    for r in check_site():
+        results[r.url] = r
+    if not args.only and not args.no_fleet:
+        for r in check_fleet():
+            results[r.url] = r
+            if any(c == "fetch" for c, _ in r.failures):
+                unreachable.append(r.url)
+
+    checked = len(results)
+    failed = [r for r in results.values() if not r.ok]
+
+    if not args.quiet:
+        for path, r in results.items():
+            mark = "PASS" if r.ok else "FAIL"
+            extra = ("  (%s)" % "; ".join(r.notes)) if r.notes else ""
+            print("%-4s %-34s%s" % (mark, path, extra))
+            for check, detail in r.failures:
+                print("       %-18s %s" % (check, detail))
+        print()
+
+    print("=" * 78)
+    if checked == 0:
+        print("GATE COULD NOT RUN: zero pages checked")
+        return 2
+    if unreachable:
+        print("UNREACHABLE (counted as failures): %s" % ", ".join(unreachable))
+    print("checked %d targets, %d passed, %d failed"
+          % (checked, checked - len(failed), len(failed)))
+    if failed:
+        print()
+        print("failing checks by type:")
+        tally = {}
+        for r in failed:
+            for check, _ in r.failures:
+                tally[check] = tally.get(check, 0) + 1
+        for check, n in sorted(tally.items(), key=lambda kv: -kv[1]):
+            print("   %-20s %d" % (check, n))
+        return 1
+    print("all green")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
