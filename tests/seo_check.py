@@ -166,6 +166,17 @@ THIN_DEFAULT = 250
 
 DASHES = ("—", "–")  # em, en. House rule: never, anywhere.
 
+# Every profile that proves this Megan Warren is this Megan Warren. Four other
+# people of the same name rank ahead of this site: an interior designer in the
+# Bay Area, a changemaker coach in Geneva who publishes about AI, a wellness
+# coach, and several unrelated LinkedIn profiles. sameAs is the machine-readable
+# claim that ties the name to this site, so losing an entry here is a silent
+# regression on the site's single biggest constraint, not a cosmetic one.
+REQUIRED_SAMEAS = (
+    "github.com/megwarren8",
+    "linkedin.com/in/megan-warren-23a87835",
+)
+
 
 class Result:
     def __init__(self, url):
@@ -316,6 +327,7 @@ def check_page(path, doc):
     blocks = re.findall(
         r'<script type="application/ld\+json">([\s\S]*?)</script>', doc)
     types = set()
+    same_as = []
     if not blocks:
         if path not in LEGAL_PAGES:
             r.fail("json-ld", "no structured data at all")
@@ -331,6 +343,9 @@ def check_page(path, doc):
                 types.update(t)
             elif t:
                 types.add(t)
+            if t == "Person":
+                sa = node.get("sameAs") or []
+                same_as.extend([sa] if isinstance(sa, str) else sa)
     if blocks:
         if "Person" not in types:
             r.fail("schema-org", "no Person node; found %s"
@@ -339,6 +354,16 @@ def check_page(path, doc):
         if path in SERVICE_REQUIRED and "Service" not in types:
             r.fail("schema-org", "money page with no Service node; found %s"
                    % ", ".join(sorted(types)))
+        if "Person" in types:
+            joined = " ".join(same_as)
+            missing = [p for p in REQUIRED_SAMEAS if p not in joined]
+            if missing:
+                r.fail("sameas",
+                       "Person.sameAs is missing %s; with four other Megan "
+                       "Warrens ranking ahead, this is the entity claim"
+                       % ", ".join(missing))
+            else:
+                r.note("sameAs: %d profiles" % len(same_as))
         r.note("schema: " + (", ".join(sorted(types)) or "none"))
 
     # ---- body content ------------------------------------------------------
