@@ -122,6 +122,11 @@ LANDING = [
 ]
 LANDING_MAX_KB = 200
 
+# shared.css was 251 KB raw / 180 KB gzipped with the fonts inline, and is
+# 23 KB raw / 6.2 KB gzipped without them. 60 KB is generous headroom for
+# real CSS growth while still catching a re-embedded font immediately.
+CSS_MAX_KB = 60
+
 # Anchor text that is technically a link and does no ranking work at all.
 # "privacy" and "terms" are in here because a footer legal link genuinely does
 # point at megan-warren.com, so counting it as a real backlink let all three
@@ -548,6 +553,79 @@ def check_site():
     return out
 
 
+def check_css():
+    """The stylesheet, its fonts, and the shape of every @font-face src.
+
+    Two separate failures live here, both silent.
+
+    Size: shared.css was 180 KB gzipped and render blocking because all eight
+    fonts were base64 inside it, 90.9% of the file. Nothing paints until a
+    blocking stylesheet lands. Extracting the fonts on 2026-08-14 took it to
+    6.2 KB. The budget below is the tripwire for anyone re-embedding one.
+
+    Shape: the first version of tools/extract_fonts.py emitted
+    "format('woff2') format('woff2')", because the source already carried a
+    format() and the rewrite appended another. That is invalid, so every
+    @font-face was dropped and the whole site fell back to system fonts. It
+    looked almost right. Only comparing rendered text width against a fallback
+    face gave it away, so the gate checks the src text directly.
+    """
+    out = []
+    r = Result("/shared.css")
+    try:
+        css = fetch(SITE + "/shared.css")
+    except Exception as e:  # noqa: BLE001
+        r.fail("fetch", str(e))
+        return [r]
+
+    kb = len(css.encode("utf-8")) / 1024
+    r.note("%.1f KB uncompressed" % kb)
+    if kb > CSS_MAX_KB:
+        r.fail("css-size",
+               "%.0f KB, over the %d KB budget. Almost certainly a font has "
+               "been embedded again; run tools/extract_fonts.py"
+               % (kb, CSS_MAX_KB))
+    if "data:font/" in css:
+        r.fail("css-inline-font",
+               "a font is embedded as a data URI again, which puts it back in "
+               "the render-blocking path")
+
+    faces = re.findall(r"@font-face\s*\{(.*?)\}", css, re.S)
+    if not faces:
+        r.fail("font-face", "no @font-face rules at all")
+    bad = []
+    for block in faces:
+        m = re.search(r"src:\s*([^;}]+)", block)
+        text = m.group(1).strip() if m else ""
+        if not re.fullmatch(
+                r"url\('/fonts/[a-z0-9.-]+\.woff2'\)\s*format\('woff2'\)", text):
+            bad.append(text[:60])
+    if bad:
+        r.fail("font-face-src",
+               "%d malformed src, browser will drop the face and use a system "
+               "font: %s" % (len(bad), "; ".join(repr(b) for b in bad[:3])))
+    else:
+        r.note("%d @font-face, all well formed" % len(faces))
+    out.append(r)
+
+    # Every font the stylesheet references must actually be served.
+    refs = sorted(set(re.findall(r"url\('(/fonts/[^']+)'\)", css)))
+    rf = Result("/fonts/")
+    if not refs:
+        rf.fail("fonts", "the stylesheet references no font files")
+    for ref in refs:
+        try:
+            body = fetch(SITE + ref)
+            if not body.startswith("wOF2") and "wOF2" not in body[:8]:
+                rf.fail("font-file", "%s does not look like woff2" % ref)
+        except Exception as e:  # noqa: BLE001
+            rf.fail("font-file", "%s: %s" % (ref, e))
+    if rf.ok:
+        rf.note("%d font files, all served" % len(refs))
+    out.append(rf)
+    return out
+
+
 def check_landing():
     """The book front doors: small, self-describing, and linking home."""
     out = []
@@ -741,6 +819,9 @@ def main():
 
     for r in check_site():
         results[r.url] = r
+    if not args.only:
+        for r in check_css():
+            results[r.url] = r
     nav = check_mobile_nav(docs)
     results[nav.url] = nav
     if not args.only and not args.no_fleet:
