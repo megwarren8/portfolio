@@ -67,11 +67,17 @@ LIVE = SITE
 # reported green three times over three pages the sitemap never listed.
 ALSO_CHECK = []
 
-# The eight public subdomains, checked for the things that silently rot:
+# NOTE: the Trigonometry book answers on trigonometry.megan-warren.com, NOT
+# trig.megan-warren.com, which does not resolve. Probing the short name and
+# reading the 000 as "no such book" is exactly how it got left out of the
+# whole 2026-08-13 fleet pass. Derive this list from what answers, never
+# from what a name is expected to be.
+# The public subdomains, checked for the things that silently rot:
 # reachability, a canonical, a meta description, and a link home that carries
 # real anchor text rather than a bare URL.
 FLEET = [
     "https://probability.megan-warren.com",
+    "https://trigonometry.megan-warren.com",
     "https://derivatives.megan-warren.com",
     "https://integrals.megan-warren.com",
     "https://grouper.megan-warren.com",
@@ -92,6 +98,7 @@ FLEET = [
 # constraint instead of a standing red mark.
 CANONICAL_EXEMPT = {
     "probability.megan-warren.com",
+    "trigonometry.megan-warren.com",
     "derivatives.megan-warren.com",
     "integrals.megan-warren.com",
 }
@@ -109,6 +116,7 @@ CANONICAL_EXEMPT = {
 # defeated its own purpose without breaking anything visible.
 LANDING = [
     "https://probability.megan-warren.com/about",
+    "https://trigonometry.megan-warren.com/about",
     "https://derivatives.megan-warren.com/about",
     "https://integrals.megan-warren.com/about",
 ]

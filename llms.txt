@@ -50,6 +50,7 @@ open-ended work with no defined finish.
 ## Live work you can open right now
 
 - Probability & Matrices textbook: https://probability.megan-warren.com
+- Trigonometry textbook: https://trigonometry.megan-warren.com
 - Calculus Derivatives textbook: https://derivatives.megan-warren.com
 - Calculus Integrals textbook: https://integrals.megan-warren.com
 - Grouper, a classroom grouping tool: https://grouper.megan-warren.com
