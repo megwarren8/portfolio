@@ -10,7 +10,7 @@ Open **[index.html](index.html)** in any browser. Fully self-contained: fonts an
 - [Grouper](https://grouper.megan-warren.com), a random student grouper for the classroom
 - [Wildcard](https://wildcard.megan-warren.com), an ice-breaker slot machine
 - [Color Companion](https://color.megan-warren.com), a paint marker color matcher
-- [Ask the Turtle](https://turtle.megan-warren.com), a complete brand system built for a nonprofit-fundraising consultancy
+- [Ask the Turtle](https://turtle.megan-warren.com), a complete brand system built for a nonprofit-fundraising consultancy founded by her husband
 
 Designed and built by Megan Warren.
 
