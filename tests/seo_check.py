@@ -174,7 +174,7 @@ DASHES = ("—", "–")  # em, en. House rule: never, anywhere.
 # regression on the site's single biggest constraint, not a cosmetic one.
 REQUIRED_SAMEAS = (
     "github.com/megwarren8",
-    "linkedin.com/in/megan-warren-23a87835",
+    "linkedin.com/in/megan-warren-boston",
 )
 
 
