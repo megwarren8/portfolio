@@ -495,3 +495,13 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
 .portrait{display:block;margin:0 0 18px;width:160px;height:160px;}
 .portrait img{width:160px;height:160px;border-radius:50%;object-fit:cover;
 display:block;box-shadow:0 2px 14px rgba(16,32,56,.16);}
+
+/* Base rule for .sub. There wasn't one: .hero .sub and .cta .sub each opted
+   into the serif individually, and .how .sub was never given a rule, so that
+   one paragraph silently fell back to the body sans at 16px while every other
+   .sub on the site rendered as Crimson Pro at 17.6px. Setting the intent on
+   the class means a section added later inherits it instead of having to
+   remember. The section rules are more specific, so they still win on size
+   and spacing. */
+.sub{font-family:var(--serif);color:var(--mid);line-height:1.62;max-width:58ch;
+font-size:clamp(1.1rem,1.8vw,1.3rem);}
