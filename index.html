@@ -189,6 +189,21 @@
             <p class="tool-spec mono">Course textbook &middot; 25 sections &middot; grades 10 to 12 &middot; one HTML file</p>
             <p>Every choice in this book is backed by something, not a guess. Before writing a single section, I pulled research on what actually keeps teenagers engaged with material like this. I scraped it, then distilled it into patterns, the dos and don'ts that guide how the book reads, not just what it teaches. When I do not know something for certain, I look it up. I would rather spend an hour confirming a fact than ship a guess.</p>
             <p>The same engine behind this book, one source that forks into a student edition and a facilitator's answer-key edition, works just as well for a corporate onboarding guide or a certification study guide. That is a <a href="/books/">book commission</a> I take on just as readily as a classroom textbook.</p>
+            <!-- These four point at each book's landing page, not at the book
+                 itself. The books are 12 to 18 MB single files, over Googlebot's
+                 crawl limit, so they cannot be indexed and a link into one is a
+                 dead end for search. The landing pages are ~14 KB and are the
+                 indexable front door. This is the homepage, which as of
+                 2026-08-17 is the only page on the site Google has indexed, so
+                 links from here are the only internal links currently carrying
+                 any weight: all four landing pages report "Referring page: None
+                 detected" because their only other referrer, /books/, is itself
+                 not indexed yet. -->
+            <p>All four course books are free to read, and each one opens with what is inside it and who it is for:
+              <a href="https://probability.megan-warren.com/about">Probability and Matrices</a>,
+              <a href="https://derivatives.megan-warren.com/about">Calculus Derivatives</a>,
+              <a href="https://integrals.megan-warren.com/about">Calculus Integrals</a>, and
+              <a href="https://trigonometry.megan-warren.com/about">Trigonometry</a>.</p>
             <a class="tool-cta" href="https://probability.megan-warren.com" target="_blank" rel="noopener">
               Open the textbook
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
