@@ -488,3 +488,10 @@ footer{border-top:1px solid var(--border-soft);padding:26px 0 40px;}
   .sticky-cta.off{display:none;}
   body:has(.sticky-cta) .page{padding-bottom:calc(66px + env(safe-area-inset-bottom));}
 }
+
+/* The /about portrait. Sized in CSS to match the sizes="160px" the markup
+   promises the browser, so it never downloads the 640 for a 160 slot. The
+   image ships square, so the box is square and nothing is cropped by CSS. */
+.portrait{display:block;margin:0 0 18px;width:160px;height:160px;}
+.portrait img{width:160px;height:160px;border-radius:50%;object-fit:cover;
+display:block;box-shadow:0 2px 14px rgba(16,32,56,.16);}

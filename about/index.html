@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About Megan Warren, Designer and Builder in Boston</title>
-<meta name="description" content="Megan Warren is a mathematics teacher of twelve years in Boston who designs and builds custom software, interactive textbooks, and brand systems on commission, and coaches people 1:1 on using AI tools.">
+<meta name="description" content="Megan Warren is a Boston mathematics teacher of twelve years who builds custom software, interactive textbooks, and brand systems, and coaches 1:1 on AI tools.">
 <link rel="canonical" href="https://megan-warren.com/about/">
 <meta name="theme-color" content="#0E0A18">
 <script>
@@ -19,7 +19,7 @@
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Megan Warren">
 <meta property="og:title" content="About Megan Warren, Designer and Builder in Boston">
-<meta property="og:description" content="A mathematics teacher of twelve years in Boston who designs and builds custom software, interactive textbooks, and brand systems on commission.">
+<meta property="og:description" content="Megan Warren is a Boston mathematics teacher of twelve years who builds custom software, interactive textbooks, and brand systems, and coaches 1:1 on AI tools.">
 <meta property="og:url" content="https://megan-warren.com/about/">
 <meta property="og:image" content="https://megan-warren.com/about/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -27,7 +27,7 @@
 <meta property="og:image:alt" content="Megan Warren, about: a teacher who got tired of waiting for the tools.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="About Megan Warren, Designer and Builder in Boston">
-<meta name="twitter:description" content="A mathematics teacher of twelve years in Boston who designs and builds custom software, interactive textbooks, and brand systems on commission.">
+<meta name="twitter:description" content="Megan Warren is a Boston mathematics teacher of twelve years who builds custom software, interactive textbooks, and brand systems, and coaches 1:1 on AI tools.">
 <meta name="twitter:image" content="https://megan-warren.com/about/og-image.png">
 <script type="application/ld+json">
 {
@@ -37,6 +37,7 @@
       "@type": "Person",
       "@id": "https://megan-warren.com/#person",
       "name": "Megan Warren",
+      "image": "https://megan-warren.com/img/megan-warren-640.jpg",
       "url": "https://megan-warren.com/",
       "jobTitle": "Educator, designer, builder, and AI coach",
       "description": "Megan Warren is a mathematics teacher and tutor of twelve years, based in Boston, Massachusetts, who designs and builds custom software, interactive textbooks, and brand systems on commission, and coaches people 1:1 on using AI tools themselves.",
@@ -147,6 +148,16 @@
           </defs>
           <path d="M25 20 L60 47 L95 20 L95 97 L60 70 L25 97 Z" fill="none" stroke="url(#sigmaAbout)" stroke-width="13" stroke-linejoin="miter" stroke-miterlimit="10"/>
         </svg>
+        <!-- Google's guide asks for images placed near the text they relate to,
+             with short but descriptive alt. This page had no image at all, and
+             neither did any other page on the site, so nothing here could ever
+             surface in image search and a stranger deciding whether to commission
+             work had no face to put to it. width/height are set so the space is
+             reserved before it loads and nothing shifts underneath it. -->
+        <picture class="portrait">
+          <source type="image/webp" srcset="/img/megan-warren-320.webp 320w, /img/megan-warren-640.webp 640w" sizes="160px">
+          <img src="/img/megan-warren-320.jpg" srcset="/img/megan-warren-320.jpg 320w, /img/megan-warren-640.jpg 640w" sizes="160px" width="320" height="320" decoding="async" alt="Megan Warren, a mathematics teacher and software builder in Boston">
+        </picture>
         <p class="eyebrow">Megan Warren &middot;<br class="eyebrow-br"> About</p>
         <h1>A teacher who got tired of waiting for the tools.</h1>
         <p class="sub">Megan Warren is a mathematics teacher and tutor of twelve years, based in Boston, Massachusetts. She designs and builds custom software, interactive textbooks, and brand systems on commission, and coaches people 1:1 on using AI tools themselves. Everything she ships runs offline as a single file, and everything below is live to open right now.</p>
