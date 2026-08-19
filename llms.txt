@@ -53,6 +53,7 @@ open-ended work with no defined finish.
 - Trigonometry textbook: https://trigonometry.megan-warren.com
 - Calculus Derivatives textbook: https://derivatives.megan-warren.com
 - Calculus Integrals textbook: https://integrals.megan-warren.com
+- The History of Calculus, a companion web book to the two calculus textbooks: https://historyofcalculus.megan-warren.com
 - Grouper, a classroom grouping tool: https://grouper.megan-warren.com
 - Wildcard, an icebreaker tool: https://wildcard.megan-warren.com
 - Color Companion, a color matcher: https://color.megan-warren.com

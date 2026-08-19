@@ -310,6 +310,38 @@ p{margin:0;}
 .tool--probmat .tool-cta{color:#182A4E;border-color:#182A4E;}
 .tool--probmat .tool-cta:hover{color:#F26A4F;border-color:#F26A4F;}
 
+.tool--deriv{background:#F6F3EC;}
+.tool--deriv .tool-edge{background:#18A0C6;}
+.tool--deriv h2{color:#182A4E;}
+.tool--deriv .tool-spec.mono{color:#187894;}
+.tool--deriv .tool-body p{color:#3E5C8A;}
+.tool--deriv .tool-cta{color:#182A4E;border-color:#182A4E;}
+.tool--deriv .tool-cta:hover{color:#187894;border-color:#187894;}
+
+.tool--integrals{background:#F6F3EC;}
+.tool--integrals .tool-edge{background:#EC698A;}
+.tool--integrals h2{color:#182A4E;}
+.tool--integrals .tool-spec.mono{color:#CD1E4A;}
+.tool--integrals .tool-body p{color:#3E5C8A;}
+.tool--integrals .tool-cta{color:#182A4E;border-color:#182A4E;}
+.tool--integrals .tool-cta:hover{color:#CD1E4A;border-color:#CD1E4A;}
+
+.tool--trig{background:#F6F3EC;}
+.tool--trig .tool-edge{background:#28A968;}
+.tool--trig h2{color:#182A4E;}
+.tool--trig .tool-spec.mono{color:#1A6B44;}
+.tool--trig .tool-body p{color:#3E5C8A;}
+.tool--trig .tool-cta{color:#182A4E;border-color:#182A4E;}
+.tool--trig .tool-cta:hover{color:#1A6B44;border-color:#1A6B44;}
+
+.tool--history{background:#F6F3EC;}
+.tool--history .tool-edge{background:#878EE8;}
+.tool--history h2{color:#182A4E;}
+.tool--history .tool-spec.mono{color:#565ED7;}
+.tool--history .tool-body p{color:#3E5C8A;}
+.tool--history .tool-cta{color:#182A4E;border-color:#182A4E;}
+.tool--history .tool-cta:hover{color:#565ED7;border-color:#565ED7;}
+
 .tool--grouper{background:#FBF7FC;}
 .tool--grouper .tool-edge{background:#2BB7B3;}
 .tool--grouper h2{color:#1F1535;}
