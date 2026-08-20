@@ -6,7 +6,7 @@ Open **[index.html](index.html)** in any browser.
 
 ## What's linked from here
 
-- [Probability & Matrices](https://probability.megan-warren.com), an offline course textbook that reads its own math aloud
+- [Discrete Math and Linear Algebra](https://probability.megan-warren.com), an offline course textbook that reads its own math aloud
 - [Calculus Derivatives](https://derivatives.megan-warren.com), the same engine, a different course
 - [Calculus Integrals](https://integrals.megan-warren.com), the back half of the calculus sequence
 - [Trigonometry](https://trigonometry.megan-warren.com), the largest of the four course books
