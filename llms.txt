@@ -49,11 +49,14 @@ open-ended work with no defined finish.
 
 ## Live work you can open right now
 
+- All seven math books in one place, grouped by course: https://books.megan-warren.com
 - Discrete Math and Linear Algebra textbook: https://probability.megan-warren.com
 - Trigonometry textbook: https://trigonometry.megan-warren.com
 - Calculus Derivatives textbook: https://derivatives.megan-warren.com
 - Calculus Integrals textbook: https://integrals.megan-warren.com
 - The History of Calculus, a companion web book to the two calculus textbooks: https://historyofcalculus.megan-warren.com
+- The History of Trigonometry, a companion web book to the Trigonometry textbook: https://historyoftrigonometry.megan-warren.com
+- The History of Discrete Math and Linear Algebra, a companion web book to that textbook: https://historyofdiscretemath.megan-warren.com
 - Grouper, a classroom grouping tool: https://grouper.megan-warren.com
 - Wildcard, an icebreaker tool: https://wildcard.megan-warren.com
 - Color Companion, a color matcher: https://color.megan-warren.com

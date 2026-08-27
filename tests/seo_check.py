@@ -76,10 +76,14 @@ ALSO_CHECK = []
 # reachability, a canonical, a meta description, and a link home that carries
 # real anchor text rather than a bare URL.
 FLEET = [
+    "https://books.megan-warren.com",
     "https://probability.megan-warren.com",
     "https://trigonometry.megan-warren.com",
     "https://derivatives.megan-warren.com",
     "https://integrals.megan-warren.com",
+    "https://historyofcalculus.megan-warren.com",
+    "https://historyoftrigonometry.megan-warren.com",
+    "https://historyofdiscretemath.megan-warren.com",
     "https://grouper.megan-warren.com",
     "https://wildcard.megan-warren.com",
     "https://color.megan-warren.com",
