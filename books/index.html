@@ -55,20 +55,58 @@
       "url": "https://megan-warren.com/books/",
       "serviceType": "Interactive textbook and course book development",
       "description": "Custom book commissions: interactive textbooks, course books, certification study guides, onboarding guides, and training manuals, built as one offline HTML file with student and facilitator answer-key editions generated from a single source.",
-      "provider": {"@id": "https://megan-warren.com/#person"},
+      "provider": {
+        "@id": "https://megan-warren.com/#person"
+      },
       "areaServed": [
-        {"@type": "Place", "name": "Boston, Massachusetts (in person)"},
-        {"@type": "Place", "name": "Remote, worldwide"}
+        {
+          "@type": "Place",
+          "name": "Boston, Massachusetts (in person)"
+        },
+        {
+          "@type": "Place",
+          "name": "Remote, worldwide"
+        }
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Book commissions",
         "itemListElement": [
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Interactive course textbooks"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Corporate onboarding guides"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Certification study guides"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Training manuals and workbooks"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Facilitator and answer-key editions"}}
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Interactive course textbooks"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Corporate onboarding guides"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Certification study guides"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Training manuals and workbooks"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Facilitator and answer-key editions"
+            }
+          }
         ]
       },
       "offers": {
@@ -83,43 +121,17 @@
       "@type": "BreadcrumbList",
       "@id": "https://megan-warren.com/books/#breadcrumbs",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Megan Warren", "item": "https://megan-warren.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Book commissions", "item": "https://megan-warren.com/books/"}
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://megan-warren.com/books/#faq",
-      "mainEntity": [
         {
-          "@type": "Question",
-          "name": "What is a commissioned interactive book?",
-          "acceptedAnswer": {"@type": "Answer", "text": "One HTML file that opens in any browser and works with no wifi, no login, and no install. Inside it, the content is live: math renders properly and can be read aloud, exercises reveal hints in stages, and diagrams respond. It is a book, not a course platform, so there is nothing to subscribe to and nothing to log into."}
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Megan Warren",
+          "item": "https://megan-warren.com/"
         },
         {
-          "@type": "Question",
-          "name": "Can one book produce both a student edition and an answer key?",
-          "acceptedAnswer": {"@type": "Answer", "text": "Yes, and that is the point of the engine. One source forks into a student edition and a facilitator edition carrying full worked solutions, so the two can never drift apart. Fixing a typo once fixes it in both."}
-        },
-        {
-          "@type": "Question",
-          "name": "Does this only work for math books?",
-          "acceptedAnswer": {"@type": "Answer", "text": "No. Math is the hardest case, which is why the live examples are math books. The same engine handles a corporate onboarding guide, a certification study guide, a training manual, or a workbook just as readily."}
-        },
-        {
-          "@type": "Question",
-          "name": "What does a book commission cost?",
-          "acceptedAnswer": {"@type": "Answer", "text": "Most commissions land between $1,500 and $10,000, priced by scope before any work starts and never billed by the hour. A book is usually toward the upper half of that range, and you get the exact number before anything begins."}
-        },
-        {
-          "@type": "Question",
-          "name": "Who writes the content?",
-          "acceptedAnswer": {"@type": "Answer", "text": "Either. Bring finished content and it gets built and designed, or bring a syllabus and an outline and the writing is part of the commission. Megan Warren has taught for twelve years, so the pedagogy is not outsourced."}
-        },
-        {
-          "@type": "Question",
-          "name": "Can the book also be printed?",
-          "acceptedAnswer": {"@type": "Answer", "text": "Yes. Print-ready layouts for the book, its worksheets, and its answer keys are part of what can be commissioned, so the same source produces both the screen version and the paper version."}
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Book commissions",
+          "item": "https://megan-warren.com/books/"
         }
       ]
     }
@@ -292,6 +304,26 @@
         {"@type": "ListItem", "position": 6, "url": "https://probability.megan-warren.com/", "name": "Discrete Math and Linear Algebra"},
         {"@type": "ListItem", "position": 7, "url": "https://historyofdiscretemath.megan-warren.com/", "name": "The History of Discrete Math and Linear Algebra"}
       ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://megan-warren.com/books/#faq",
+      "mainEntity": [
+        {"@type": "Question", "name": "Is this a course platform?",
+         "acceptedAnswer": {"@type": "Answer", "text": "No, and that is deliberate. It is a book: one file, no subscription, no login, no seat licenses, nothing to renew. You own it outright."}},
+        {"@type": "Question", "name": "Does it only work for math?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Math is the hardest case, which is why the live examples are math books. Onboarding guides, study guides, and training manuals run on the same engine."}},
+        {"@type": "Question", "name": "Can I get an answer-key edition?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Yes, generated from the same source as the student edition so the two can never disagree with each other."}},
+        {"@type": "Question", "name": "Can it be printed?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Yes. Print-ready layouts for the book, its worksheets, and its keys come out of the same source as the screen version."}},
+        {"@type": "Question", "name": "Can it go in a store?",
+         "acceptedAnswer": {"@type": "Answer", "text": "It can. All seven of the books above are free on Apple Books: Discrete Math and Linear Algebra, Calculus Derivatives, Calculus Integrals, Trigonometry, The History of Calculus, The History of Trigonometry, and The History of Discrete Math and Linear Algebra. They live together on one author page on Apple Books and on one page on the web, and each is built from the same source file as its web edition rather than exported by hand, so the two cannot drift apart. Worth saying plainly: a store listing is extra scope, not part of every commission, and it is worth it only if your readers are already somewhere you want to be found."}},
+        {"@type": "Question", "name": "What does it cost?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Between $1,500 and $10,000 for most commissions, fixed and quoted by scope before any work starts. A book usually sits in the upper half of that range."}},
+        {"@type": "Question", "name": "Do you work outside Boston?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Yes. Remote by default, and the location does not change the price. I am based in Boston, Massachusetts."}}
+      ]
     }
   ]
 }
@@ -374,7 +406,7 @@
             <div><b>7</b><span>books, all free</span></div>
             <div><b>264</b><span>sections written</span></div>
             <div><b>48</b><span>interactive widgets</span></div>
-            <div><b>49,643</b><span>math expressions, every one labelled</span></div>
+            <div><b>49,643</b><span>math expressions, every one labeled</span></div>
           </div>
           <!-- END proof -->
 
@@ -397,10 +429,10 @@
                loading="lazy" decoding="async"
                alt="Cover of Trigonometry: The Math of Circles, Waves, and Everything That Repeats, by Megan Warren."></p>
             <div>
-              <h3><a href="https://trigonometry.megan-warren.com" target="_blank" rel="noopener">Trigonometry</a></h3>
+              <h3><a href="https://trigonometry.megan-warren.com/about" target="_blank" rel="noopener">Trigonometry</a></h3>
               <p class="tool-spec mono">Course Textbook &middot; 47 sections &middot; 12 interactive widgets &middot; 606 hints &middot; 378 worked solutions &middot; free on Apple Books</p>
               <p>Circles, waves, and everything that repeats. The largest of the four, and a fair illustration of how much book one file will hold.</p>
-              <p class="bookrow-links"><a href="https://trigonometry.megan-warren.com" target="_blank" rel="noopener">Read it in a browser</a>
+              <p class="bookrow-links"><a href="https://trigonometry.megan-warren.com/about" target="_blank" rel="noopener">See what&#x27;s inside first</a>
               <a href="https://books.apple.com/us/book/trigonometry/id6804477858" target="_blank" rel="noopener" aria-label="Trigonometry on Apple Books, opens in a new tab">Apple Books edition</a></p>
             </div>
           </article>
@@ -428,10 +460,10 @@
                loading="lazy" decoding="async"
                alt="Cover of Derivatives: The Math of Breaking a Curve Down to a Single Instant, by Megan Warren."></p>
             <div>
-              <h3><a href="https://derivatives.megan-warren.com" target="_blank" rel="noopener">Derivatives</a></h3>
+              <h3><a href="https://derivatives.megan-warren.com/about" target="_blank" rel="noopener">Derivatives</a></h3>
               <p class="tool-spec mono">Course Textbook &middot; 43 sections &middot; 12 interactive widgets &middot; 566 hints &middot; 354 worked solutions &middot; free on Apple Books</p>
               <p>Breaking a curve down to a single instant. Same engine, different course, which is the whole argument for commissioning one: the machinery is proven and the content is yours.</p>
-              <p class="bookrow-links"><a href="https://derivatives.megan-warren.com" target="_blank" rel="noopener">Read it in a browser</a>
+              <p class="bookrow-links"><a href="https://derivatives.megan-warren.com/about" target="_blank" rel="noopener">See what&#x27;s inside first</a>
               <a href="https://books.apple.com/us/book/derivatives/id6805644163" target="_blank" rel="noopener" aria-label="Derivatives on Apple Books, opens in a new tab">Apple Books edition</a></p>
             </div>
           </article>
@@ -443,10 +475,10 @@
                loading="lazy" decoding="async"
                alt="Cover of Integrals: The Math of Building a Whole Back Up from Infinite Pieces, by Megan Warren."></p>
             <div>
-              <h3><a href="https://integrals.megan-warren.com" target="_blank" rel="noopener">Integrals</a></h3>
+              <h3><a href="https://integrals.megan-warren.com/about" target="_blank" rel="noopener">Integrals</a></h3>
               <p class="tool-spec mono">Course Textbook &middot; 42 sections &middot; 12 interactive widgets &middot; 546 hints &middot; 342 worked solutions &middot; free on Apple Books</p>
               <p>Building a whole back up from infinite pieces. Exercises with hint ladders, worked solutions, and a facilitator edition generated from the same source as the student one.</p>
-              <p class="bookrow-links"><a href="https://integrals.megan-warren.com" target="_blank" rel="noopener">Read it in a browser</a>
+              <p class="bookrow-links"><a href="https://integrals.megan-warren.com/about" target="_blank" rel="noopener">See what&#x27;s inside first</a>
               <a href="https://books.apple.com/us/book/integrals/id6805647543" target="_blank" rel="noopener" aria-label="Integrals on Apple Books, opens in a new tab">Apple Books edition</a></p>
             </div>
           </article>
@@ -474,10 +506,10 @@
                loading="lazy" decoding="async"
                alt="Cover of Discrete Math and Linear Algebra: The Foundations of Math for Machine Learning, by Megan Warren."></p>
             <div>
-              <h3><a href="https://probability.megan-warren.com" target="_blank" rel="noopener">Discrete Math and Linear Algebra</a></h3>
+              <h3><a href="https://probability.megan-warren.com/about" target="_blank" rel="noopener">Discrete Math and Linear Algebra</a></h3>
               <p class="tool-spec mono">Course Textbook &middot; 44 sections &middot; 12 interactive widgets &middot; 565 hints &middot; 340 worked solutions &middot; free on Apple Books</p>
               <p>The foundations of math for machine learning, written for high school, college, and adult learners. Every fraction stacks properly, and the read-aloud speaks the actual math rather than around it.</p>
-              <p class="bookrow-links"><a href="https://probability.megan-warren.com" target="_blank" rel="noopener">Read it in a browser</a>
+              <p class="bookrow-links"><a href="https://probability.megan-warren.com/about" target="_blank" rel="noopener">See what&#x27;s inside first</a>
               <a href="https://books.apple.com/us/book/discrete-math-and-linear-algebra/id6805635460" target="_blank" rel="noopener" aria-label="Discrete Math and Linear Algebra on Apple Books, opens in a new tab">Apple Books edition</a></p>
             </div>
           </article>
@@ -586,7 +618,7 @@
         <div class="how-grid">
           <div class="how-item">
             <div class="k">Is this a course platform?</div>
-            <div class="v">No, and that is deliberate. It is a book: one file, no subscription, no login, no seat licences, nothing to renew. You own it outright.</div>
+            <div class="v">No, and that is deliberate. It is a book: one file, no subscription, no login, no seat licenses, nothing to renew. You own it outright.</div>
           </div>
           <div class="how-item">
             <div class="k">Does it only work for math?</div>

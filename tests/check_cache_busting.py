@@ -50,6 +50,13 @@ ATTR = re.compile(
     r'|(?:src|href|content)\s*=\s*\'([^\']+)\''
     r'|url\(\s*["\']?([^"\')]+)["\']?\s*\)',
     re.I)
+# srcset is a comma separated list of "url descriptor" pairs and holds the
+# BIGGEST renditions, so leaving it out let the widest image on the page go
+# stale while the gate stayed green. A mutation caught this on 2026-08-29.
+SRCSET = re.compile(r'srcset\s*=\s*"([^"]+)"', re.I)
+# JSON-LD carries og and schema image URLs that crawlers fetch. Same rule.
+LDJSON = re.compile(r'<script[^>]+application/ld\+json[^>]*>([\s\S]*?)</script>', re.I)
+LDURL = re.compile(r'"((?:https?://[^"\s]+|/[^"\s]+))"')
 
 
 def long_cache_globs(headers_path):
@@ -139,8 +146,16 @@ def main():
             full = os.path.join(dirpath, name)
             body = open(full, encoding="utf-8", errors="replace").read()
             pages += 1
-            for m in ATTR.finditer(body):
-                url = next(g for g in m.groups() if g is not None)
+            found = [next(g for g in m.groups() if g is not None)
+                     for m in ATTR.finditer(body)]
+            for m in SRCSET.finditer(body):
+                for entry in m.group(1).split(","):
+                    part = entry.strip().split()
+                    if part:
+                        found.append(part[0])
+            for m in LDJSON.finditer(body):
+                found.extend(LDURL.findall(m.group(1)))
+            for url in found:
                 # Same-origin only: another host's caching is not ours to fix.
                 if url.startswith(("data:", "mailto:", "#", "//")):
                     continue

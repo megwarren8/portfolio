@@ -47,7 +47,9 @@
         "night": "#28A968"
       },
       "hints": "606 hints",
-      "solutions": "378 worked solutions"
+      "solutions": "378 worked solutions",
+      "readUrl": "https://trigonometry.megan-warren.com/about",
+      "readLabel": "See what's inside first"
     },
     {
       "id": "history-of-trigonometry",
@@ -71,7 +73,9 @@
         "night": "#0E9C8E"
       },
       "events": "260 dated events",
-      "chapters": "8 chapters"
+      "chapters": "8 chapters",
+      "readUrl": "https://historyoftrigonometry.megan-warren.com",
+      "readLabel": "Read it in a browser"
     },
     {
       "id": "derivatives",
@@ -95,7 +99,9 @@
         "night": "#18A0C6"
       },
       "hints": "566 hints",
-      "solutions": "354 worked solutions"
+      "solutions": "354 worked solutions",
+      "readUrl": "https://derivatives.megan-warren.com/about",
+      "readLabel": "See what's inside first"
     },
     {
       "id": "integrals",
@@ -119,7 +125,9 @@
         "night": "#EC698A"
       },
       "hints": "546 hints",
-      "solutions": "342 worked solutions"
+      "solutions": "342 worked solutions",
+      "readUrl": "https://integrals.megan-warren.com/about",
+      "readLabel": "See what's inside first"
     },
     {
       "id": "history-of-calculus",
@@ -143,7 +151,9 @@
         "night": "#878EE8"
       },
       "events": "340 dated events",
-      "chapters": "12 chapters"
+      "chapters": "12 chapters",
+      "readUrl": "https://historyofcalculus.megan-warren.com",
+      "readLabel": "Read it in a browser"
     },
     {
       "id": "discrete-math-and-linear-algebra",
@@ -167,7 +177,9 @@
         "night": "#F26A4F"
       },
       "hints": "565 hints",
-      "solutions": "340 worked solutions"
+      "solutions": "340 worked solutions",
+      "readUrl": "https://probability.megan-warren.com/about",
+      "readLabel": "See what's inside first"
     },
     {
       "id": "history-of-discrete-math",
@@ -191,7 +203,9 @@
         "night": "#E07B24"
       },
       "events": "583 dated events",
-      "chapters": "9 chapters"
+      "chapters": "9 chapters",
+      "readUrl": "https://historyofdiscretemath.megan-warren.com",
+      "readLabel": "Read it in a browser"
     }
   ],
   "totals": {

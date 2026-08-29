@@ -62,7 +62,7 @@ def proof(d):
         (f'{t["books"]}', "books, all free"),
         (f'{t["sections"]}', "sections written"),
         (f'{t["widgets"]}', "interactive widgets"),
-        (f'{t["labelledMath"]:,}', "math expressions, every one labelled"),
+        (f'{t["labelledMath"]:,}', "math expressions, every one labeled"),
     ]
     body = "\n".join(
         f"            <div><b>{e(n)}</b><span>{e(label)}</span></div>"
@@ -101,8 +101,13 @@ def rows(d, prov):
             apple = (f'<a href="{e(b["apple"])}" target="_blank" rel="noopener" '
                      f'aria-label="{e(b["title"])} on Apple Books, opens in a new tab">'
                      f'Apple Books edition</a>') if b["apple"] else ""
-            links = (f'<a href="{e(b["web"])}" target="_blank" rel="noopener">'
-                     f'Read it in a browser</a>')
+            # readUrl, NOT web. The four course books run 12.9 to 18.9 MB and
+            # her page has always opened their short /about contents page
+            # first, which the section's own prose promises. Linking the bare
+            # root instead makes that sentence false and hands a reader a
+            # whole textbook with no warning.
+            links = (f'<a href="{e(b["readUrl"])}" target="_blank" rel="noopener">'
+                     f'{e(b["readLabel"])}</a>')
             if apple:
                 links += "\n              " + apple
             out.append(f"""          <article class="bookrow" style="{style}">
@@ -113,13 +118,32 @@ def rows(d, prov):
                loading="lazy" decoding="async"
                alt="Cover of {e(b['title'])}: {e(b['subtitle'])}, by Megan Warren."></p>
             <div>
-              <h3><a href="{e(b["web"])}" target="_blank" rel="noopener">{e(b["title"])}</a></h3>
+              <h3><a href="{e(b["readUrl"])}" target="_blank" rel="noopener">{e(b["title"])}</a></h3>
               <p class="tool-spec mono">{specline}</p>
               <p>{e(b["blurb"])}</p>
               <p class="bookrow-links">{links}</p>
             </div>
           </article>""")
     return "\n".join(out)
+
+
+def faq_from_page(page):
+    """Read the FAQ the READER sees, and return it as FAQPage JSON-LD.
+
+    The hand-written FAQPage block declared six questions; the visible FAQ
+    asked seven different ones, and not one of them matched. Google's own
+    policy is that FAQ markup must be the content on the page, so that block
+    was at best ignored. Deriving it from the section means they cannot
+    diverge again, in either direction.
+    """
+    sec = page[page.index('<section class="how" id="faq"'):
+               page.index('<section class="cta" id="contact"')]
+    items = re.findall(r'<div class="k">([\s\S]*?)</div>\s*<div class="v">([\s\S]*?)</div>', sec)
+    out = []
+    for q, a in items:
+        strip = lambda t: html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", t))).strip()
+        out.append((strip(q), strip(a)))
+    return out
 
 
 def jsonld(d, prov):
@@ -168,7 +192,15 @@ def jsonld(d, prov):
 {items}
       ]
     }}"""
-    body = ",\n".join(nodes + [lst])
+    faq = faq_from_page(open(PAGE, encoding="utf-8").read())
+    qs = ",\n".join(
+        '        {"@type": "Question", "name": %s,\n'
+        '         "acceptedAnswer": {"@type": "Answer", "text": %s}}'
+        % (json.dumps(q), json.dumps(a)) for q, a in faq)
+    faq_node = ('    {\n      "@type": "FAQPage",\n'
+                '      "@id": "https://megan-warren.com/books/#faq",\n'
+                '      "mainEntity": [\n' + qs + "\n      ]\n    }")
+    body = ",\n".join(nodes + [lst, faq_node])
     return ('    <script type="application/ld+json">\n'
             '{\n  "@context": "https://schema.org",\n  "@graph": [\n'
             + body + "\n  ]\n}\n    </script>")
@@ -202,6 +234,19 @@ def main():
         drift.append(name)
         page = page[:m.start()] + new + page[m.end():]
         done.append(name)
+
+    # The FAQ block derives from the page's own FAQ section, so a hand-edited
+    # question silently changes what --check should expect. Re-render after
+    # reading the CURRENT page, which is what the loop above already does, and
+    # then say plainly whether schema and visible text still agree.
+    faq_pairs = faq_from_page(open(PAGE, encoding="utf-8").read())
+    schema_qs = re.findall(r'"@type": "Question", "name": "((?:[^"\\]|\\.)*)"', page)
+    visible_qs = [q for q, _ in faq_pairs]
+    if [json.loads('"%s"' % q) for q in schema_qs] != visible_qs:
+        print("  FAQ SCHEMA DRIFT: the FAQPage questions are not the questions on "
+              "the page. Google credits FAQ markup only when it matches visible "
+              "content. Run python3 tools/books_section.py")
+        return 1
 
     if check:
         if drift:
