@@ -537,3 +537,127 @@ display:block;box-shadow:0 2px 14px rgba(16,32,56,.16);}
    and spacing. */
 .sub{font-family:var(--serif);color:var(--mid);line-height:1.62;max-width:58ch;
 font-size:clamp(1.1rem,1.8vw,1.3rem);}
+
+/* ---- the book shelf, the book rows and the proof band -------------------
+   Added 2026-08-29. /books/ sells book design and showed no book: seven
+   titles as a flat text grid, the same .how-item box used by five sections
+   of that page. These three components give it the thing the books hub has
+   and it did not, which is the art itself.
+
+   Every colour here is a token, so both themes are covered by the existing
+   [data-theme="light"] block and nothing needs a second definition. */
+
+/* The shelf: seven covers in a row under the hero. Decorative, because each
+   book is named and linked properly further down the page, so the covers are
+   aria-hidden and the row is not a list of links to tab through twice. */
+.shelf{
+  display:flex;gap:clamp(8px,1.6vw,18px);align-items:flex-end;justify-content:center;
+  margin:38px auto 0;padding:0;list-style:none;max-width:var(--wide);flex-wrap:wrap;
+}
+.shelf li{margin:0;}
+.shelf img{
+  display:block;width:clamp(64px,9.2vw,104px);height:auto;border-radius:3px;
+  border:1px solid var(--border);
+  box-shadow:0 2px 10px rgba(0,0,0,.30), 0 10px 30px rgba(0,0,0,.22);
+  transition:transform .35s ease;
+}
+@media (prefers-reduced-motion:no-preference){
+  .shelf img:hover{transform:translateY(-6px);}
+}
+[data-theme="light"] .shelf img{
+  box-shadow:0 2px 10px rgba(26,20,40,.13), 0 10px 28px rgba(26,20,40,.10);
+}
+
+/* The proof band: counted things, not adjectives. */
+.proof{
+  display:grid;gap:14px;margin:44px auto 0;max-width:var(--wide);
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+}
+.proof div{
+  border:1px solid var(--border);border-radius:12px;background:var(--surface);
+  padding:20px 18px;text-align:center;
+}
+.proof b{
+  display:block;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;line-height:1.1;
+  color:var(--hi);font-variant-numeric:tabular-nums;
+}
+.proof span{
+  display:block;margin-top:7px;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--low);
+}
+
+/* A book row: the cover beside the copy, which is the layout the hub uses
+   and the one a reader expects of a book. Collapses to stacked on narrow
+   screens rather than shrinking the cover into a thumbnail nobody can read. */
+.bookrow{
+  display:grid;grid-template-columns:132px 1fr;gap:26px;align-items:start;
+  border:1px solid var(--border);border-radius:14px;background:var(--surface);
+  padding:24px 26px;
+  /* The card hands itself two accents inline, one per theme, under names no
+     rule here overrides; the stylesheet then picks one into --bk-edge. Doing
+     it the other way round is unfixable: an inline custom property beats
+     every stylesheet rule, so a night override of an inline name can never
+     apply. That mistake shipped a 1.02:1 hover on the books hub. The accent
+     is decorative only and never carries text. */
+  --bk-edge:var(--bk-accent-night, var(--border));
+  border-left:3px solid var(--bk-edge);
+}
+[data-theme="light"] .bookrow{--bk-edge:var(--bk-accent-day, var(--border));}
+.bookrow + .bookrow{margin-top:16px;}
+.bookrow-cover{margin:0;}
+.bookrow-cover img{
+  display:block;width:132px;height:auto;border-radius:3px;
+  border:1px solid var(--border);
+  box-shadow:0 2px 10px rgba(0,0,0,.28), 0 8px 24px rgba(0,0,0,.20);
+}
+[data-theme="light"] .bookrow-cover img{
+  box-shadow:0 2px 10px rgba(26,20,40,.12), 0 8px 22px rgba(26,20,40,.09);
+}
+.bookrow h3{font-size:1.22rem;font-weight:700;margin:0 0 7px;line-height:1.25;}
+.bookrow h3 a{color:var(--hi);text-decoration:none;border-bottom:1px solid transparent;}
+.bookrow h3 a:hover{border-bottom-color:var(--teal-text);color:var(--teal-text);}
+/* .bookrow p is (0,1,1) and .tool-spec is (0,1,0), so the paragraph rule was
+   winning and the spec line rendered as 16px serif body copy instead of the
+   small mono rule it is everywhere else on the site. Restate the type here,
+   where the selector is specific enough to hold it. */
+.bookrow .tool-spec{
+  color:var(--low);margin:0 0 10px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;
+  text-transform:uppercase;line-height:1.5;
+}
+.bookrow p{
+  font-family:var(--serif);font-size:1.02rem;line-height:1.62;color:var(--mid);
+  margin:0;max-width:62ch;
+}
+.bookrow-links{
+  display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:14px;
+  font-family:var(--sans);font-size:14px;font-weight:600;
+}
+@media (max-width:640px){
+  .bookrow{grid-template-columns:1fr;gap:18px;padding:20px;}
+  .bookrow-cover img{width:112px;}
+}
+
+/* The group headings inside the /books/ list. .eyebrow carries no margin of
+   its own, so without this the group name sits hard against the card above
+   it: measured at zero gap, 17px tall, touching a 260px card. */
+.bookgroup{margin:34px 0 14px;}
+.bookgroup:first-child{margin-top:0;}
+
+/* Section heads. Every one of them used .eyebrow alone, so an <h2> painted at
+   11.5px sat above <h3> card titles at 19.5px and the section heading was
+   outranked by its own contents. The kicker keeps the .eyebrow look; the
+   heading gets real size. */
+.sec-h{
+  font-size:clamp(1.5rem,3vw,2.05rem);font-weight:700;line-height:1.15;
+  letter-spacing:-.01em;color:var(--hi);margin:8px 0 14px;max-width:22ch;
+}
+
+/* Skip link: off-canvas until focused, then a real target. */
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--surface);color:var(--hi);border:1px solid var(--border);
+  border-radius:0 0 8px 0;padding:12px 18px;font-family:var(--sans);
+  font-weight:600;font-size:14px;text-decoration:none;
+}
+.skip:focus{left:0;outline:2px solid var(--teal-text);outline-offset:2px;}

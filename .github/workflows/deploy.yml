@@ -37,6 +37,21 @@ jobs:
         if: steps.creds.outputs.ready == 'true'
         uses: actions/checkout@v4
 
+      # The gates. Before this the workflow assembled and deployed with no
+      # check of any kind, so a stale count or a bare long-cached asset URL
+      # would ship silently.
+      - name: The derived blocks match books.json
+        if: steps.creds.outputs.ready == 'true'
+        run: python3 tools/books_section.py --check
+      - name: Every long-cached asset is busted
+        if: steps.creds.outputs.ready == 'true'
+        run: python3 tests/check_cache_busting.py
+      # Reports NOT CHECKED on a runner, which has no book repos, and that is
+      # correct: it must never read as a pass.
+      - name: Covers match the art they came from
+        if: steps.creds.outputs.ready == 'true'
+        run: python3 tools/covers.py --check
+
       - name: Assemble the site folder
         if: steps.creds.outputs.ready == 'true'
         run: |
@@ -45,7 +60,7 @@ jobs:
             --exclude _site --exclude .git --exclude .github \
             --exclude README.md --exclude netlify.toml --exclude .gitignore \
             --exclude '*.command' --exclude '*.icns' --exclude run.sh --exclude deploy \
-            --exclude worker
+            --exclude worker --exclude tools --exclude tests --exclude cache-exempt.txt
 
       - name: Deploy to Cloudflare Pages
         if: steps.creds.outputs.ready == 'true'

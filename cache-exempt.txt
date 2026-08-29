@@ -1,0 +1,10 @@
+# Long-cached paths allowed to be referenced without a version stamp.
+# Read by tests/check_cache_busting.py. One glob per line, and say why: an
+# exemption has to be a decision somebody wrote down, not a file nobody
+# noticed.
+
+# The woff2 files are subset once and committed. Their bytes do not change
+# under their names, which is the only thing a year-long immutable rule
+# assumes. Re-subset a font and you must stamp the URL or rename the file,
+# because the rule above will not forgive it.
+/fonts/*

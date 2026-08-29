@@ -1,0 +1,205 @@
+{
+  "_note": "Vendored 2026-08-29 from books_hub/books.json, which is itself derived from each book's own live about page. Kept here so this page's counts cannot drift from the books, and so CI can render without the book repos. Re-sync by rerunning tools/books_section.py after books_hub/books.json changes.",
+  "groups": [
+    {
+      "name": "Trigonometry",
+      "books": [
+        "trigonometry",
+        "history-of-trigonometry"
+      ]
+    },
+    {
+      "name": "Calculus",
+      "books": [
+        "derivatives",
+        "integrals",
+        "history-of-calculus"
+      ]
+    },
+    {
+      "name": "Discrete Math and Linear Algebra",
+      "books": [
+        "discrete-math-and-linear-algebra",
+        "history-of-discrete-math"
+      ]
+    }
+  ],
+  "books": [
+    {
+      "id": "trigonometry",
+      "title": "Trigonometry",
+      "kicker": "Course Textbook",
+      "subtitle": "The Math of Circles, Waves, and Everything That Repeats",
+      "web": "https://trigonometry.megan-warren.com",
+      "apple": "https://books.apple.com/us/book/trigonometry/id6804477858",
+      "sections": 47,
+      "kind": "course",
+      "specs": [
+        "47 sections",
+        "12 interactive widgets",
+        "606 hints",
+        "378 worked solutions"
+      ],
+      "widgets": 12,
+      "blurb": "Circles, waves, and everything that repeats. The largest of the four, and a fair illustration of how much book one file will hold.",
+      "accent": {
+        "day": "#1A6B44",
+        "night": "#28A968"
+      },
+      "hints": "606 hints",
+      "solutions": "378 worked solutions"
+    },
+    {
+      "id": "history-of-trigonometry",
+      "title": "The History of Trigonometry",
+      "kicker": "Companion Reader",
+      "subtitle": "From Chord to Sine to Wave",
+      "web": "https://historyoftrigonometry.megan-warren.com",
+      "apple": "https://books.apple.com/us/book/the-history-of-trigonometry/id6805855933",
+      "sections": 22,
+      "kind": "history",
+      "specs": [
+        "8 chapters",
+        "260 dated events",
+        "11 appendices and a glossary",
+        "4,098 source pointers"
+      ],
+      "widgets": 0,
+      "blurb": "How a table of chords became the sine, and the sine became the wave. Every factual sentence carries a pointer to the source it came from.",
+      "accent": {
+        "day": "#0C7268",
+        "night": "#0E9C8E"
+      },
+      "events": "260 dated events",
+      "chapters": "8 chapters"
+    },
+    {
+      "id": "derivatives",
+      "title": "Derivatives",
+      "kicker": "Course Textbook",
+      "subtitle": "The Math of Breaking a Curve Down to a Single Instant",
+      "web": "https://derivatives.megan-warren.com",
+      "apple": "https://books.apple.com/us/book/derivatives/id6805644163",
+      "sections": 43,
+      "kind": "course",
+      "specs": [
+        "43 sections",
+        "12 interactive widgets",
+        "566 hints",
+        "354 worked solutions"
+      ],
+      "widgets": 12,
+      "blurb": "Breaking a curve down to a single instant. Same engine, different course, which is the whole argument for commissioning one: the machinery is proven and the content is yours.",
+      "accent": {
+        "day": "#187894",
+        "night": "#18A0C6"
+      },
+      "hints": "566 hints",
+      "solutions": "354 worked solutions"
+    },
+    {
+      "id": "integrals",
+      "title": "Integrals",
+      "kicker": "Course Textbook",
+      "subtitle": "The Math of Building a Whole Back Up from Infinite Pieces",
+      "web": "https://integrals.megan-warren.com",
+      "apple": "https://books.apple.com/us/book/integrals/id6805647543",
+      "sections": 42,
+      "kind": "course",
+      "specs": [
+        "42 sections",
+        "12 interactive widgets",
+        "546 hints",
+        "342 worked solutions"
+      ],
+      "widgets": 12,
+      "blurb": "Building a whole back up from infinite pieces. Exercises with hint ladders, worked solutions, and a facilitator edition generated from the same source as the student one.",
+      "accent": {
+        "day": "#CD1E4A",
+        "night": "#EC698A"
+      },
+      "hints": "546 hints",
+      "solutions": "342 worked solutions"
+    },
+    {
+      "id": "history-of-calculus",
+      "title": "The History of Calculus",
+      "kicker": "Companion Reader",
+      "subtitle": "Twenty-Three Centuries, About Thirty People",
+      "web": "https://historyofcalculus.megan-warren.com",
+      "apple": "https://books.apple.com/us/book/the-history-of-calculus/id6805877815",
+      "sections": 26,
+      "kind": "history",
+      "specs": [
+        "12 chapters",
+        "340 dated events",
+        "11 appendices and a glossary",
+        "Companion to both calculus courses"
+      ],
+      "widgets": 0,
+      "blurb": "Twenty-three centuries of the story behind both calculus books, written as a companion to them and linked from every section it maps to.",
+      "accent": {
+        "day": "#565ED7",
+        "night": "#878EE8"
+      },
+      "events": "340 dated events",
+      "chapters": "12 chapters"
+    },
+    {
+      "id": "discrete-math-and-linear-algebra",
+      "title": "Discrete Math and Linear Algebra",
+      "kicker": "Course Textbook",
+      "subtitle": "The Foundations of Math for Machine Learning",
+      "web": "https://probability.megan-warren.com",
+      "apple": "https://books.apple.com/us/book/discrete-math-and-linear-algebra/id6805635460",
+      "sections": 44,
+      "kind": "course",
+      "specs": [
+        "44 sections",
+        "12 interactive widgets",
+        "565 hints",
+        "340 worked solutions"
+      ],
+      "widgets": 12,
+      "blurb": "The foundations of math for machine learning, written for high school, college, and adult learners. Every fraction stacks properly, and the read-aloud speaks the actual math rather than around it.",
+      "accent": {
+        "day": "#BE4029",
+        "night": "#F26A4F"
+      },
+      "hints": "565 hints",
+      "solutions": "340 worked solutions"
+    },
+    {
+      "id": "history-of-discrete-math",
+      "title": "The History of Discrete Math and Linear Algebra",
+      "kicker": "Companion Reader",
+      "subtitle": "The Math Behind Machine Learning, Twenty-Five Centuries in the Making",
+      "web": "https://historyofdiscretemath.megan-warren.com",
+      "apple": "https://books.apple.com/us/book/the-history-of-discrete-math-and-linear-algebra/id6805859114",
+      "sections": 40,
+      "kind": "history",
+      "specs": [
+        "9 chapters",
+        "583 dated events",
+        "11 appendices and a glossary",
+        "4,239 source pointers"
+      ],
+      "widgets": 0,
+      "blurb": "Twenty-five centuries of people who were mostly not building the mathematics machine learning now runs on: counting poems, arguing about dice, sorting bridges.",
+      "accent": {
+        "day": "#AD530E",
+        "night": "#E07B24"
+      },
+      "events": "583 dated events",
+      "chapters": "9 chapters"
+    }
+  ],
+  "totals": {
+    "books": 7,
+    "sections": 264,
+    "widgets": 48,
+    "labelledMath": 49643,
+    "unlabelledMath": 0,
+    "onAppleBooks": 7
+  }
+}

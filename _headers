@@ -1,0 +1,24 @@
+# Cloudflare Pages reads this file. Before it existed the site ran on Pages
+# defaults: nosniff and a referrer policy, but no frame or permissions policy,
+# and every asset on a four-hour revalidate.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+
+# The seven cover files are content-addressed in the markup: every URL carries
+# ?v=<first 8 of the source art's sha256>, written by tools/books_section.py
+# out of books/covers/provenance.json. New art is therefore a new URL, which
+# is the only thing that makes a year-long immutable cache safe here. A Pages
+# deploy does NOT purge the zone cache, and books.megan-warren.com served
+# two-day-old history covers in August 2026 for exactly this reason.
+# tests/check_cache_busting.py fails the build if a cover is ever referenced
+# by a bare filename again.
+/books/covers/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Subset woff2 files, committed once and never rebuilt. Declared in
+# cache-exempt.txt with the reason, because their names carry no hash.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

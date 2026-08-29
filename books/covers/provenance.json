@@ -1,0 +1,51 @@
+{
+  "trigonometry": {
+    "320": 8938,
+    "640": 21310,
+    "srcSize": "1580x2528",
+    "source": "/Users/mwarren/Documents/trig_textbook/tools/epub/assets/cover.png",
+    "srcSha256": "7ce803736c1d83a77f6006ae9402e15d9d0d58c464589de70a92abef48a3c0c7"
+  },
+  "derivatives": {
+    "320": 8162,
+    "640": 20018,
+    "srcSize": "1580x2528",
+    "source": "/Users/mwarren/Documents/deriv_textbook/tools/epub/assets/cover.png",
+    "srcSha256": "9e9e4e9bbdd659310b68732d877d425eda8a325cef45538e4d108354d693935e"
+  },
+  "integrals": {
+    "320": 8798,
+    "640": 22176,
+    "srcSize": "1580x2528",
+    "source": "/Users/mwarren/Documents/integrals_textbook/tools/epub/assets/cover.png",
+    "srcSha256": "349328faa40445c1f5c04fd9bcab8f39229e5e2d7486035903db86d834881cef"
+  },
+  "discrete-math-and-linear-algebra": {
+    "320": 9972,
+    "640": 23288,
+    "srcSize": "1580x2528",
+    "source": "/Users/mwarren/Documents/probmat_textbook/tools/epub/assets/cover.png",
+    "srcSha256": "c9c0ba2a8236fc80fec967e90993d7a7b69e74271239352cd5319ec38b91d023"
+  },
+  "history-of-trigonometry": {
+    "320": 8090,
+    "640": 18896,
+    "srcSize": "1580x2528",
+    "source": "/Users/mwarren/Documents/trig_history_textbook/tools/epub/assets/cover.png",
+    "srcSha256": "16c545869088694aa308d344efe2355cc1acaef66bacbe9e93e88e17914d6aad"
+  },
+  "history-of-calculus": {
+    "320": 7894,
+    "640": 19100,
+    "srcSize": "1580x2528",
+    "source": "/Users/mwarren/Documents/history_textbook/tools/epub/assets/cover.png",
+    "srcSha256": "4dd3ae08b4d29c7ef2813e7665e3d6ddeb4c4881f37b507a0f750e8afaf84962"
+  },
+  "history-of-discrete-math": {
+    "320": 11662,
+    "640": 27850,
+    "srcSize": "1580x2528",
+    "source": "/Users/mwarren/Documents/hdmla_history_textbook/tools/epub/assets/cover.png",
+    "srcSha256": "b0c9c08615735c74f6d1b0ad54e8a4cd4fab1e3225de8c6794eddd1afcff0bd5"
+  }
+}
