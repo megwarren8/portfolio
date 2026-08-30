@@ -46,6 +46,11 @@ jobs:
       - name: Every long-cached asset is busted
         if: steps.creds.outputs.ready == 'true'
         run: python3 tests/check_cache_busting.py
+      # US spelling as a class, reading visible text only so aria-labelledby
+      # is invisible to it and direct quotes keep the speaker's own words.
+      - name: US spelling in every shipping word
+        if: steps.creds.outputs.ready == 'true'
+        run: python3 tests/check_wording.py
       # Reports NOT CHECKED on a runner, which has no book repos, and that is
       # correct: it must never read as a pass.
       - name: Covers match the art they came from
