@@ -248,6 +248,22 @@ def main():
               "content. Run python3 tools/books_section.py")
         return 1
 
+    # THE PROMISE THE PROSE MAKES. The #live section tells a reader that the
+    # four course-book links "open a short contents page first, so you can see
+    # what is inside before downloading the whole book". Those books are 12.9
+    # to 18.9 MB. On 2026-08-30 a rebuild repointed them at their bare roots
+    # and the sentence silently became false, which is how a reader gets handed
+    # a whole textbook with no warning. Pin the promise to the links.
+    promise = "open a short contents page first"
+    if promise in page:
+        wrong = [b["id"] for b in d["books"]
+                 if b["kind"] == "course" and not b["readUrl"].rstrip("/").endswith("/about")]
+        if wrong:
+            print(f"  CONTENTS-PAGE PROMISE BROKEN: the page still says the four course "
+                  f"links {promise!r}, but {', '.join(wrong)} point at the book itself. "
+                  f"Either repoint readUrl at /about or rewrite that sentence.")
+            return 1
+
     if check:
         if drift:
             print(f"  BOOKS SECTION STALE: {', '.join(drift)} in books/index.html no longer "
