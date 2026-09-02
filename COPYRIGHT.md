@@ -1,17 +1,15 @@
-# What is licensed how
+# Copyright and license
 
-This repository is my personal site. It holds two different kinds of thing, so
-it has two different answers.
+Copyright (c) 2026 Megan Warren. megan-warren.com
 
-| What | License |
+| Material | License |
 |---|---|
-| The site's code: HTML structure, CSS, JavaScript, build and deploy config | **MIT**, see [`LICENSE`](LICENSE) |
-| My writing: the bio, the project descriptions, the coaching and about pages | **All rights reserved.** Ask me. |
-| Photographs and images of me, and the project screenshots | **All rights reserved.** Ask me. |
-| The typefaces in `fonts/` | **SIL Open Font License 1.1**, see [`NOTICE`](NOTICE) |
+| Site code: HTML structure, CSS, JavaScript, build and deploy configuration | MIT, see [`LICENSE`](LICENSE) |
+| Written content: biography, project descriptions, page copy | All rights reserved |
+| Photographs, portraits and project screenshots | All rights reserved |
+| Typefaces in `fonts/` | SIL Open Font License 1.1, see [`NOTICE`](NOTICE) |
 
-In plain words: take the code, it is genuinely yours to use. Please do not
-republish my words or my face as if they were yours.
+The site code may be used under the terms of the MIT license. The written content
+and images are not licensed for reuse.
 
-If you want to reuse something here and are not sure which bucket it lands in,
-email meganraewarren@gmail.com and I will almost certainly say yes.
+Permission requests: contact@megan-warren.com
