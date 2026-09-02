@@ -1,0 +1,22 @@
+# How to tell me about a security problem in anything I run.
+#
+# Most of the people who read my source are my own students. If you found
+# something, I would genuinely rather hear it than not. You will not be in
+# trouble, and I do not consider looking at a page's source to be an attack.
+
+Contact: mailto:meganraewarren@gmail.com
+Expires: 2027-09-02T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://megan-warren.com/.well-known/security.txt
+
+# What I would love to hear about: anything that exposes a solutions key, a
+# teacher page, or another student's work; anything that lets someone act as
+# someone else; a way past a password gate.
+#
+# What is already known and not a finding: the books are meant to be free to
+# read and download, and their whole source is meant to be readable. That is
+# the point of them, not a leak.
+#
+# Please do not run automated scanners, load tests, or anything that would
+# affect a class using the site during school hours. You do not need to, and
+# it makes real problems harder to spot.
