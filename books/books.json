@@ -37,8 +37,8 @@
       "specs": [
         "47 sections",
         "12 interactive widgets",
-        "606 hints",
-        "378 worked solutions"
+        "694 hints",
+        "423 worked solutions"
       ],
       "widgets": 12,
       "blurb": "Circles, waves, and everything that repeats. The largest of the four, and a fair illustration of how much book one file will hold.",
@@ -46,8 +46,8 @@
         "day": "#1A6B44",
         "night": "#28A968"
       },
-      "hints": "606 hints",
-      "solutions": "378 worked solutions",
+      "hints": "694 hints",
+      "solutions": "423 worked solutions",
       "readUrl": "https://trigonometry.megan-warren.com/about",
       "readLabel": "See what's inside first"
     },
@@ -89,8 +89,8 @@
       "specs": [
         "43 sections",
         "12 interactive widgets",
-        "566 hints",
-        "354 worked solutions"
+        "659 hints",
+        "401 worked solutions"
       ],
       "widgets": 12,
       "blurb": "Breaking a curve down to a single instant. Same engine, different course, which is the whole argument for commissioning one: the machinery is proven and the content is yours.",
@@ -98,8 +98,8 @@
         "day": "#187894",
         "night": "#18A0C6"
       },
-      "hints": "566 hints",
-      "solutions": "354 worked solutions",
+      "hints": "659 hints",
+      "solutions": "401 worked solutions",
       "readUrl": "https://derivatives.megan-warren.com/about",
       "readLabel": "See what's inside first"
     },
@@ -115,8 +115,8 @@
       "specs": [
         "42 sections",
         "12 interactive widgets",
-        "546 hints",
-        "342 worked solutions"
+        "631 hints",
+        "385 worked solutions"
       ],
       "widgets": 12,
       "blurb": "Building a whole back up from infinite pieces. Exercises with hint ladders, worked solutions, and a facilitator edition generated from the same source as the student one.",
@@ -124,8 +124,8 @@
         "day": "#CD1E4A",
         "night": "#EC698A"
       },
-      "hints": "546 hints",
-      "solutions": "342 worked solutions",
+      "hints": "631 hints",
+      "solutions": "385 worked solutions",
       "readUrl": "https://integrals.megan-warren.com/about",
       "readLabel": "See what's inside first"
     },
@@ -167,8 +167,8 @@
       "specs": [
         "44 sections",
         "12 interactive widgets",
-        "565 hints",
-        "340 worked solutions"
+        "612 hints",
+        "364 worked solutions"
       ],
       "widgets": 12,
       "blurb": "The foundations of math for machine learning, written for high school, college, and adult learners. Every fraction stacks properly, and the read-aloud speaks the actual math rather than around it.",
@@ -176,8 +176,8 @@
         "day": "#BE4029",
         "night": "#F26A4F"
       },
-      "hints": "565 hints",
-      "solutions": "340 worked solutions",
+      "hints": "612 hints",
+      "solutions": "364 worked solutions",
       "readUrl": "https://probability.megan-warren.com/about",
       "readLabel": "See what's inside first"
     },
@@ -212,7 +212,7 @@
     "books": 7,
     "sections": 264,
     "widgets": 48,
-    "labelledMath": 49643,
+    "labelledMath": 56436,
     "unlabelledMath": 0,
     "onAppleBooks": 7
   }
