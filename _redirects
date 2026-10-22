@@ -1,0 +1,4 @@
+# megan-warren.com redirects to the books hub (Megan, 2026-10-22).
+# Every path on the apex and on www goes to the hub's front page.
+# To bring the portfolio back, delete this file and push.
+/* https://books.megan-warren.com/ 301
