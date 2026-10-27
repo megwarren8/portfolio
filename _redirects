@@ -1,4 +1,9 @@
 # megan-warren.com redirects to the books hub (Megan, 2026-10-22).
-# Every path on the apex and on www goes to the hub's front page.
+# Every path on the apex and on www goes to the hub's front page, except
+# /privacy, which every book's footer links: it goes to the hub's own privacy
+# page (10-27). Pages takes the first rule that matches, so it stays above /*.
 # To bring the portfolio back, delete this file and push.
+/privacy https://books.megan-warren.com/privacy/ 301
+/privacy/ https://books.megan-warren.com/privacy/ 301
+/privacy/* https://books.megan-warren.com/privacy/ 301
 /* https://books.megan-warren.com/ 301
