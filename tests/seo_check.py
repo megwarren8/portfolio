@@ -39,6 +39,9 @@ Usage:
     python3 tests/seo_check.py --only / /books/
     python3 tests/seo_check.py --quiet         # summary + failures only
 
+The topic-page weigh (check_topics) runs with the fleet: every /topics/ URL
+in each course book's live sitemap, fetched uncompressed, fails over 1 MB.
+
 Exit codes:  0 all checks passed
              1 one or more checks failed
              2 the gate itself could not run
@@ -125,6 +128,25 @@ LANDING = [
     "https://integrals.megan-warren.com/about",
 ]
 LANDING_MAX_KB = 200
+
+# The topic pages, added 2026-10-28: one small page per teaching section at
+# <book>/topics/<slug>/, built by each course book's tools/make_topics.js on
+# every publish and listed in that book's own sitemap.xml. They exist because
+# Googlebot reads only the first 2 MB of an HTML file (Google Search Central,
+# "Googlebot", updated 2026-02-03) and the unit pages are 7 to 13 MB, so most
+# sections sat past the part Google reads. A topic page that grows past 1 MB
+# has started to defeat its own purpose without breaking anything visible, so
+# every one is weighed, uncompressed, on every run. The list comes from each
+# book's live sitemap, never typed here; a book whose sitemap lists no topic
+# pages is a FAILURE, not a skip.
+TOPIC_BOOKS = [
+    "https://probability.megan-warren.com",
+    "https://trigonometry.megan-warren.com",
+    "https://derivatives.megan-warren.com",
+    "https://integrals.megan-warren.com",
+]
+TOPIC_MAX_KB = 1024
+TOPIC_WORKERS = 6
 
 # shared.css was 251 KB raw / 180 KB gzipped with the fonts inline, and is
 # 23 KB raw / 6.2 KB gzipped without them. 60 KB is generous headroom for
@@ -703,6 +725,64 @@ def check_landing():
     return out
 
 
+def check_topics():
+    """Every topic page each course book lists: under 1 MB uncompressed, and
+    really a topic page (its own canonical, a title, a link into the book)."""
+    from concurrent.futures import ThreadPoolExecutor
+    out = []
+    for base in TOPIC_BOOKS:
+        host = base.split("//", 1)[-1]
+        r = Result(host + "/topics/")
+        try:
+            xml = fetch(base + "/sitemap.xml")
+        except Exception as e:  # noqa: BLE001
+            r.fail("fetch", "sitemap: %s" % e)
+            out.append(r)
+            continue
+        urls = [u for u in re.findall(r"<loc>\s*([^<\s]+)\s*</loc>", xml)
+                if "/topics/" in u]
+        pages = [u for u in urls if u.rstrip("/") != base + "/topics"]
+        if not pages:
+            r.fail("topic-pages", "the live sitemap lists no /topics/<slug>/ "
+                   "pages; the gate cannot weigh what it cannot find")
+            out.append(r)
+            continue
+
+        def weigh(url):
+            try:
+                return url, fetch(url), None
+            except Exception as e:  # noqa: BLE001
+                return url, None, e
+
+        with ThreadPoolExecutor(max_workers=TOPIC_WORKERS) as pool:
+            results = list(pool.map(weigh, urls))
+        biggest = (0, "")
+        for url, doc, err in results:
+            path = url.split(host, 1)[-1]
+            if err is not None:
+                r.fail("fetch", "%s: %s" % (path, err))
+                continue
+            kb = len(doc.encode("utf-8")) / 1024
+            if kb > biggest[0]:
+                biggest = (kb, path)
+            if kb > TOPIC_MAX_KB:
+                r.fail("topic-size", "%s is %.0f KB uncompressed, over the "
+                       "%d KB line" % (path, kb, TOPIC_MAX_KB))
+            canon = first(r'<link rel="canonical" href="([^"]*)"', doc)
+            if canon != url:
+                r.fail("topic-canonical", "%s: canonical is %r" % (path, canon))
+            title = first(r"<title>([^<]*)</title>", doc)
+            if not title or len(title) > TITLE_MAX:
+                r.fail("topic-title", "%s: %r" % (path, title))
+            if url.rstrip("/") != base + "/topics" and \
+                    "Practice this in the book" not in doc:
+                r.fail("topic-book-link", "%s: no link into the book" % path)
+        r.note("%d topic pages + index; largest %.0f KB (%s)"
+               % (len(pages), biggest[0], biggest[1]))
+        out.append(r)
+    return out
+
+
 def check_fleet():
     """The public subdomains: reachable, canonical, described, and linking
     home with anchor text that does ranking work."""
@@ -802,8 +882,9 @@ def main():
             print("          FLEET SKIPPED by --no-fleet: %d subdomains not "
                   "checked" % len(FLEET))
         else:
-            print("          plus %d fleet subdomains and %d book landing pages"
-                  % (len(FLEET), len(LANDING)))
+            print("          plus %d fleet subdomains, %d book landing pages and "
+                  "the topic pages of %d course books"
+                  % (len(FLEET), len(LANDING), len(TOPIC_BOOKS)))
     print()
 
     results = OrderedDict()
@@ -834,6 +915,10 @@ def main():
             if any(c == "fetch" for c, _ in r.failures):
                 unreachable.append(r.url)
         for r in check_fleet():
+            results[r.url] = r
+            if any(c == "fetch" for c, _ in r.failures):
+                unreachable.append(r.url)
+        for r in check_topics():
             results[r.url] = r
             if any(c == "fetch" for c, _ in r.failures):
                 unreachable.append(r.url)
