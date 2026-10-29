@@ -1,9 +1,24 @@
-# megan-warren.com redirects to the books hub (Megan, 2026-10-22).
-# Every path on the apex and on www goes to the hub's front page, except
-# /privacy, which every book's footer links: it goes to the hub's own privacy
-# page (10-27). Pages takes the first rule that matches, so it stays above /*.
-# To bring the portfolio back, delete this file and push.
+# megan-warren.com is the portfolio again (launch, 10-29). Pages takes the
+# first rule that matches.
+#
+# /privacy stays on the books hub's privacy page, because every book's footer
+# links megan-warren.com/privacy and that page is the one that covers them.
+# This site itself has no forms, no cookies and no analytics.
 /privacy https://books.megan-warren.com/privacy/ 301
 /privacy/ https://books.megan-warren.com/privacy/ 301
 /privacy/* https://books.megan-warren.com/privacy/ 301
-/* https://books.megan-warren.com/ 301
+
+# The old five-page site (Aug to Oct 2026). Each old URL goes to the page that
+# now does its job, so a bookmark or an indexed link never lands on a 404.
+/software /custom-tools/ 301
+/software/ /custom-tools/ 301
+/software/* /custom-tools/ 301
+/books /manuals/ 301
+/books/ /manuals/ 301
+/books/* /manuals/ 301
+/about / 301
+/about/ / 301
+/about/* / 301
+/coaching / 301
+/coaching/ / 301
+/coaching/* / 301

@@ -40,9 +40,11 @@ jobs:
       # The gates. Before this the workflow assembled and deployed with no
       # check of any kind, so a stale count or a bare long-cached asset URL
       # would ship silently.
-      - name: The derived blocks match books.json
+      # Every page: head tags, one H1, no skipped heading levels, sized and
+      # described images, no dashes, sitemap in step with the pages.
+      - name: Every page passes the structure gate
         if: steps.creds.outputs.ready == 'true'
-        run: python3 tools/books_section.py --check
+        run: python3 tests/check_site.py
       - name: Every long-cached asset is busted
         if: steps.creds.outputs.ready == 'true'
         run: python3 tests/check_cache_busting.py
@@ -56,11 +58,6 @@ jobs:
       - name: The build tooling stays off the public site
         if: steps.creds.outputs.ready == 'true'
         run: python3 tests/check_deploy_excludes.py
-      # Reports NOT CHECKED on a runner, which has no book repos, and that is
-      # correct: it must never read as a pass.
-      - name: Covers match the art they came from
-        if: steps.creds.outputs.ready == 'true'
-        run: python3 tools/covers.py --check
 
       - name: Assemble the site folder
         if: steps.creds.outputs.ready == 'true'
