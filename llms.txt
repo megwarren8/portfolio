@@ -1,16 +1,17 @@
 # Megan Warren
 
-> Megan Warren is an instructional designer and technical writer in Boston,
-> Massachusetts, who works remotely. She writes training manuals, onboarding
+> Megan Warren (Educator and Creative) is a former high school math teacher
+> in Boston, Massachusetts, who works remotely. She writes training manuals, onboarding
 > guides, how-to guides, and study guides, builds custom web tools, and builds
-> Canvas course pages. She taught teenagers for more than twelve years. She is
-> not the interior designer, the executive coach, or the wellness coach of the
+> Canvas course pages. She is not
+> the interior designer, the executive coach, or the wellness coach of the
 > same name; this site is megan-warren.com.
 
 ## The plain facts
 
 - Name: Megan Warren
-- Role: instructional designer and technical writer
+- Title: Educator and Creative
+- Work: instructional design and technical writing
 - Location: Boston, Massachusetts, United States
 - Works: remotely, for companies, nonprofits, small businesses, publishers, and schools
 - Background: more than twelve years teaching high school math

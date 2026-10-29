@@ -165,8 +165,8 @@ DESC_MIN, DESC_MAX = 70, 205
 # "Megan Warren, Educator and Creative", which spent its whole budget on a
 # name four other people rank for and carried none of the words a buyer types.
 MONEY_WORDS = {
-    "/": ("training manual", "onboarding guide", "custom tool", "instructional designer", "technical writer"),
-    "/manuals/": ("training manual", "onboarding guide", "instructional designer", "technical writer"),
+    "/": ("training manual", "onboarding guide", "custom tool", "instructional design", "technical writing"),
+    "/manuals/": ("training manual", "onboarding guide", "instructional design", "technical writing"),
     "/custom-tools/": ("custom tool", "fundraising"),
     "/canvas/": ("canvas", "unit hub", "prep page"),
 }

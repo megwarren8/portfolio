@@ -1,6 +1,6 @@
 # megan-warren.com
 
-Live at **[megan-warren.com](https://megan-warren.com)**: the portfolio of Megan Warren, an instructional designer and technical writer in Boston who works remotely.
+Live at **[megan-warren.com](https://megan-warren.com)**: the portfolio of Megan Warren (Educator and Creative), who does instructional design and technical writing from Boston, working remotely.
 
 ## Pages
 
