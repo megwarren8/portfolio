@@ -36,8 +36,8 @@
    fundraising calculators on asktheturtle.com/tools, and Prospect Finder, a
    private, login-gated tool that turns a nonprofit's name into a spreadsheet
    of contacts drawn from its IRS Form 990 filings.
-3. Canvas unit hubs and before-class prep pages, generated from a course's
-   book and lesson files.
+3. Canvas unit hubs and before-class prep pages, built from a course's
+   existing materials, such as its book and lesson slides.
 
 Every project is quoted at a fixed price, by scope, before work starts.
 
