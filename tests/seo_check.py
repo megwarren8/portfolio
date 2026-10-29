@@ -165,30 +165,25 @@ DESC_MIN, DESC_MAX = 70, 205
 # "Megan Warren, Educator and Creative", which spent its whole budget on a
 # name four other people rank for and carried none of the words a buyer types.
 MONEY_WORDS = {
-    "/": ("commission", "software"),
-    "/software/": ("custom software", "commission"),
-    "/books/": ("textbook", "commission"),
-    "/coaching/": ("ai coaching",),
-    "/about/": ("commission", "boston"),
+    "/": ("training manual", "onboarding guide", "custom tool", "instructional designer", "technical writer"),
+    "/manuals/": ("training manual", "onboarding guide", "instructional designer", "technical writer"),
+    "/custom-tools/": ("custom tool", "fundraising"),
+    "/canvas/": ("canvas", "unit hub", "prep page"),
 }
 # Title keyword requirement, separate from body: the title is the ad.
+# Since the 2026-10-29 launch every title leads with the offer and keeps the
+# name after the pipe, because four other Megan Warrens outrank the name.
 TITLE_WORDS = {
-    "/": ("commission",),
-    "/software/": ("software",),
-    "/books/": ("textbook",),
-    "/coaching/": ("ai coaching",),
-    "/about/": ("megan warren",),
+    "/": ("training manuals", "onboarding guides", "custom tools"),
+    "/manuals/": ("training manual", "onboarding guide"),
+    "/custom-tools/": ("custom tools",),
+    "/canvas/": ("canvas",),
 }
-# Pages that sell something and must say so in machine-readable form. Kept
-# separate from MONEY_WORDS because /about/ carries the money words in prose
-# but is a ProfilePage, not an offer, and requiring a Service node on it would
-# be schema written for the gate rather than for the reader.
-SERVICE_REQUIRED = {"/", "/software/", "/books/", "/coaching/"}
+# Pages that sell something and must say so in machine-readable form.
+SERVICE_REQUIRED = {"/", "/manuals/", "/custom-tools/", "/canvas/"}
 
-# Pages that have their own Open Graph card under their own directory, built by
-# tools/make_og.py. /coaching/ already had one; /privacy/ deliberately shares
-# the site-wide card, because a legal page needs no artwork of its own.
-OWN_CARD = {"/software/", "/books/", "/about/", "/coaching/"}
+# Pages that have their own Open Graph card under their own directory.
+OWN_CARD = {"/manuals/", "/custom-tools/", "/canvas/"}
 
 GEO_WORDS = ("boston", "massachusetts", "new england")
 
@@ -435,7 +430,9 @@ def check_page(path, doc):
 
 # Nav links allowed to stay visible under 860px. Everything else in the nav
 # must be named in shared.css's mobile hide rule.
-MOBILE_NAV_KEEP = {"/software/", "/books/", "/coaching/"}
+# Since the 2026-10-29 launch the nav is three short page links, which fit at
+# 320 px; only the LinkedIn button hides, because the phone CTA bar replaces it.
+MOBILE_NAV_KEEP = {"/manuals/", "/custom-tools/", "/canvas/"}
 
 
 def check_mobile_nav(pages_html):
@@ -485,7 +482,7 @@ def check_mobile_nav(pages_html):
 
     items = {}  # href -> set of classes seen on it
     for doc in pages_html.values():
-        nav = re.search(r'<nav class="top-links">(.*?)</nav>', doc, re.S)
+        nav = re.search(r'<nav class="top-links"[^>]*>(.*?)</nav>', doc, re.S)
         if not nav:
             continue
         for tag in re.findall(r"<a[^>]*>", nav.group(1)):
@@ -688,8 +685,11 @@ def check_landing():
         else:
             r.note("schema: " + ", ".join(sorted(types)))
 
+        # Since 2026-10-29 the home page is itself the offer, and /books/ and
+        # /software/ 301 to /manuals/ and /custom-tools/, so any of these counts.
         anchors = re.findall(
-            r'<a[^>]+href="[^"]*megan-warren\.com/(books|software)/[^"]*"', doc)
+            r'<a[^>]+href="https://(?:www\.)?megan-warren\.com/'
+            r'(?:(?:books|software|manuals|custom-tools|canvas)/[^"]*)?"', doc)
         if not anchors:
             r.fail("backlink", "no link to a megan-warren.com money page")
         else:

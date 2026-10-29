@@ -135,7 +135,7 @@ def main():
         return 0
 
     exempt = exemptions(root, args.exempt)
-    pages, checked, bad = 0, 0, []
+    pages, checked, exempted, bad = 0, 0, 0, []
 
     for dirpath, dirnames, filenames in os.walk(root):
         dirnames[:] = [d for d in dirnames
@@ -170,14 +170,18 @@ def main():
                 if not any(matches(g, bare) for g in globs):
                     continue
                 if any(matches(g, bare) for g in exempt):
+                    exempted += 1
                     continue
                 checked += 1
                 if not busted(path):
                     rel = os.path.relpath(full, root)
                     bad.append(f"{bare}  referenced bare in {rel}")
 
-    if checked == 0:
+    if checked + exempted == 0:
         # A checker that inspects nothing must never look like a clean site.
+        # A reference that matched a declared exemption was still found, so it
+        # counts as inspected: a site whose only long-cached files are its
+        # exempt fonts is not a broken checker.
         print(f"  FAIL  cache busting: {len(globs)} long-cache rule(s) in _headers "
               f"({', '.join(globs)}) and ZERO matching references found across "
               f"{pages} files. The checker is broken or pointed at the wrong root.")
@@ -194,7 +198,8 @@ def main():
 
     if not args.quiet:
         print(f"  PASS  every long-cached asset is busted  ({checked} references "
-              f"across {pages} files, {len(globs)} cache rule(s)"
+              f"across {pages} files, {len(globs)} cache rule(s), "
+              f"{exempted} exempt reference(s)"
               f"{f', {len(exempt)} declared exemption(s)' if exempt else ''})")
     return 0
 

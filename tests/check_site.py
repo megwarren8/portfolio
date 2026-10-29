@@ -48,7 +48,11 @@ DASHES = ("—", "–")
 PRIVATE = ("prospects.megan-warren.com", "/Users/", "~/Projects",
            "~/Documents", "scratchpad", "lane job")
 # Classes set only by script, or that exist for a machine rather than a rule.
-CLASS_ALLOW = set()
+# KaTeX tags every math atom with its TeX class (mord, mbin, mrel, ...) for
+# spacing logic at render time; katex.css styles only some of them, and the
+# rest render correctly with no rule. They appear only inside .katex markup.
+CLASS_ALLOW = {"mbin", "mclose", "minner", "mop", "mopen", "mord", "mpunct",
+               "mrel", "mtight", "text"}
 
 
 def pages():
