@@ -43,10 +43,10 @@ SKIP_DIRS = {".git", ".github", "worker", "tools", "tests", "node_modules",
 TITLE_MIN, TITLE_MAX = 15, 65
 DESC_MIN, DESC_MAX = 70, 160
 DASHES = ("—", "–")
-# Never in a served file. "prospects." is the private, login-gated tool's host
-# prefix: the site describes the tool and must never point at it (the prefix
-# alone is enough, since this is a substring match).
-PRIVATE = ("prospects.", "/Users/", "~/Projects",
+# Never in a served file. "//prospects." is the private, login-gated tool's
+# host as it would appear in a URL: the site describes the tool and must never
+# point at it (a substring match, so the full hostname need not be written).
+PRIVATE = ("//prospects.", "/Users/", "~/Projects",
            "~/Documents", "scratchpad", "lane job")
 # Classes set only by script, or that exist for a machine rather than a rule.
 # KaTeX tags every math atom with its TeX class (mord, mbin, mrel, ...) for
