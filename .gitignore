@@ -1,7 +1,5 @@
-worker/.wrangler/
 .claude/
 audits/
-worker/node_modules/
 .DS_Store
 
 __pycache__/
