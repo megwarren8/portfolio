@@ -250,6 +250,15 @@ def main():
     robots = open(os.path.join(HERE, "robots.txt"), encoding="utf-8").read()
     if "Sitemap: %s/sitemap.xml" % SITE not in robots:
         fails.append("robots.txt does not point at the sitemap")
+    # Every book, game, Lesson Studio and the teacher hub link
+    # https://megan-warren.com/privacy and depend on this 301 to the books
+    # hub's privacy page (coordinator 27, 2026-10-29). Moving it moves the
+    # whole fleet's links, so it is a gate, not a habit.
+    redirects = open(os.path.join(HERE, "_redirects"), encoding="utf-8").read()
+    for src in ("/privacy", "/privacy/"):
+        rule = "%s https://books.megan-warren.com/privacy/ 301" % src
+        if not any(line.split() == rule.split() for line in redirects.splitlines()):
+            fails.append("_redirects lost the fleet's privacy rule: %s" % rule)
     for f in ("sitemap.xml", "robots.txt", "llms.txt", "_redirects", "_headers"):
         body = open(os.path.join(HERE, f), encoding="utf-8").read()
         if any(x in body for x in DASHES):
