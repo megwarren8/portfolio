@@ -211,6 +211,9 @@ def check(path, fails):
 
     if any(x in doc for x in DASHES):
         fail("an em or en dash in the file")
+    tok = re.search(r"\{\{[^}]{0,40}\}\}", doc)
+    if tok:
+        fail("an unrendered template token in served HTML: %s" % tok.group(0))
     for x in PRIVATE:
         if x in doc:
             fail("private string in a served file: %r" % x)

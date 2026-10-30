@@ -12,7 +12,8 @@
 <meta name="theme-color" content="#FBF7FC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1F1535" media="(prefers-color-scheme: dark)">
 <link rel="preload" href="/fonts/schibsted-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/shared.css?v=1cd4689cd5">
+<link rel="stylesheet" href="/shared.css?v=61f1919c92">
+<script src="/theme.js?v=fcc49d6576"></script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Megan Warren">
 <meta property="og:title" content="Training Manual and Onboarding Guide Writer | Megan Warren">
@@ -101,13 +102,16 @@
     <a href="/custom-tools/">Custom tools</a>
     <a href="/canvas/">Canvas</a>
     <a class="top-cta" href="https://www.linkedin.com/in/megan-warren-boston/" rel="me">Message me on LinkedIn</a>
+    <button class="theme" type="button" aria-label="Switch to dark mode" aria-pressed="false"><svg class="ic-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a8.5 8.5 0 1 0 10.8 10.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><svg class="ic-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
   </nav>
 </header>
 <main id="main">
 <section aria-labelledby="h1">
-  <p class="kicker">Technical writing and instructional design</p>
+  <p class="kicker">Taking new projects · technical writing and instructional design</p>
   <h1 id="h1">Training manuals and onboarding guides people can follow on the first read</h1>
   <p class="lede">I do technical writing and instructional design from Boston, working remotely. I write onboarding guides, training manuals, how-to guides, and study guides for companies, nonprofits, small businesses, publishers, and schools. I spent more than twelve years teaching teenagers, so I write for the reader who is stuck, not the one who already knows.</p>
+    <p class="cta-row"><a class="btn" href="https://www.linkedin.com/in/megan-warren-boston/" rel="me">Message me on LinkedIn</a><a class="btn alt" href="mailto:contact@megan-warren.com">Email contact@megan-warren.com</a></p>
+    <p class="promise">Fixed price, quoted by scope before any work starts. I reply within two business days.</p>
 </section>
 
 <section aria-labelledby="what">
@@ -129,15 +133,15 @@
     <li><b>Steps in order</b><span>One action per step, in the order the reader does them, so nobody has to jump ahead to find the part they need.</span></li>
     <li><b>Worked examples</b><span>A finished example beside each new idea, so readers see what “done” looks like before they try it.</span></li>
     <li><b>Hints where readers get stuck</b><span>Hints that build one step at a time, placed at the spots where a new reader stalls.</span></li>
-    <li><b>Print it your way</b><span>A print menu with a choice for every reader, from the full section to just the formula sheet, with or without an answer key.</span></li>
+    <li><b>Print it your way</b><span>A print menu with a choice for every reader, from the full section to the formula sheet alone, with or without an answer key.</span></li>
     <li><b>Read aloud</b><span>A read-aloud button that highlights each passage as it’s read and speaks every math expression.</span></li>
-    <li><b>Checked before it ships</b><span>Automated checks run before every update to my books goes live. The questions below have the numbers.</span></li>
+    <li><b>Checked before it ships</b><span>Automated checks run before each update to my books goes live. The questions below have the numbers.</span></li>
   </ul>
 </section>
 
 <section aria-labelledby="proof">
   <h2 id="proof">Seven free books show the method</h2>
-  <p class="intro">Four course textbooks and three math history books, each written and built by me. Every one is free to read so that you can judge the writing before you get in touch.</p>
+  <p class="intro">Four course textbooks and three history readers, each written and built by me. Every one is free to read so that you can judge the writing before you get in touch.</p>
   <div class="grid">
 
     <article class="card">
@@ -159,6 +163,33 @@
     </article>
 
     <article class="card">
+      <img loading="lazy" decoding="async" src="/img/work-derivatives.webp" width="560" height="350" alt="The Derivatives textbook’s opening screen.">
+      <div class="body">
+        <p class="kind">Course textbook</p>
+        <h3><a href="https://derivatives.megan-warren.com/">Derivatives</a></h3>
+        <p>Rates of change, from the secant line to related rates and optimization.</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <img loading="lazy" decoding="async" src="/img/work-integrals.webp" width="560" height="350" alt="The Integrals textbook’s opening screen.">
+      <div class="body">
+        <p class="kind">Course textbook</p>
+        <h3><a href="https://integrals.megan-warren.com/">Integrals</a></h3>
+        <p>From rectangles under a curve to volume, arc length, work, and probability.</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <img loading="lazy" decoding="async" src="/img/work-game.webp" width="560" height="350" alt="The Right Triangle Check game, with skill chips, a score panel, and a Start button.">
+      <div class="body">
+        <p class="kind">Games</p>
+        <h3><a href="https://trigonometry.megan-warren.com/#game-s-11">Games inside the lessons</a></h3>
+        <p>Short games such as Right Triangle Check, Bayes Detective, and Markov Walk.</p>
+      </div>
+    </article>
+
+    <article class="card">
       <img loading="lazy" decoding="async" src="/img/work-print.webp" width="560" height="350" alt="The Trigonometry book’s Print options panel beside Section 2.1: what to print (content and problems, problems only, content only, or formulas) and where hints and solutions go (hidden, with each problem, or at the end as an answer key).">
       <div class="body">
         <p class="kind">Print and read-aloud</p>
@@ -170,7 +201,7 @@
     <article class="card">
       <img loading="lazy" decoding="async" src="/img/work-history.webp" width="560" height="350" alt="The History of Trigonometry’s opening screen, with chapters running from Mesopotamia to Europe.">
       <div class="body">
-        <p class="kind">History companions</p>
+        <p class="kind">History readers</p>
         <h3><a href="https://historyoftrigonometry.megan-warren.com/">Three history readers</a></h3>
         <p>Where each course’s math came from, told through the people who made it.</p>
         <p class="links"><a href="https://historyoftrigonometry.megan-warren.com/">Trigonometry</a> · <a href="https://historyofcalculus.megan-warren.com/">Calculus</a> · <a href="https://historyofdiscretemath.megan-warren.com/">Discrete Math</a></p>
@@ -183,7 +214,7 @@
         <p class="kind">Lesson slides</p>
         <h3><a href="https://trigonometry.megan-warren.com/slides/">A deck for every lesson</a></h3>
         <p>Step-by-step decks that follow the book, each ending with an exit ticket.</p>
-        <p class="links"><a href="https://trigonometry.megan-warren.com/slides/">Trigonometry</a> · <a href="https://probability.megan-warren.com/slides/">Discrete Math</a> · <a href="https://derivatives.megan-warren.com/slides/">Derivatives</a> · <a href="https://integrals.megan-warren.com/slides/">Integrals</a></p>
+        <p class="links"><a href="https://trigonometry.megan-warren.com/slides/">Trigonometry</a> · <a href="https://probability.megan-warren.com/slides/">Discrete Math and Linear Algebra</a> · <a href="https://derivatives.megan-warren.com/slides/">Derivatives</a> · <a href="https://integrals.megan-warren.com/slides/">Integrals</a></p>
       </div>
     </article>
 
@@ -211,8 +242,8 @@
   <h2 id="faq">Questions clients ask about manuals</h2>
   <dl class="faq">
     <div><dt>Does it only work for math?</dt><dd>No. Math is one of the hardest subjects to typeset, so it makes a good test. Onboarding guides, study guides, and training manuals are built the same way.</dd></div>
-    <div><dt>Is this a course platform?</dt><dd>No. Each guide is a file you own outright, with no subscription, no login, and nothing to renew.</dd></div>
-    <div><dt>Couldn’t I just build this with AI?</dt><dd>AI can get you a draft, and I use it in my own work. What I add is knowing what to verify. My Trigonometry book passes 85 checks before every update goes live, including a computer re-solve of 906 answers.</dd></div>
+    <div><dt>Is this a course platform?</dt><dd>No. Each guide is a file you own outright, with no subscription, no login, and nothing to renew. Canvas pages live in your Canvas; everything else is a file you own.</dd></div>
+    <div><dt>Couldn’t I just build this with AI?</dt><dd>The work is knowing what to check. Every update to my Trigonometry book passes 85 automated checks before it goes live, including a computer re-solve of 906 answers. AI can get you a draft, and I use it in my own work. What I add is the checking.</dd></div>
     <div><dt>Who writes it?</dt><dd>Either of us. Bring finished content and I’ll build it, or bring an outline and I’ll write it too.</dd></div>
   </dl>
 </section>
@@ -228,7 +259,8 @@
   </ol>
   <div class="contact">
     <p>What guide do you wish your team had?</p>
-    <a class="btn" href="https://www.linkedin.com/in/megan-warren-boston/" rel="me">Message me on LinkedIn</a>
+    <p class="cta-row"><a class="btn" href="https://www.linkedin.com/in/megan-warren-boston/" rel="me">Message me on LinkedIn</a><a class="btn alt" href="mailto:contact@megan-warren.com">Email contact@megan-warren.com</a></p>
+    <p class="promise">I reply within two business days, with a quote or a question.</p>
   </div>
   <p class="more"><a href="/custom-tools/">Need a tool instead of a guide? See custom tools</a><a href="/canvas/">Teaching in Canvas? See Canvas course pages</a></p>
 </section>
@@ -242,6 +274,7 @@
     <a href="/canvas/">Canvas</a>
     <a href="https://books.megan-warren.com/">The free books</a>
     <a href="https://www.linkedin.com/in/megan-warren-boston/" rel="me">LinkedIn</a>
+    <a href="mailto:contact@megan-warren.com">Email</a>
   </nav>
   <p>© 2026 Megan Warren, Educator and Creative. Boston, working remotely.</p>
   <p>This site sets no cookies and runs no analytics or forms.</p>

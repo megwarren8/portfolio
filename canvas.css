@@ -10,7 +10,7 @@
 .sample-page a{color:#2C5A9E}
 .sample-page h3.title{font-size:1.5rem;font-weight:400;margin:0 0 .6em;padding-bottom:.4em;border-bottom:1px solid #C7CDD1;color:#2D3B45}
 .sample-page h4{font-size:1.15rem;color:#182A4E;margin:28px 0 8px}
-.sample-page table{display:block;overflow-x:auto}
+.sample-page table{display:block;overflow-x:auto;max-width:100%;border-right:3px solid #D6D0C2}
 @media (min-width:600px){.sample-page table{display:table}}
 .sample-page .katex{font-size:1.1em}
 .samples{grid-template-columns:minmax(0,1fr)}

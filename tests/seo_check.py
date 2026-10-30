@@ -783,6 +783,32 @@ def check_topics():
     return out
 
 
+APPLE_AUTHOR = "https://books.apple.com/us/author/megan-warren/id479564289"
+APPLE_BOOKS = 7
+
+
+def check_apple_books():
+    """The portfolio says all seven books are on Apple Books. Count the
+    books the live author page lists. A short count is a NOTE, not a
+    failure (Megan 10-30: the copy stays at seven and she uploads the
+    missing book herself), so the gate keeps shipping while the storefront
+    catches up, and the number can never drift unseen."""
+    r = Result("books.apple.com author page")
+    try:
+        doc = fetch(APPLE_AUTHOR, max_bytes=2_000_000)
+    except Exception as e:  # noqa: BLE001
+        r.note("not reachable: %s" % e)
+        return r
+    titles = set(re.findall(r'/us/book/([a-z0-9-]+)/id\d+', doc))
+    n = len(titles)
+    if n < APPLE_BOOKS:
+        r.note("WARN: author page lists %d book(s), the site says %d: %s"
+               % (n, APPLE_BOOKS, ", ".join(sorted(titles)) or "none found"))
+    else:
+        r.note("author page lists %d book(s)" % n)
+    return r
+
+
 def check_fleet():
     """The public subdomains: reachable, canonical, described, and linking
     home with anchor text that does ranking work."""
@@ -918,6 +944,7 @@ def main():
             results[r.url] = r
             if any(c == "fetch" for c, _ in r.failures):
                 unreachable.append(r.url)
+        results["apple-books"] = check_apple_books()
         for r in check_topics():
             results[r.url] = r
             if any(c == "fetch" for c, _ in r.failures):
