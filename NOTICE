@@ -7,11 +7,12 @@ are not: see COPYRIGHT.md.
 
 Typefaces bundled under fonts/:
 
-  Crimson Pro
-  SIL Open Font License 1.1. https://openfontlicense.org
-
   Schibsted Grotesk
   SIL Open Font License 1.1. https://openfontlicense.org
 
-The OFL covers the font files only. It places no condition on this site's own
+  KaTeX fonts (fonts/katex/, used by the Canvas sample)
+  MIT License. Copyright (c) 2013 to 2020 Khan Academy and other contributors.
+  https://github.com/KaTeX/KaTeX/blob/main/LICENSE
+
+The OFL covers the Schibsted Grotesk font file only. It places no condition on this site's own
 code or on anything you build with it.

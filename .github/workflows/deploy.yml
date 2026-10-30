@@ -1,6 +1,6 @@
 # Publishes this repo to Cloudflare Pages on every push to main.
 # One-time setup (creates the Pages project and adds the two secrets this
-# workflow needs) lives in ~/Documents/megan-warren-com/setup_cloudflare.sh.
+# workflow needs) was a one-time script, setup_cloudflare.sh, kept outside this repo.
 # Until those secrets exist, this workflow skips quietly instead of failing.
 
 name: Deploy to Cloudflare Pages
@@ -28,7 +28,7 @@ jobs:
           if [ -z "$TOKEN" ]; then
             echo "ready=false" >> "$GITHUB_OUTPUT"
             echo "CLOUDFLARE_API_TOKEN is not set on this repo yet, so the deploy is skipped."
-            echo "Run setup_cloudflare.sh from ~/Documents/megan-warren-com to finish setup."
+            echo "Run the one-time setup_cloudflare.sh to finish setup."
           else
             echo "ready=true" >> "$GITHUB_OUTPUT"
           fi

@@ -27,4 +27,4 @@ After a deploy, `python3 tests/seo_check.py` checks the live site.
 
 When `shared.css`, `canvas.css` or `theme.js` changes, update its `?v=` stamp on every page (the 404 inlines a copy of `shared.css`, so paste the new sheet into it too).
 
-© 2026 Megan Warren. All rights reserved.
+© 2026 Megan Warren. The site code is MIT licensed (see `LICENSE`); the written content and images are all rights reserved (see `COPYRIGHT.md`).
