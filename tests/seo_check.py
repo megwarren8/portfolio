@@ -212,7 +212,7 @@ GEO_WORDS = ("boston", "massachusetts", "new england")
 # The privacy policy has no business talking about Boston, and padding it with
 # geography would serve the gate rather than the reader.
 GEO_EXEMPT = {"/privacy/"}
-LEGAL_PAGES = {"/privacy/"}
+LEGAL_PAGES = {"/privacy/", "/site-privacy/"}
 THIN_OK = {"/privacy/"}
 THIN_DEFAULT = 250
 

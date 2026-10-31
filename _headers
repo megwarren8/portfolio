@@ -1,7 +1,9 @@
 # Cloudflare Pages reads this file. HSTS and the content security policy
 # were added 10-30 (call sheet Q5): the site serves one script of its own
 # (theme.js) and nothing from any other origin, so the policy can be strict.
-# style-src keeps 'unsafe-inline' for the Canvas sample's inline styles. Before it existed the site ran on Pages
+# style-src keeps 'unsafe-inline' for the Canvas sample's inline styles.
+# connect-src is 'self', not 'none': the site makes no requests of its own,
+# but 'none' blocked Lighthouse's same-origin robots.txt fetch (10-31). Before it existed the site ran on Pages
 # defaults: nosniff and a referrer policy, but no frame or permissions policy,
 # and every asset on a four-hour revalidate.
 /*
@@ -10,7 +12,7 @@
   X-Frame-Options: SAMEORIGIN
   Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'self'
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'self'
 
 # Font files, committed once and never rebuilt. Declared in cache-exempt.txt
 # with the reason, because their names carry no hash. Everything else

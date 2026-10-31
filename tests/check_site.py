@@ -41,6 +41,9 @@ SITE = "https://megan-warren.com"
 SKIP_DIRS = {".git", ".github", "worker", "tools", "tests", "node_modules",
              "_site", ".claude", ".wrangler"}
 TITLE_MIN, TITLE_MAX = 15, 65
+# Legal pages (the site's own privacy notice) are noindex and carry no social
+# tags or structured data, like the 404; everything else on them is checked.
+LEGAL_PAGES = {"/site-privacy/"}
 DESC_MIN, DESC_MAX = 70, 160
 DASHES = ("—", "–")
 # Never in a served file. "//prospects." is the private, login-gated tool's
@@ -119,6 +122,7 @@ def check(path, fails):
     doc = open(path, encoding="utf-8").read()
     up = url_path(path)
     is404 = up == "/404"
+    legal = up in LEGAL_PAGES
 
     def fail(what):
         fails.append("%s: %s" % (up, what))
@@ -134,10 +138,10 @@ def check(path, fails):
     if not d or not DESC_MIN <= len(d) <= DESC_MAX:
         fail("description missing or %s chars" % (len(d) if d else 0))
     noindex = bool(re.search(r'<meta name="robots" content="[^"]*noindex', doc))
-    if is404 != noindex:
+    if (is404 or legal) != noindex:
         fail("noindex is %s on this page" % ("present" if noindex else "missing"))
 
-    if not is404:
+    if not is404 and not legal:
         c = re.search(r'<link rel="canonical" href="([^"]+)"', doc)
         if not c or c.group(1) != SITE + up:
             fail("canonical should be %s%s, is %s" % (SITE, up, c and c.group(1)))
@@ -232,7 +236,7 @@ def check(path, fails):
     if dead:
         fail("classes with no CSS rule: %s" % ", ".join(dead))
 
-    return None if (is404 or noindex) else up
+    return None if (is404 or legal or noindex) else up
 
 
 def main():

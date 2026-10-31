@@ -22,3 +22,9 @@
 /coaching / 301
 /coaching/ / 301
 /coaching/* / 301
+
+# "portfolio" is what the owner calls this site; the home page is the portfolio.
+/portfolio / 301
+/portfolio/ / 301
+/portfolio/* / 301
+/portfolio.html / 301

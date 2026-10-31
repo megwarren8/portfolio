@@ -8,6 +8,7 @@ Live at **[megan-warren.com](https://megan-warren.com)**: the portfolio of Megan
 - `/manuals/` training manuals, onboarding guides, how-to guides, and study guides
 - `/custom-tools/` Ask the Turtle's free tools, Prospect Finder (described, private), classroom tools, and the Rehearsal app in development
 - `/canvas/` Canvas unit hub and prep page samples (the only page that loads `canvas.css` and the KaTeX fonts)
+- `/site-privacy/` the site's own privacy notice (noindex, linked from every footer; `/privacy` still forwards to the books hub's privacy page, which every book's footer links)
 - `404.html` the not-found page
 
 Plain static HTML and one stylesheet, `shared.css`. No build step. The one script, `theme.js`, runs the light/dark switch in the header (the site follows the device until a visitor picks, and remembers the pick in that browser).
