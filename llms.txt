@@ -18,7 +18,7 @@
 - Email: contact@megan-warren.com
 - Background: more than twelve years teaching high school math
 - Site: https://megan-warren.com
-- Source code: https://github.com/megwarren8
+- Source code for this site: https://github.com/megwarren8/portfolio
 - LinkedIn: https://www.linkedin.com/in/megan-warren-boston/
 - Resume (PDF, one page): https://megan-warren.com/Megan-Warren-Resume.pdf
 
