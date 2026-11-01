@@ -16,7 +16,7 @@
 - Works: remotely, for companies, nonprofits, small businesses, publishers, and schools
 - Availability: taking new projects (October 2026)
 - Email: contact@megan-warren.com
-- Background: more than twelve years teaching high school math
+- Background: thirteen years teaching high school math
 - Site: https://megan-warren.com
 - Source code for this site: https://github.com/megwarren8/portfolio
 - LinkedIn: https://www.linkedin.com/in/megan-warren-boston/
@@ -50,12 +50,12 @@ Every project is quoted at a fixed price, by scope, before work starts.
 
 - All seven free math books: https://books.megan-warren.com
 - Trigonometry textbook: https://trigonometry.megan-warren.com
-- Discrete Math and Linear Algebra textbook: https://probability.megan-warren.com
+- Probability and Linear Algebra textbook: https://probability.megan-warren.com
 - Calculus Derivatives textbook: https://derivatives.megan-warren.com
 - Calculus Integrals textbook: https://integrals.megan-warren.com
 - The History of Trigonometry: https://historyoftrigonometry.megan-warren.com
 - The History of Calculus: https://historyofcalculus.megan-warren.com
-- The History of Discrete Math and Linear Algebra: https://historyofdiscretemath.megan-warren.com
+- The History of Probability and Linear Algebra: https://historyofdiscretemath.megan-warren.com
 - The seven books on Apple Books, free: https://books.apple.com/us/author/megan-warren/id479564289
 - Grouper, a classroom grouping tool: https://grouper.megan-warren.com
 - Wildcard, an icebreaker deck: https://wildcard.megan-warren.com
