@@ -87,6 +87,11 @@ footer{font-size:.85rem;color:var(--muted);padding:8px 0 32px}
 .name .role{font-weight:500;color:var(--muted);letter-spacing:.01em}
 .kicker{margin:0;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
 .kicker::before{content:"";display:inline-block;width:.6em;height:.6em;border-radius:50%;background:var(--pop);margin-right:.5em;vertical-align:.05em}
+/* 11-01: the detail sits on its own line under "Taking new projects", lined up with the text after the dot;
+   every divider is the same teal dot (the .k-sep comma stays for screen readers, hidden by font-size:0). */
+.kicker .k-detail{display:block;margin-top:.35em;padding-left:1.1em}
+.kicker .k-sep{font-size:0}
+.kicker .k-sep::before{content:"";display:inline-block;width:.42rem;height:.42rem;border-radius:50%;background:var(--pop);margin:0 .5rem;vertical-align:.1rem}
 .about{display:flex;flex-wrap:wrap;gap:16px 22px;align-items:flex-start;margin-bottom:16px}
 .about img{width:120px;height:120px;border-radius:50%;flex:none;box-shadow:var(--shadow)}
 .about p{margin:0;max-width:60ch}
@@ -107,7 +112,6 @@ footer{font-size:.85rem;color:var(--muted);padding:8px 0 32px}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 /* Site chrome added at launch: the page nav, the footer nav, and the phone CTA bar. */
 a.name{color:var(--ink);text-decoration:none}
-.name .role::before{content:"\00B7\00A0"}
 a.name:hover .nm{text-decoration:underline}
 .top-links{display:flex;flex-wrap:wrap;align-items:center;gap:4px 18px}
 .top-links a{font-weight:600;font-size:.95rem;min-height:44px;display:inline-flex;align-items:center}
@@ -122,7 +126,6 @@ footer p{margin:.3em 0}
 .mcta{display:none}
 @media (max-width:599px){
   .top-links .top-cta{display:none}
-  .name .role::before{content:none}
   .top-links{gap:0 16px}
   body{padding-bottom:76px}
   .mcta{display:flex;align-items:center;justify-content:center;position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:8;min-height:48px;border-radius:999px;background:var(--btn-bg);color:var(--btn-ink);font-weight:700;text-decoration:none;box-shadow:0 4px 18px rgba(31,21,53,.35)}
