@@ -13,8 +13,8 @@
     var dark = current() === "dark";
     var b = document.querySelector(".theme");
     if (b) {
-      b.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
-      b.setAttribute("aria-pressed", dark ? "true" : "false");
+      b.setAttribute("aria-checked", dark ? "true" : "false");
+      b.setAttribute("title", dark ? "Turn off night mode" : "Turn on night mode");
     }
     var metas = document.querySelectorAll('meta[name="theme-color"]');
     for (var i = 0; i < metas.length; i++) metas[i].setAttribute("content", dark ? "#1F1535" : "#FBF7FC");

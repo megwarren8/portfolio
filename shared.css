@@ -162,12 +162,22 @@ footer p{margin:.3em 0}
 .client{margin-top:16px;background:var(--surface);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);border-left:4px solid var(--pop)}
 .client p{margin:0;max-width:70ch}
 .client .kind{margin-bottom:4px}
-.theme{appearance:none;background:transparent;border:2px solid var(--line);border-radius:999px;color:var(--ink);width:44px;height:44px;display:inline-grid;place-items:center;cursor:pointer;padding:0}
-.theme:hover{border-color:var(--accent)}
-.theme .ic-sun{display:none}
-:root[data-theme=dark] .theme .ic-sun{display:block}
-:root[data-theme=dark] .theme .ic-moon{display:none}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .theme .ic-sun{display:block}:root:not([data-theme=light]) .theme .ic-moon{display:none}}
+/* 11-01: the day/night switch (Megan, ledger 1372: one two-position switch on every surface, as in the course books).
+   A native button with role="switch": aria-checked says whether night is on, the name stays "Night mode", the word
+   stays visually hidden on a 44 px target, and the knob follows the device until the visitor picks. */
+.theme{appearance:none;background:transparent;border:0;color:var(--ink);min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0 5px;position:relative}
+.theme .ts-track{position:relative;display:block;flex:none;box-sizing:border-box;width:46px;height:26px;border:1.5px solid var(--muted);border-radius:999px;background:var(--surface)}
+@media (hover:hover){.theme:hover .ts-track{border-color:var(--accent)}}
+.theme .ts-knob{position:absolute;top:2px;left:2px;width:19px;height:19px;border-radius:50%;background:var(--ink);transition:transform .18s ease}
+.theme .ts-ic{position:absolute;top:50%;width:13px;height:13px;margin-top:-6.5px}
+.theme .ts-sun{left:5px;color:var(--bg)}
+.theme .ts-moon{left:25px;color:var(--muted)}
+:root[data-theme=dark] .theme .ts-knob{transform:translateX(20px)}
+:root[data-theme=dark] .theme .ts-sun{color:var(--muted)}
+:root[data-theme=dark] .theme .ts-moon{color:var(--bg)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .theme .ts-knob{transform:translateX(20px)}:root:not([data-theme=light]) .theme .ts-sun{color:var(--muted)}:root:not([data-theme=light]) .theme .ts-moon{color:var(--bg)}}
+@media (prefers-reduced-motion:reduce){.theme .ts-knob{transition:none}}
+.theme .tb-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media (min-width:700px){
   header.top{position:sticky;top:0;z-index:9;background:var(--bg);padding:10px 0;border-bottom:1px solid color-mix(in srgb,var(--line) 45%,transparent)}
   section,.proof{scroll-margin-top:76px}
