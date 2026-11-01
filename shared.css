@@ -287,3 +287,4 @@ p,li,dd,dt,figcaption,.svc-group .svc li>span,.steps span{text-wrap:pretty}
 .faq>div:first-child{grid-column:1/-1}
 .faq:has(>div:nth-child(4):last-child){grid-template-columns:1fr}
 @media (min-width:960px){.faq:has(>div:nth-child(4):last-child){grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:960px){.faq>div:first-child{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.2fr);gap:4px 32px;align-items:baseline}.faq>div:first-child dd{margin-top:0}}
