@@ -282,3 +282,8 @@ p,li,dd,dt,figcaption,.svc-group .svc li>span,.steps span{text-wrap:pretty}
 .svc-group .svc{flex:1}
 .svc-more{margin:10px 0 0;padding-top:10px;border-top:1px solid color-mix(in srgb,var(--line) 55%,transparent);font-size:.93rem;font-weight:600;color:var(--muted)}
 .card h3 a.here::after{content:none}
+/* FAQ: the first question runs full width (the copy session's lead question); the rest sit beneath with no lone card.
+   Four questions: three across under it on wide screens, stacked below 960. Five: two by two under it. */
+.faq>div:first-child{grid-column:1/-1}
+.faq:has(>div:nth-child(4):last-child){grid-template-columns:1fr}
+@media (min-width:960px){.faq:has(>div:nth-child(4):last-child){grid-template-columns:repeat(3,minmax(0,1fr))}}
