@@ -14,6 +14,15 @@
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'self'
 
+# The sample Lesson Studio (teacher-demo kit, 11-01, Megan's card E1) is the real Studio app, one self-contained
+# file: inline scripts and styles, fonts and images as data: URIs, KaTeX unpacked from an embedded gzip with
+# new Function, slide decks saved through blob: downloads, games in srcdoc frames. It needs that much, and only
+# it gets it: "!" drops the site policy for this one path before the looser one is set. It still loads nothing
+# from any other origin.
+/teacher-demo/lesson-studio*
+  ! Content-Security-Policy
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; frame-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'self'
+
 # Font files, committed once and never rebuilt. Declared in cache-exempt.txt
 # with the reason, because their names carry no hash. Everything else
 # (pages, CSS, images) stays on the Pages default revalidate, so a changed
