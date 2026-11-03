@@ -120,7 +120,7 @@ footer{font-size:.85rem;color:var(--muted);padding:8px 0 32px}
 .card.plain .body{border-top:6px solid var(--pop);padding-top:16px}
 .grid+.grid{margin-top:16px}
 .svc{grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
-@media print{.mcta,.top-links{display:none}.card,.stats li,.contact{box-shadow:none;border:1px solid #ccc}}
+@media print{.top-links{display:none}.card,.stats li,.contact{box-shadow:none;border:1px solid #ccc}}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 /* Site chrome added at launch: the page nav, the footer nav, and the phone CTA bar. */
 a.name{color:var(--ink);text-decoration:none}
@@ -135,13 +135,9 @@ a.name:hover .nm{text-decoration:underline}
 .foot-links{display:flex;flex-wrap:wrap;gap:4px 18px;margin:0 0 8px}
 .foot-links a{min-height:44px;display:inline-flex;align-items:center}
 footer p{margin:.3em 0}
-.mcta{display:none}
 @media (max-width:599px){
   .top-links .top-cta{display:none}
   .top-links{gap:0 16px}
-  body{padding-bottom:76px}
-  .mcta{display:flex;align-items:center;justify-content:center;position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:8;min-height:48px;border-radius:999px;background:var(--btn-bg);color:var(--btn-ink);font-weight:700;text-decoration:none;box-shadow:0 4px 18px rgba(31,21,53,.35)}
-  .mcta:hover{text-decoration:underline}
 }
 
 /* 10-30 call sheet: hero with photo and proof strip, who-I-work-with, the
@@ -231,6 +227,5 @@ h1,h2,h3,.kicker,.svc b,.who b{text-wrap:balance}
   <p>© 2026 Megan Warren · Educator and Creative · Boston</p>
 </footer>
 </div>
-<a class="mcta" href="https://www.linkedin.com/in/megan-warren-boston/">Message me on LinkedIn</a>
 </body>
 </html>
