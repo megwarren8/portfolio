@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Try The Daily Lesson Kit | Megan Warren</title>
+<meta name="description" content="Open a made-up Trigonometry class in The Daily Lesson Kit, the one-file app I ran my classes from: a paced term, slides, and printed handouts.">
+<link rel="canonical" href="https://megan-warren.com/lesson-kit-demo/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#FBF7FC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1F1535" media="(prefers-color-scheme: dark)">
+<link rel="preload" href="/fonts/schibsted-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/shared.css?v=a1b5b51be2">
+<script src="/theme.js?v=b86dcb6e61"></script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Megan Warren">
+<meta property="og:title" content="Try The Daily Lesson Kit | Megan Warren">
+<meta property="og:description" content="Open a made-up Trigonometry class in The Daily Lesson Kit, the one-file app I ran my classes from: a paced term, slides, and printed handouts.">
+<meta property="og:url" content="https://megan-warren.com/lesson-kit-demo/">
+<meta property="og:image" content="https://megan-warren.com/lesson-kit-demo/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A projected slide from the demo: the distance between two points, the distance formula, and a figure of the right triangle it comes from.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Try The Daily Lesson Kit | Megan Warren">
+<meta name="twitter:description" content="Open a made-up Trigonometry class in The Daily Lesson Kit, the one-file app I ran my classes from: a paced term, slides, and printed handouts.">
+<meta name="twitter:image" content="https://megan-warren.com/lesson-kit-demo/og-image.png">
+<meta name="twitter:image:alt" content="A projected slide from the demo: the distance between two points, the distance formula, and a figure of the right triangle it comes from.">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Person",
+   "@id": "https://megan-warren.com/#person",
+   "name": "Megan Warren",
+   "jobTitle": "Educator and Creative",
+   "description": "Former high school math teacher who writes training manuals, onboarding guides, and course textbooks, and builds custom web tools.",
+   "url": "https://megan-warren.com/",
+   "image": "https://megan-warren.com/img/megan-warren-640.jpg",
+   "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Boston",
+    "addressRegion": "MA",
+    "addressCountry": "US"
+   },
+   "hasOccupation": [
+    {
+     "@type": "Occupation",
+     "name": "Instructional designer"
+    },
+    {
+     "@type": "Occupation",
+     "name": "Technical writer"
+    },
+    {
+     "@type": "Occupation",
+     "name": "Curriculum developer"
+    }
+   ],
+   "knowsAbout": [
+    "Training manuals",
+    "Onboarding guides",
+    "Technical documentation",
+    "Instructional design",
+    "Curriculum development",
+    "Custom web tools",
+    "Canvas course design",
+    "Accessible math publishing"
+   ],
+   "sameAs": [
+    "https://www.linkedin.com/in/megan-warren-boston/",
+    "https://github.com/megwarren8",
+    "https://books.megan-warren.com/",
+    "https://books.apple.com/us/author/megan-warren/id479564289"
+   ]
+  },
+  {
+   "@type": "Service",
+   "name": "Classroom apps and course design",
+   "serviceType": "Instructional design and custom classroom tools",
+   "url": "https://megan-warren.com/lesson-kit-demo/",
+   "description": "A classroom app built around a school's calendar, courses, and lessons: term pacing, slides, a teacher screen, and printed handouts, built to order.",
+   "provider": {
+    "@id": "https://megan-warren.com/#person"
+   },
+   "areaServed": "Remote"
+  }
+ ]
+}
+</script>
+<style>
+.doors{display:grid;gap:14px;grid-template-columns:1fr;margin-top:18px}
+@media (min-width:700px){.doors{grid-template-columns:1fr 1fr}}
+.doors .door{border-top:4px solid var(--pop)}
+.door .fine{margin-top:auto}
+.door{background:var(--surface);border-radius:12px;box-shadow:var(--shadow);border:1px solid color-mix(in srgb,var(--line) 45%,transparent);padding:18px 18px 20px;display:flex;flex-direction:column;gap:10px}
+.door h2{margin:0;font-size:1.15rem}
+.door p{margin:0;color:var(--muted)}
+.cred{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.95rem}
+.cred dt{color:var(--muted)}
+.cred dd{margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;color:var(--ink)}
+.shots{display:grid;gap:14px;grid-template-columns:1fr;margin:14px 0 0;padding:0}
+@media (min-width:700px){.shots{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:700px){.svc.four{grid-template-columns:1fr 1fr}}
+.shots figure{margin:0}
+.shots img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+.shots figcaption{font-size:.9rem;color:var(--muted);margin-top:6px}
+.fine{font-size:.9rem;color:var(--muted);margin:0}
+@media (min-width:700px){.doors.one{grid-template-columns:minmax(0,560px)}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the content</a>
+<div class="wrap">
+<header class="top">
+  <a class="name" href="/"><span class="nm">Megan Warren</span><span class="role">Educator and Creative</span></a>
+  <nav class="top-links" aria-label="Site">
+    <a href="/manuals/">Manuals</a>
+    <a href="/custom-tools/">Custom tools</a>
+    <a href="/canvas/">Canvas</a>
+    <a class="top-cta" href="https://www.linkedin.com/in/megan-warren-boston/" rel="me">Message me on LinkedIn</a>
+    <button class="theme" type="button" role="switch" aria-checked="false" aria-label="Night mode" title="Turn on night mode"><span class="ts-track" aria-hidden="true"><span class="ts-knob"></span><svg class="ts-ic ts-sun" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="3.1" fill="currentColor"/><path d="M8 1.2v1.9M8 12.9v1.9M1.2 8h1.9M12.9 8h1.9M3.2 3.2l1.35 1.35M11.45 11.45l1.35 1.35M3.2 12.8l1.35-1.35M11.45 4.55l1.35-1.35" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="ts-ic ts-moon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M13.6 10.1A6 6 0 0 1 5.9 2.4a6 6 0 1 0 7.7 7.7z" fill="currentColor"/></svg></span><span class="tb-label">Night</span></button>
+  </nav>
+</header>
+<main id="main">
+<section aria-labelledby="h1">
+  <p class="kicker"><span class="k-status">Taking new projects</span><span class="k-detail">Course design and classroom tools, remote from Boston</span></p>
+  <h1 id="h1">Plan, teach, and print a class from one file</h1>
+  <p class="lede">The Daily Lesson Kit is the app I ran my classes from. It lays the term out on the school calendar, checks that the topics fit, and turns each class into slides, a teacher screen, and a printed handout. It is a single file that works offline. The demo opens a made-up Trigonometry class on a Tuesday early in the fall term.</p>
+  <div class="doors one">
+    <div class="door">
+      <h2>Open the demo</h2>
+      <p>No sign-in. Start on Home, open the day&rsquo;s class, and press Present to see the slides the room sees.</p>
+      <p><a class="btn" href="https://lessons.megan-warren.com/demo/">Open the Lesson Kit demo</a></p>
+      <p class="fine">Best on a laptop or tablet. Anything you change stays in your own browser, and Reset demo puts it back.</p>
+    </div>
+  </div>
+</section>
+<section aria-labelledby="see">
+  <h2 id="see">What a teacher gets</h2>
+  <ul class="svc four">
+    <li><b>The term, laid out</b><span>Every class meeting on the calendar, holidays skipped, and a pace check that says whether the topics fit before the term starts.</span></li>
+    <li><b>A teacher screen</b><span>The live slide, what the room sees, the next step, a lesson map, and the lesson&rsquo;s own notes for each slide: what to say, what to watch for, and the answers.</span></li>
+    <li><b>Slides for the projector</b><span>One idea per slide, worked examples revealed a step at a time, a timed group task with hints, and a three-question exit ticket.</span></li>
+    <li><b>A handout that prints</b><span>Guided notes with blanks, the day&rsquo;s practice problems, and an exit slip to cut off and hand in, plus a complete copy for after class.</span></li>
+  </ul>
+  <div class="shots">
+    <figure><a href="/img/lesson-kit-teach.webp"><img loading="lazy" decoding="async" src="/img/lesson-kit-teach.webp" width="560" height="350" alt="The teacher screen on a worked example: legs 12 and 16, find the hypotenuse, three of six steps revealed, with the lesson's notes on what to say and watch for, and the slide the room sees beside it."></a><figcaption>The teacher screen, mid-lesson.</figcaption></figure>
+    <figure><a href="/img/lesson-kit-present.webp"><img loading="lazy" decoding="async" src="/img/lesson-kit-present.webp" width="560" height="350" alt="A projected slide: a right triangle with legs 12 and 16, and the steps c squared equals a squared plus b squared, then 144 plus 256 equals 400."></a><figcaption>What the room sees, one step at a time.</figcaption></figure>
+    <figure><a href="/img/lesson-kit-handout.webp"><img loading="lazy" decoding="async" src="/img/lesson-kit-handout.webp" width="560" height="350" alt="The printed handout for the day: the objective, three warm-up questions with answer lines, and the first key idea about the hypotenuse."></a><figcaption>The handout, ready to print.</figcaption></figure>
+  </div>
+</section>
+<section aria-labelledby="studio">
+  <h2 id="studio">Where the lessons come from</h2>
+  <p class="intro">The demo&rsquo;s two class days on the Pythagorean theorem come from the Trigonometry Lesson Studio, the ready-to-teach lessons I wrote for the course. An importer copies every sentence, number, and figure from the Studio and records where each one came from. If a single word stops matching the Studio, the check fails.</p>
+  <p class="cta-row"><a class="btn alt" href="/teacher-demo/">See the Lesson Studio and the AI tutor</a></p>
+</section>
+<section aria-labelledby="safe">
+  <h2 id="safe">How the demo stays private</h2>
+  <p class="intro">The class, its schedule, and its school are made up. The demo is its own copy of the app, built without any school data, and the site refuses to publish it if any of the school&rsquo;s private details get in. It saves only to your browser, so nothing you click reaches anyone else.</p>
+</section>
+<section aria-labelledby="work">
+  <h2 id="work">Want this for your school?</h2>
+  <p class="intro">I build classroom tools around a school&rsquo;s own calendar, courses, and lessons: pacing, slides, a teacher screen, and handouts that print.</p>
+  <p class="cta-row"><a class="btn" href="https://www.linkedin.com/in/megan-warren-boston/" rel="me">Message me on LinkedIn</a><!--email_off--><a class="btn alt" href="mailto:contact@megan-warren.com">Email <span class="nw">contact@megan-warren.com</span></a><!--/email_off--></p>
+  <p class="promise">Fixed price, agreed before any work starts. I reply within two business days.</p>
+</section>
+</main>
+
+<footer>
+  <nav class="foot-links" aria-label="Pages">
+    <a href="/">Home</a>
+    <a href="/manuals/">Manuals</a>
+    <a href="/custom-tools/">Custom tools</a>
+    <a href="/canvas/">Canvas</a>
+    <a href="https://books.megan-warren.com/">The free books</a>
+    <a href="https://www.linkedin.com/in/megan-warren-boston/" rel="me">LinkedIn</a>
+    <!--email_off--><a href="mailto:contact@megan-warren.com">Email</a><!--/email_off-->
+    <a href="/Megan-Warren-Resume.pdf">Resume (PDF)</a>
+    <a href="https://github.com/megwarren8/portfolio">GitHub</a>
+    <a href="/site-privacy/">Privacy</a>
+  </nav>
+  <p>© 2026 Megan Warren · Educator and Creative · Boston</p>
+</footer>
+</div>
+<a class="mcta" href="https://www.linkedin.com/in/megan-warren-boston/">Message me on LinkedIn</a>
+</body>
+</html>
