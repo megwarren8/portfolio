@@ -186,6 +186,22 @@ footer p{margin:.3em 0}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]) .theme .ts-knob{transform:translateX(20px)}:root:not([data-theme=light]) .theme .ts-sun{color:var(--muted)}:root:not([data-theme=light]) .theme .ts-moon{color:var(--bg)}}
 @media (prefers-reduced-motion:reduce){.theme .ts-knob{transition:none}}
 .theme .tb-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* Phone label follows the state: Day in day mode, Night at night (Megan 11-02, X1; the course books carry it). Desktop keeps the switch with no word. "In force" has two routes, as for the knob: an explicit data-theme, or the device's dark setting while nothing is saved. */
+.theme .tl-night{display:none}
+:root[data-theme=dark] .theme .tl-night{display:inline}
+:root[data-theme=dark] .theme .tl-day{display:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .theme .tl-night{display:inline}:root:not([data-theme=light]) .theme .tl-day{display:none}}
+@media (max-width:760px){
+.theme{flex-direction:column;gap:3px;padding:0 4px}
+.theme .ts-track{width:36px;height:20px}
+.theme .ts-knob{width:13px;height:13px}
+:root[data-theme=dark] .theme .ts-knob{transform:translateX(16px)}
+.theme .ts-ic{width:10px;height:10px;margin-top:-5px}
+.theme .ts-sun{left:3.5px}
+.theme .ts-moon{left:19.5px}
+.theme .tb-label{position:static;width:auto;height:auto;padding:0;margin:0;overflow:visible;clip:auto;white-space:nowrap;border:0;font-size:9px;font-weight:600;color:var(--muted);line-height:1}
+}
+@media (max-width:760px) and (prefers-color-scheme:dark){:root:not([data-theme=light]) .theme .ts-knob{transform:translateX(16px)}}
 @media (min-width:700px){
   header.top{position:sticky;top:0;z-index:9;background:var(--bg);padding:10px 0;border-bottom:1px solid color-mix(in srgb,var(--line) 45%,transparent)}
   section,.proof{scroll-margin-top:76px}
@@ -212,7 +228,7 @@ h1,h2,h3,.kicker,.svc b,.who b{text-wrap:balance}
     <a href="/custom-tools/">Custom tools</a>
     <a href="/canvas/">Canvas</a>
     <a class="top-cta" href="https://www.linkedin.com/in/megan-warren-boston/" rel="me">Message me on LinkedIn</a>
-    <button class="theme" type="button" role="switch" aria-checked="false" aria-label="Night mode" title="Turn on night mode"><span class="ts-track" aria-hidden="true"><span class="ts-knob"></span><svg class="ts-ic ts-sun" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="3.1" fill="currentColor"/><path d="M8 1.2v1.9M8 12.9v1.9M1.2 8h1.9M12.9 8h1.9M3.2 3.2l1.35 1.35M11.45 11.45l1.35 1.35M3.2 12.8l1.35-1.35M11.45 4.55l1.35-1.35" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="ts-ic ts-moon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M13.6 10.1A6 6 0 0 1 5.9 2.4a6 6 0 1 0 7.7 7.7z" fill="currentColor"/></svg></span><span class="tb-label">Night</span></button>
+    <button class="theme" type="button" role="switch" aria-checked="false" aria-label="Night mode" title="Turn on night mode"><span class="ts-track" aria-hidden="true"><span class="ts-knob"></span><svg class="ts-ic ts-sun" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="3.1" fill="currentColor"/><path d="M8 1.2v1.9M8 12.9v1.9M1.2 8h1.9M12.9 8h1.9M3.2 3.2l1.35 1.35M11.45 11.45l1.35 1.35M3.2 12.8l1.35-1.35M11.45 4.55l1.35-1.35" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="ts-ic ts-moon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M13.6 10.1A6 6 0 0 1 5.9 2.4a6 6 0 1 0 7.7 7.7z" fill="currentColor"/></svg></span><span class="tb-label"><span class="tl-day">Day</span><span class="tl-night">Night</span></span></button>
   </nav>
 </header>
 <main id="main">
